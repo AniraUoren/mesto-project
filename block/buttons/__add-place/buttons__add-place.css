@@ -1,0 +1,26 @@
+.buttons__add-place{
+  width: 150px;
+  height: 50px;
+  position: absolute;
+  top: 35px;
+  right: 0;
+  border: 2px solid var(--font-color_white);
+  border-radius: 2px;
+  background: var(--background-color_black) url("../../../images/plus.svg") no-repeat center;
+  background-size: 22px 22px;
+  font-size: 0;
+}
+
+.buttons__add-place:hover{
+  opacity: 0.6;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 580px){
+  .buttons__add-place{
+    margin-top: 32px;
+    position: static;
+    width: 282px;
+    background-size: 18px 18px;
+  }
+}

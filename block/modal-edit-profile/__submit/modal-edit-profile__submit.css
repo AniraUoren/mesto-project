@@ -1,0 +1,23 @@
+.modal-edit-profile__submit{
+  width: 100%;
+  height: 50px;
+  margin-top: 36px;
+  border: none;
+  border-radius: 2px;
+  outline: none;
+  background-color: var(--background-color_black);
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  text-align: center;
+  color: var(--font-color_white);
+}
+
+@media screen and (max-width: 320px){
+  .modal-edit-profile__submit{
+    height: 46px;
+    margin-top: 31px;
+    font-size: 14px;
+    line-height: 17px;
+  }
+}

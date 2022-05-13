@@ -1,0 +1,15 @@
+.header{
+  max-width: 880px;
+  height: 75px;
+  margin: 0 auto;
+  margin-bottom: 40px;
+  box-sizing: border-box;
+  border-bottom: 1px solid var(--background-color_grey);
+}
+
+@media screen and (max-width: 580px){
+  .header{
+    padding: 27px;
+    padding-bottom: 56px;
+  }
+}

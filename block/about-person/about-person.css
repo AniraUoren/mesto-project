@@ -1,0 +1,13 @@
+.about-person{
+  width: 100%;
+  margin-bottom: 50px;
+  position: relative;
+}
+
+@media screen and (max-width: 580px){
+  .about-person{
+    margin-bottom: 36px;
+    display: flex;
+    flex-direction: column;
+  }
+}

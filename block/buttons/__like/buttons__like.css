@@ -1,0 +1,15 @@
+.buttons__like{
+  width: 22px;
+  height: 19px;
+  position: absolute;
+  bottom: 29px;
+  right: 20px;
+  background: url("../../../images/heart.svg") center no-repeat;
+  border: none;
+  font-size: 0;
+}
+
+.buttons__like:hover{
+  opacity: 0.6;
+  cursor: pointer;
+}

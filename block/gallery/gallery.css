@@ -1,0 +1,14 @@
+.gallery{
+  margin-bottom: 36px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  row-gap: 20px;
+  column-gap: 17px;
+}
+
+@media screen and (max-width: 320px){
+  .gallery{
+    margin-bottom: 48px;
+  }
+}

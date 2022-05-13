@@ -1,0 +1,13 @@
+.person__image{
+  width: 120px;
+  height: 120px;
+  margin-right: 30px;
+  border-radius: 50%;
+}
+
+@media screen and (max-width: 320px){
+  .person__image{
+    margin: 0;
+    margin-bottom: 28px;
+  }
+}
