@@ -10,6 +10,6 @@
 - some another magic.
 
 ## Страница на GitHub Pages:
-
+https://anirauoren.github.io/mesto-project/
 
 Удачи!
