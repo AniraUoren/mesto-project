@@ -1,0 +1,27 @@
+.about-person__edit-person{
+  width: 24px;
+  height: 24px;
+  margin-top: 5px;
+  align-self: center;
+  background-image: url("../../../images/pen.svg");
+  background-color: var(--background-color_black);
+  background-repeat: no-repeat;
+  background-position: center;
+  border: 1px solid var(--font-color_white);
+  font-size: 0;
+}
+
+.about-person__edit-person:hover{
+  opacity: 0.6;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 320px){
+  .about-person__edit-person{
+    width: 18px;
+    height: 18px;
+    margin: 0;
+    justify-self: start;
+    align-self: center;
+  }
+}

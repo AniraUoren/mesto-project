@@ -1,0 +1,15 @@
+.gallery__like{
+  width: 22px;
+  height: 19px;
+  position: absolute;
+  bottom: 34px;
+  right: 20px;
+  background: url("../../../images/heart.svg") center no-repeat;
+  border: none;
+  font-size: 0;
+}
+
+.gallery__like:hover{
+  opacity: 0.5;
+  cursor: pointer;
+}

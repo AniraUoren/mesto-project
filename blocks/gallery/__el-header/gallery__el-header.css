@@ -1,8 +1,7 @@
 .gallery__el-header{
   width: 70%;
   margin: 0;
-  margin-left: 20px;
-  margin-top: 23px;
+  padding: 0;
   font-weight: 900;
   font-size: 24px;
   line-height: 29px;

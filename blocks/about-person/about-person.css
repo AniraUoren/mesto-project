@@ -1,13 +1,18 @@
 .about-person{
   width: 100%;
+  height: 120px;
   margin-bottom: 50px;
-  position: relative;
+  display: grid;
+  grid-template-columns: 120px 1fr 150px;
+  column-gap: 34px;
 }
 
 @media screen and (max-width: 580px){
   .about-person{
+    height: 100%;
     margin-bottom: 36px;
     display: flex;
     flex-direction: column;
+    justify-self: center;
   }
 }

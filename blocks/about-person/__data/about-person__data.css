@@ -1,0 +1,19 @@
+.about-person__data{
+  height: 80px;
+  display: grid;
+  grid-template-columns: minmax(min-content, max-content) 24px;
+  grid-template-rows: 1fr minmax(min-content, max-content);
+  column-gap: 18px;
+  row-gap: 9px;
+  align-self: center;
+}
+
+@media screen and (max-width: 320px){
+  .about-person__data{
+    width: 100%;
+    height: 56px;
+    grid-template-columns: minmax(min-content, 1fr) minmax(18px, 0.15fr);
+    column-gap: 10px;
+    row-gap: 0;
+  }
+}

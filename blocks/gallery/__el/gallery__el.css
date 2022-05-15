@@ -1,7 +1,8 @@
 .gallery__el{
   width: 282px;
-  height: 361px;
+  padding: 30px 20px;
   position: relative;
   border-radius: 10px;
   background-color: var(--font-color_white);
+  box-sizing: border-box;
 }

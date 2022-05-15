@@ -1,0 +1,26 @@
+.about-person__profession{
+  max-width: 510px;
+  margin: 0;
+  padding: 0;
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 2;
+  grid-row-end: 3;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  color: var(--font-color_white);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+@media screen and (max-width: 320px){
+  .about-person__profession{
+    margin-left: 16px;
+    font-size: 14px;
+    line-height: 17px;
+    grid-column-end: 3;
+    justify-self: center;
+  }
+}

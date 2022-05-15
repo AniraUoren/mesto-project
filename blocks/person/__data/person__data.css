@@ -1,7 +1,0 @@
-.person__data{
-  display: grid;
-  grid-template-columns: minmax(min-content, max-content) 24px;
-  grid-template-rows: 1fr minmax(min-content, max-content);
-  column-gap: 18px;
-  row-gap: 9px;
-}
