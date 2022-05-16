@@ -5,7 +5,7 @@
   background: var(--background-color_white);
 }
 
-@media screen and (max-width: 320px){
+@media screen and (max-width: 560px){
   .popup__container{
     padding: 25px 22px;
   }

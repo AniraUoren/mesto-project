@@ -12,8 +12,3 @@
   background-color: var(--background-color-popup_black);
   z-index: 5;
 }
-
-@media screen and (max-width: 320px){
-  .popup{
-  }
-}

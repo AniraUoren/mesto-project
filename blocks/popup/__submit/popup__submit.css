@@ -14,12 +14,12 @@
 }
 
 .popup__submit:hover{
-  opacity: 0.75;
+  opacity: 0.8;
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
   cursor: pointer;
 }
 
-@media screen and (max-width: 320px){
+@media screen and (max-width: 560px){
   .popup__submit{
     width: 238px;
     height: 46px;

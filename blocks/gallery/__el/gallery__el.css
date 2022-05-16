@@ -1,7 +1,10 @@
 .gallery__el{
   width: 282px;
-  padding: 30px 20px;
-  position: relative;
+  display: grid;
+  grid-template-columns: 230px 42px;
+  grid-template-rows: 282px 54px;
+  column-gap: 11px;
+  row-gap: 25px;
   border-radius: 10px;
   background-color: var(--font-color_white);
   box-sizing: border-box;
