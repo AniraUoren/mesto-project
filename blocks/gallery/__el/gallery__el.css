@@ -2,7 +2,7 @@
   width: 282px;
   display: grid;
   grid-template-columns: 230px 42px;
-  grid-template-rows: 282px 54px;
+  grid-template-rows: 282px minmax(54px, 1fr);
   column-gap: 11px;
   row-gap: 25px;
   border-radius: 10px;

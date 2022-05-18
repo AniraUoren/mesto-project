@@ -16,7 +16,7 @@
   cursor: pointer;
 }
 
-@media screen and (max-width: 320px){
+@media screen and (max-width: 371px){
   .about-person__edit-person{
     width: 18px;
     height: 18px;

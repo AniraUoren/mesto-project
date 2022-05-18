@@ -8,7 +8,7 @@
   align-self: center;
 }
 
-@media screen and (max-width: 320px){
+@media screen and (max-width: 371px){
   .about-person__data{
     width: 100%;
     height: 56px;

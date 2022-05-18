@@ -4,7 +4,7 @@
   border-radius: 50%;
 }
 
-@media screen and (max-width: 320px){
+@media screen and (max-width: 676px){
   .about-person__image{
     margin: 0;
     margin-bottom: 28px;
