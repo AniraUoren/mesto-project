@@ -1,5 +1,6 @@
 .main{
   max-width: 880px;
+  flex: 1;
   margin: 0 auto;
   padding: 0;
 }

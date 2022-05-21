@@ -6,7 +6,6 @@
   padding-top: 45px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   font-family: 'Inter', Arial, sans-serif;
   box-sizing: border-box;
   background: var(--background-color_black);
