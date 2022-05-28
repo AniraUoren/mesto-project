@@ -21,55 +21,46 @@
           <p class="about-person__profession">Исследователь океана</p>
           <button class="about-person__edit-person" type="button" id="editPersonBtn">Редактировать</button>
         </div>
-      <button class="about-person__add-place" type="button">Добавить место</button>
+      <button class="about-person__add-place" type="button" id="addPlaceBtn">Добавить место</button>
     </section>
     <section class="gallery">
-      <div class="gallery__el">
-        <img src="images/karachaevsk.jpg" alt="Карачаевск" class="gallery__image">
-        <h3 class="gallery__el-header">Карачаевск</h3>
-        <button class="gallery__like gallery__like_active" type="button">Лайк</button>
-      </div>
-      <div class="gallery__el">
-        <img src="images/elbrus.png" alt="Гора Эльбрус" class="gallery__image">
-        <h3 class="gallery__el-header">Гора Эльбрус</h3>
-        <button class="gallery__like" type="button">Лайк</button>
-      </div>
-      <div class="gallery__el">
-        <img src="images/dombai.png" alt="Домбай" class="gallery__image">
-        <h3 class="gallery__el-header">Домбай</h3>
-        <button class="gallery__like" type="button">Лайк</button>
-      </div>
-      <div class="gallery__el">
-        <img src="images/elbrus.png" alt="Гора Эльбрус" class="gallery__image">
-        <h3 class="gallery__el-header">Гора Эльбрус</h3>
-        <button class="gallery__like" type="button">Лайк</button>
-      </div>
-      <div class="gallery__el">
-        <img src="images/dombai.png" alt="Домбай" class="gallery__image">
-        <h3 class="gallery__el-header">Домбай</h3>
-        <button class="gallery__like" type="button">Лайк</button>
-      </div>
-      <div class="gallery__el">
-        <img src="images/karachaevsk.jpg" alt="Карачаево-Черкесская Республика" class="gallery__image">
-        <h3 class="gallery__el-header">Карачаево-Черкесская Республика</h3>
-        <button class="gallery__like" type="button">Лайк</button>
-      </div>
     </section>
   </main>
   <footer class="footer">
     <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
   </footer>
 
-  <div class="popup popup_closed">
+  <div class="popup popup_closed" id="editPersonPopup">
     <div class="popup__container">
       <h2 class="popup__header">Редактировать&nbsp;профиль</h2>
       <form action="#" class="popup__form" name="edit-profile">
-        <input type="text" placeholder="Имя" class="popup__input-text" name="name">
-        <input type="text" placeholder="Профессия" class="popup__input-text" name="profession">
-        <button type="submit" class="popup__submit">Сохранить</button>
+        <input type="text" placeholder="Имя" class="popup__input-text" name="name" id="nameInput">
+        <input type="text" placeholder="Профессия" class="popup__input-text" name="profession" id="professionInput">
+        <button type="submit" class="popup__submit" id="submitEditPersonPopup">Сохранить</button>
       </form>
-      <button class="popup__close" id="closePopupBtn">Закрыть</button>
+      <button class="popup__close" id="closeEditPersonPopup">Закрыть</button>
     </div>
+  </div>
+
+  <div class="popup popup_closed" id="addPlace">
+    <div class="popup__container">
+      <h2 class="popup__header">Новое&nbsp;место</h2>
+      <form action="#" class="popup__form" name="edit-profile">
+        <input type="text" placeholder="Название" class="popup__input-text" name="namePlace" id="namePlaceInput">
+        <input type="text" placeholder="Ссылка на картинку" class="popup__input-text" name="linkPlace" id="linkPlaceInput">
+        <button type="submit" class="popup__submit" id="submitAddPlacePopup">Сохранить</button>
+      </form>
+      <button class="popup__close" id="closeAddPlacePopup">Закрыть</button>
+    </div>
+  </div>
+
+  <div class="popup popup_images popup_closed" id="watchImage">
+    <div class="popup__container popup__container-image">
+      <img class="popup__image" src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg" alt="Архыз">
+      <p class="popup__image-description">Архыз</p>
+      <button class="popup__close" id="closeWatchImagesPopup">Закрыть</button>
+    </div>
+
   </div>
 </div>
 <script src="scripts/script.js"></script>

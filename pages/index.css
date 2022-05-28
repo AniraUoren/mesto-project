@@ -20,11 +20,16 @@
 @import "../blocks/gallery/__el-header/gallery__el-header.css";
 @import "../blocks/gallery/__like/gallery__like.css";
 @import "../blocks/gallery/__like/_active/gallery__like_active.css";
+@import "../blocks/gallery/__delete/gallery__delete.css";
 @import "../blocks/footer/footer.css";
 @import "../blocks/footer/__copyright/footer__copyright.css";
 @import "../blocks/popup/popup.css";
 @import "../blocks/popup/_closed/popup_closed.css";
+@import "../blocks/popup/_images/popup_images.css";
 @import "../blocks/popup/__container/popup__container.css";
+@import "../blocks/popup/__container-image/popup__container-image.css";
+@import "../blocks/popup/__image-description/popup__image-description.css";
+@import "../blocks/popup/popup__image/popup__image.css";
 @import "../blocks/popup/__form/popup__form.css";
 @import "../blocks/popup/__header/popup__header.css";
 @import "../blocks/popup/__input-text/popup__input-text.css";

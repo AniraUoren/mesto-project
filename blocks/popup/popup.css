@@ -1,4 +1,4 @@
-.popup{
+.popup {
   display: flex;
   padding: 35px;
   width: 100vw;
@@ -11,4 +11,8 @@
   box-sizing: border-box;
   background-color: var(--background-color-popup_black);
   z-index: 5;
+  visibility: visible;
+  opacity: 1;
+  pointer-events: all;
+  transition: visibility 0s, opacity 0.6s;
 }

@@ -1,0 +1,15 @@
+.gallery__delete{
+  width: 18px;
+  height: 19px;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: transparent url("../../../images/deleteIcon.svg") center no-repeat;
+  font-size: 0;
+  border: 0;
+}
+
+.gallery__delete:hover{
+  opacity: 0.5;
+  cursor: pointer;
+}
