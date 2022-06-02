@@ -1,27 +1,54 @@
-//Открытие и закрытие модального окна
-const popupWindowEditPerson = document.getElementById("editPersonPopup");
-const btnOpenEditPerson = document.getElementById("editPersonBtn");
-const btnCloseEditPerson = document.getElementById("closeEditPersonPopup");
+/* --------------------------
+* Открытие и закрытие модальных окон
+* --------------------------*/
 
-btnOpenEditPerson.addEventListener("click", () => {
-  popupWindowEditPerson.classList.remove("popup_closed");
-});
+const popupWindowEditPerson = document.querySelector("#editPersonPopup"); //модальное окно на редактирование профиля
+const btnOpenEditPerson = document.querySelector("#editPersonBtn"); //кнопка редактирования профиля
+const btnCloseEditPerson = document.querySelector("#closeEditPersonPopup"); //кнопка закрытия попапа редактирования профиля
 
-btnCloseEditPerson.addEventListener("click", () => {
-  popupWindowEditPerson.classList.add("popup_closed");
-});
+const popupAddPlace = document.querySelector("#addPlace"); //модальное окно для добавления места
+const btnAddPlace = document.querySelector("#addPlaceBtn"); //кнопка добавления нового места
+const btnCloseAddPlace = document.querySelector("#closeAddPlacePopup"); // кнопка закрытия модального окна на добавление места
+
+/**
+ * Функция для добавления возможности открыть попап
+ * @param openBtn - Кнопка для открытия попапа.
+ * @param popupWindow - Модальное окно с которым работаем.
+ */
+
+function openPopupWindow(openBtn, popupWindow) {
+  openBtn.addEventListener("click", () => {
+    popupWindow.classList.remove("popup_closed");
+  })
+}
+
+/**
+ * Функция для добавления возможности закрыть попап
+ * @param closeBtn - Кнопка для закрытия попапа.
+ * @param popupWindow - Модальное окно с которым работаем.
+ */
+function closePopupWindow(closeBtn, popupWindow) {
+  closeBtn.addEventListener("click", () => {
+    popupWindow.classList.add("popup_closed");
+  })
+}
+
+openPopupWindow(btnOpenEditPerson, popupWindowEditPerson);
+closePopupWindow(btnCloseEditPerson, popupWindowEditPerson);
+
+openPopupWindow(btnAddPlace, popupAddPlace);
+closePopupWindow(btnCloseAddPlace, popupAddPlace);
+
+/*
+* --------------------------
+* */
 
 // Связываем поля формы и элементы на странице
+const nameInput = document.querySelector("#nameInput");
+const professionInput = document.querySelector("#professionInput");
 const namePerson = document.querySelector(".about-person__name");
 const professionPerson = document.querySelector(".about-person__profession");
-const nameInput = document.getElementById("nameInput");
-const professionInput = document.getElementById("professionInput");
-
-nameInput.value = namePerson.innerText;
-professionInput.value = professionPerson.innerText;
-
-//Редактирование имени и информации о себе
-const submitEditPersonPopup = document.getElementById("submitEditPersonPopup");
+const submitEditPersonPopup = document.querySelector("#submitEditPersonPopup");
 
 submitEditPersonPopup.addEventListener("click", evt => {
   evt.preventDefault();
@@ -32,81 +59,51 @@ submitEditPersonPopup.addEventListener("click", evt => {
   popupWindowEditPerson.classList.add("popup_closed");
 });
 
-// Функция для создания события клика на кнопку лайк
-function initialLikesAction(likeBtns) {
-
-  for (let i = 0; i < likeBtns.length; i++) {
-    likeBtns[i].addEventListener("click", () => {
-      likeBtns[i].classList.toggle("gallery__like_active")
-    })
-  }
-
-
-}
-
-// Функция для создания события клика на кнопку удаления карточки
-function initialDeleteAction(deleteBtns) {
-  for (let i = 0; i < deleteBtns.length; i++) {
-    deleteBtns[i].addEventListener("click", () => {
-      deleteBtns[i].parentNode.remove();
+/**
+ * Функция для рендера карточки из галереи и создания событий для нее по объекту.
+ * @param template - Шаблон для создания карточки.
+ * @param initObj - Объект для инициализации карточки.
+ */
+function createPlaceCard(template, initObj) {
+  const elem = template.content.firstElementChild.cloneNode(true); //Получаем элемент из шаблона.
+  const watchImagesPopup = document.querySelector("#watchImage"); //Ищем попап для просмотра изображения
+  const closeWatchImagesPopup = document.querySelector("#closeWatchImagesPopup"); // Ищем кнопку закрытия попапа для просмотра изображения
 
 
-    })
-  }
-}
+  elem.querySelector(".gallery__image").src = initObj.link; // Добавляем карточке ссылку на изображение
+  elem.querySelector(".gallery__image").alt = initObj.name; // Добавляем карточке описание изображения
+  elem.querySelector(".gallery__el-header").innerText = initObj.name; //Добавляем описание места
 
-// Функция для создания события просмотра изображения карточки
-function initialWatcherOfImagesAction(images){
-  const watchImagesPopup = document.getElementById("watchImage");
-  const closeWatchImagesPopup = document.getElementById("closeWatchImagesPopup");
+  //Вешаем на карточку событие клика на кнопку лайка
+  elem.querySelector(".gallery__like").addEventListener("click", () => {
+    elem.querySelector(".gallery__like").classList.toggle("gallery__like_active")
+  })
 
-  for (let i = 0; i < images.length; i++){
-    images[i].addEventListener("click", () => {
-      console.log(images[i])
-      const imgInPopup = watchImagesPopup.querySelector(".popup__image");
-      const descInPopup = watchImagesPopup.querySelector(".popup__image-description");
+  //Вешаем на карточку событие клика на кнопку удаления карточки
+  elem.querySelector(".gallery__delete").addEventListener("click", () => {
+    elem.remove();
+  })
 
-      imgInPopup.setAttribute("src", images[i].getAttribute("src"));
-      imgInPopup.setAttribute("alt", images[i].getAttribute("alt"));
-      descInPopup.textContent = images[i].getAttribute("alt");
+  //Вешаем на карточку событие клика на изображение для просмотра картинки в попапе
+  elem.querySelector(".gallery__image").addEventListener("click", () => {
+    watchImagesPopup.querySelector(".popup__image").setAttribute("src", elem.querySelector(".gallery__image").src);
+    watchImagesPopup.querySelector(".popup__image").setAttribute("alt", elem.querySelector(".gallery__image").alt);
+    watchImagesPopup.querySelector(".popup__image-description").innerText = elem.querySelector(".gallery__image").alt;
+    watchImagesPopup.classList.remove("popup_closed");
+  })
 
-      watchImagesPopup.classList.remove("popup_closed")
-    })
-  }
-
+  //Вешаем на кнопку закрытия попапа событие
   closeWatchImagesPopup.addEventListener("click", () => {
     watchImagesPopup.classList.add("popup_closed");
-  })
+  });
+
+  //Возвращаем готовую карточку со всеми слушателями
+  return elem;
 }
 
-//Функция отрисовывающая карточки в галерее по шаблону
-function addGalleryCards(arr) {
-  gallery.innerHTML = ""; //очищаем галерею для перерисовки
-
-  for (let i = 0; i < arr.length; i++) {
-    gallery.insertAdjacentHTML('beforeend',
-      `
-            <div class="gallery__el" id="${i}">
-              <img src="${arr[i].link}" alt="${arr[i].name}" class="gallery__image">
-              <h3 class="gallery__el-header">${arr[i].name}</h3>
-              <button class="gallery__like" type="button">Лайк</button>
-              <button class="gallery__delete" type="button">Удалить</button>
-            </div>
-           `)
-  }
-
-  const likeButtons = document.querySelectorAll(".gallery__like");
-  initialLikesAction(likeButtons);
-
-  const deleteButtons = document.querySelectorAll(".gallery__delete");
-  initialDeleteAction(deleteButtons);
-
-  const imagesOfElementInGallery = document.querySelectorAll(".gallery__image");
-  initialWatcherOfImagesAction(imagesOfElementInGallery);
-}
-
-const gallery = document.querySelector(".gallery");
-let initialCards = [
+const templateOfGalleryCard = document.querySelector("#galleryElTemplate"); // Получаем шаблон карточки места в галлерее
+const gallery = document.querySelector(".gallery"); //Находим элемент галлереи
+const initialCards = [
   {
     name: 'Архыз',
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
@@ -131,33 +128,26 @@ let initialCards = [
     name: 'Байкал',
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
   }
-]
-addGalleryCards(initialCards);
+] //Массив для инициализации карточек
 
-
-// Открытие и закрытие формы для добавления новой карточки
-const popupAddPlace = document.getElementById("addPlace");
-const btnAddPlace = document.getElementById("addPlaceBtn");
-const btnCloseAddPlace = document.getElementById("closeAddPlacePopup");
-
-btnAddPlace.addEventListener("click", () => {
-  popupAddPlace.classList.remove("popup_closed");
-});
-
-btnCloseAddPlace.addEventListener("click", () => {
-  popupAddPlace.classList.add("popup_closed");
-});
-
+//Циклом проходим массив для инициализации карточек и вставляем их в галлерею.
+for (let i = 0; i < initialCards.length; i++) {
+  const temp = createPlaceCard(templateOfGalleryCard, initialCards[i]);
+  gallery.append(temp);
+}
+/*
+* --------------------------
+* */
 
 // Добавление карточки на страницу
-const namePlaceInput = document.getElementById("namePlaceInput");
-const linkPlaceInput = document.getElementById("linkPlaceInput");
-const submitAddPlacePopup = document.getElementById("submitAddPlacePopup");
+const namePlaceInput = document.querySelector("#namePlaceInput");
+const linkPlaceInput = document.querySelector("#linkPlaceInput");
+const submitAddPlacePopup = document.querySelector("#submitAddPlacePopup");
 
 submitAddPlacePopup.addEventListener("click", evt => {
   evt.preventDefault();
 
-  let temp = {
+  const temp = {
     name: "",
     link: ""
   }
@@ -165,9 +155,7 @@ submitAddPlacePopup.addEventListener("click", evt => {
   temp.name = namePlaceInput.value;
   temp.link = linkPlaceInput.value;
 
-  initialCards.unshift(temp);
-
-  addGalleryCards(initialCards);
+  gallery.prepend(createPlaceCard(templateOfGalleryCard, temp))
 
   popupAddPlace.classList.add("popup_closed");
 });
