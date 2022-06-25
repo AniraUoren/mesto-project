@@ -3,19 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="pages/index.css">
   <title>Mesto Russia</title>
 </head>
 <body>
 <div class="page">
   <header class="header">
     <a href="#" class="logo">
-      <img src="images/logo.svg" alt="Логотип" class="logo__image">
+      <img src="<%=require('./images/logo.svg')%>" alt="Логотип" class="logo__image">
     </a>
   </header>
   <main class="main">
     <section class="about-person">
-        <img src="images/Jacques-Yves_Cousteau.jpg" alt="Жак-Ив Кусто" class="about-person__image">
+        <img src="<%=require('./images/Jacques-Yves_Cousteau.jpg')%>" alt="Жак-Ив Кусто" class="about-person__image">
         <div class="about-person__data">
           <h1 class="about-person__name">Жак-Ив Кусто</h1>
           <p class="about-person__profession">Исследователь океана</p>
@@ -71,6 +70,5 @@
 
   </div>
 </div>
-<script src="scripts/script.js"></script>
 </body>
 </html>
