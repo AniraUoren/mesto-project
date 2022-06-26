@@ -1,0 +1,11 @@
+.popup__submit_disabled{
+  border: 1px solid var(--border-color_black_opacity2);
+  background-color: var(--background-color_white);
+  color: var(--border-color_black_opacity2);
+}
+
+.popup__submit_disabled:hover{
+  box-shadow: none;
+  cursor: default;
+  opacity: 1;
+}

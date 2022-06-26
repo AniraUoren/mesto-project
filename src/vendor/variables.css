@@ -2,6 +2,8 @@
   --background-color_black: #000000;
   --background-color_grey: #545454;
   --background-color_white: #ffffff;
-  --font-color_white: #ffffff;
   --background-color-popup_black: rgba(0, 0, 0, 0.5);
+  --font-color_white: #ffffff;
+  --font-color_red: #FF0000;
+  --border-color_black_opacity2: rgba(0, 0, 0, 0.2);
 }
