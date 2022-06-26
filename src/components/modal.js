@@ -27,7 +27,7 @@ function openPopupWindow(openBtn, popupWindow) {
 }
 
 /**
- * Функция для добавления возможности закрыть попап
+ * Функция для добавления возможности закрыть попап нажатием на кнопку или нажатием клавиши Esc.
  * @param closeBtn - Кнопка для закрытия попапа.
  * @param popupWindow - Модальное окно с которым работаем.
  */
@@ -35,6 +35,12 @@ function closePopupWindow(closeBtn, popupWindow) {
   closeBtn.addEventListener("click", () => {
     closeDOMElement(popupWindow);
   })
-}
 
+  popupWindow.addEventListener("keydown", evt => {
+    evt.preventDefault();
+    if (evt.key === "Escape"){
+      closeDOMElement(popupWindow);
+    }
+  })
+}
 export {openDOMElement, closeDOMElement, openPopupWindow, closePopupWindow}
