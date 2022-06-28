@@ -21,7 +21,7 @@ function closeDOMElement(element) {
  */
 
 function openPopupWindow(openBtn, popupWindow) {
-  openBtn.addEventListener("click", () => {
+  openBtn.addEventListener("click", (evt) => {
     openDOMElement(popupWindow);
   })
 }
@@ -32,13 +32,19 @@ function openPopupWindow(openBtn, popupWindow) {
  * @param popupWindow - Модальное окно с которым работаем.
  */
 function closePopupWindow(closeBtn, popupWindow) {
-  closeBtn.addEventListener("click", () => {
+  closeBtn.addEventListener("click", evt => {
     closeDOMElement(popupWindow);
   })
 
   popupWindow.addEventListener("keydown", evt => {
     evt.preventDefault();
     if (evt.key === "Escape"){
+      closeDOMElement(popupWindow);
+    }
+  })
+
+  popupWindow.addEventListener("click", evt => {
+    if (evt.target.classList.contains("popup")){
       closeDOMElement(popupWindow);
     }
   })

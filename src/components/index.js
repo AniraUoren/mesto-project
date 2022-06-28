@@ -19,7 +19,6 @@ closePopupWindow(btnCloseEditPerson, popupWindowEditPerson);
 
 openPopupWindow(btnAddPlace, popupAddPlace);
 closePopupWindow(btnCloseAddPlace, popupAddPlace);
-
 /* --------------------------
 * Связываем поля формы и элементы на странице
 * --------------------------*/
