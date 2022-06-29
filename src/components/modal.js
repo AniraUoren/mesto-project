@@ -37,7 +37,6 @@ function closePopupWindow(closeBtn, popupWindow) {
   })
 
   popupWindow.addEventListener("keydown", evt => {
-    evt.preventDefault();
     if (evt.key === "Escape"){
       closeDOMElement(popupWindow);
     }

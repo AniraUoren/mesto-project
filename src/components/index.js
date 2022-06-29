@@ -1,6 +1,7 @@
 import "../pages/index.css"
 import {closeDOMElement, openPopupWindow, closePopupWindow} from "./modal";
 import createPlaceCard from "./card";
+import {enableValidation} from "./validate";
 
 /* --------------------------
 * Открытие и закрытие модальных окон
@@ -99,3 +100,9 @@ submitAddPlacePopup.addEventListener("click", evt => {
 
   closeDOMElement(popupAddPlace);
 });
+
+/* --------------------------
+* Валидация полей форм
+* --------------------------*/
+
+enableValidation();

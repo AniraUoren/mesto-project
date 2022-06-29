@@ -14,18 +14,19 @@
   </header>
   <main class="main">
     <section class="about-person">
-        <img src="<%=require('./images/Jacques-Yves_Cousteau.jpg')%>" alt="Жак-Ив Кусто" class="about-person__image">
-        <div class="about-person__data">
-          <h1 class="about-person__name">Жак-Ив Кусто</h1>
-          <p class="about-person__profession">Исследователь океана</p>
-          <button class="about-person__edit-person" type="button" id="editPersonBtn">Редактировать</button>
-        </div>
+      <img src="<%=require('./images/Jacques-Yves_Cousteau.jpg')%>" alt="Жак-Ив Кусто" class="about-person__image">
+      <div class="about-person__data">
+        <h1 class="about-person__name">Жак-Ив Кусто</h1>
+        <p class="about-person__profession">Исследователь океана</p>
+        <button class="about-person__edit-person" type="button" id="editPersonBtn">Редактировать</button>
+      </div>
       <button class="about-person__add-place" type="button" id="addPlaceBtn">Добавить место</button>
     </section>
     <section class="gallery">
       <template id="galleryElTemplate">
         <div class="gallery__el">
-          <img src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg" alt="Архыз" class="gallery__image">
+          <img src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg" alt="Архыз"
+               class="gallery__image">
           <h3 class="gallery__el-header">Архыз</h3>
           <button class="gallery__like" type="button">Лайк</button>
           <button class="gallery__delete" type="button">Удалить</button>
@@ -40,10 +41,26 @@
   <div class="popup popup_closed" id="editPersonPopup">
     <div class="popup__container">
       <h2 class="popup__header">Редактировать&nbsp;профиль</h2>
-      <form action="#" class="popup__form" name="edit-profile">
-        <input type="text" placeholder="Имя" class="popup__input-text" name="name" id="nameInput">
+      <form action="#" class="popup__form" name="edit-profile" novalidate>
+        <input type="text"
+               placeholder="Имя"
+               class="popup__input-text"
+               name="name"
+               id="nameInput"
+               minlength="2"
+               maxlength="40"
+               required
+        >
         <span class="popup__error-text popup__input-text_disabled nameInput-error">Вы пропустили это поле.</span>
-        <input type="text" placeholder="Профессия" class="popup__input-text" name="profession" id="professionInput">
+        <input type="text"
+               placeholder="Профессия"
+               class="popup__input-text"
+               name="profession"
+               id="professionInput"
+               minlength="2"
+               maxlength="200"
+               required
+        >
         <span class="popup__error-text popup__input-text_disabled professionInput-error">Вы пропустили это поле.</span>
         <button type="submit" class="popup__submit" id="submitEditPersonPopup">Сохранить</button>
       </form>
@@ -54,12 +71,26 @@
   <div class="popup popup_closed" id="addPlace">
     <div class="popup__container">
       <h2 class="popup__header">Новое&nbsp;место</h2>
-      <form action="#" class="popup__form" name="edit-profile">
-        <input type="text" placeholder="Название" class="popup__input-text" name="namePlace" id="namePlaceInput">
+      <form action="#" class="popup__form" name="edit-profile" novalidate>
+        <input type="text"
+               placeholder="Название"
+               class="popup__input-text"
+               name="namePlace"
+               id="namePlaceInput"
+               minlength="2"
+               maxlength="30"
+               required
+        >
         <span class="popup__error-text popup__input-text_disabled namePlaceInput-error">Вы пропустили это поле.</span>
-        <input type="text" placeholder="Ссылка на картинку" class="popup__input-text" name="linkPlace" id="linkPlaceInput">
+        <input type="url"
+               placeholder="Ссылка на картинку"
+               class="popup__input-text"
+               name="linkPlace"
+               id="linkPlaceInput"
+        >
         <span class="popup__error-text popup__input-text_disabled linkPlaceInput-error">Вы пропустили это поле.</span>
-        <button type="submit" class="popup__submit popup__submit_disabled" id="submitAddPlacePopup" disabled>Сохранить</button>
+        <button type="submit" class="popup__submit popup__submit_disabled" id="submitAddPlacePopup" disabled>Сохранить
+        </button>
       </form>
       <button class="popup__close" id="closeAddPlacePopup">Закрыть</button>
     </div>
@@ -67,7 +98,8 @@
 
   <div class="popup popup_images popup_closed" id="watchImage">
     <div class="popup__container popup__container-image">
-      <img class="popup__image" src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg" alt="Архыз">
+      <img class="popup__image" src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg"
+           alt="Архыз">
       <p class="popup__image-description">Архыз</p>
       <button class="popup__close" id="closeWatchImagesPopup">Закрыть</button>
     </div>
