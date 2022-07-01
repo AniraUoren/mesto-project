@@ -44,6 +44,12 @@ submitEditPersonPopup.addEventListener("click", evt => {
 * --------------------------*/
 const templateOfGalleryCard = document.querySelector("#galleryElTemplate"); // Получаем шаблон карточки места в галлерее
 const gallery = document.querySelector(".gallery"); //Находим элемент галлереи
+// Добавление карточки на страницу
+const namePlaceInput = document.querySelector("#namePlaceInput");
+const linkPlaceInput = document.querySelector("#linkPlaceInput");
+const submitAddPlacePopup = document.querySelector("#submitAddPlacePopup");
+const watchImagesPopup = document.querySelector("#watchImage"); //Ищем попап для просмотра изображения
+const closeWatchImagesPopup = document.querySelector("#closeWatchImagesPopup"); // Ищем кнопку закрытия попапа для просмотра изображения
 const initialCards = [
   {
     name: 'Архыз',
@@ -73,17 +79,10 @@ const initialCards = [
 
 //Циклом проходим массив для инициализации карточек и вставляем их в галлерею.
 for (let i = 0; i < initialCards.length; i++) {
-  const temp = createPlaceCard(templateOfGalleryCard, initialCards[i]);
+  const temp = createPlaceCard(templateOfGalleryCard, initialCards[i], watchImagesPopup);
   gallery.append(temp);
 }
-/*
-* --------------------------
-* */
 
-// Добавление карточки на страницу
-const namePlaceInput = document.querySelector("#namePlaceInput");
-const linkPlaceInput = document.querySelector("#linkPlaceInput");
-const submitAddPlacePopup = document.querySelector("#submitAddPlacePopup");
 
 submitAddPlacePopup.addEventListener("click", evt => {
   evt.preventDefault();
@@ -96,9 +95,14 @@ submitAddPlacePopup.addEventListener("click", evt => {
   temp.name = namePlaceInput.value;
   temp.link = linkPlaceInput.value;
 
-  gallery.prepend(createPlaceCard(templateOfGalleryCard, temp))
+  gallery.prepend(createPlaceCard(templateOfGalleryCard, temp, watchImagesPopup))
 
   closeDOMElement(popupAddPlace);
+});
+
+//Вешаем на кнопку закрытия попапа событие
+closeWatchImagesPopup.addEventListener("click", () => {
+  closeDOMElement(watchImagesPopup);
 });
 
 /* --------------------------
