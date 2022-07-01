@@ -108,5 +108,12 @@ closeWatchImagesPopup.addEventListener("click", () => {
 /* --------------------------
 * Валидация полей форм
 * --------------------------*/
+const config = {
+  errorSpanClass: "popup__input-text_disabled",
+  formPopupClass: "popup__form",
+  inputClass: "popup__input-text",
+  submitButtonClass: "popup__submit",
+  submitButtonDisableClass: "popup__submit_disabled"
+};
 
-enableValidation();
+enableValidation(config);

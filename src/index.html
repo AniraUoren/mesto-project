@@ -87,9 +87,11 @@
                class="popup__input-text"
                name="linkPlace"
                id="linkPlaceInput"
+               minlength="4"
+               required
         >
         <span class="popup__error-text popup__input-text_disabled linkPlaceInput-error">Вы пропустили это поле.</span>
-        <button type="submit" class="popup__submit popup__submit_disabled" id="submitAddPlacePopup" disabled>Сохранить
+        <button type="submit" class="popup__submit" id="submitAddPlacePopup" >Сохранить
         </button>
       </form>
       <button class="popup__close" id="closeAddPlacePopup">Закрыть</button>
