@@ -1,17 +1,34 @@
+const ESC_CODE = "Escape"; // константа с кодом клавиши Esc
+
+/**
+ * Вспомогательная функция для закрытия попапа кнопкой Esc.
+ * Сделана для получения возможности убрать слушатель при закрытии окна.
+ * @param evt - объект event от срабатывания addEventListener
+ */
+function closeByEscKey(evt){
+  if (evt.key === ESC_CODE) {
+    const openedPopup = document.querySelector(".popup_opened");
+    closePopup(openedPopup);
+  }
+}
+
 /**
  * Функция для удаления класса скрытия попап-элемента
  * @param element - DOM-элемент который требуется показать.
  */
-function openDOMElement(element) {
-  element.classList.remove("popup_closed");
+function openPopup(element) {
+  element.classList.add("popup_opened");
+  document.addEventListener("keydown", closeByEscKey);
 }
 
 /**
  * Функция для добавления класса скрытия попап-элемента
  * @param element - DOM-элемент который требуется скрыть.
  */
-function closeDOMElement(element) {
-  element.classList.add("popup_closed");
+function closePopup(element) {
+  element.classList.remove("popup_opened");
+
+  document.removeEventListener("keydown", closeByEscKey);
 }
 
 /**
@@ -21,8 +38,8 @@ function closeDOMElement(element) {
  */
 
 function openPopupWindow(openBtn, popupWindow) {
-  openBtn.addEventListener("click", (evt) => {
-    openDOMElement(popupWindow);
+  openBtn.addEventListener("click", () => {
+    openPopup(popupWindow);
   })
 }
 
@@ -32,20 +49,14 @@ function openPopupWindow(openBtn, popupWindow) {
  * @param popupWindow - Модальное окно с которым работаем.
  */
 function closePopupWindow(closeBtn, popupWindow) {
-  closeBtn.addEventListener("click", evt => {
-    closeDOMElement(popupWindow);
-  })
-
-  popupWindow.addEventListener("keydown", evt => {
-    if (evt.key === "Escape"){
-      closeDOMElement(popupWindow);
-    }
+  closeBtn.addEventListener("click", () => {
+    closePopup(popupWindow);
   })
 
   popupWindow.addEventListener("click", evt => {
     if (evt.target.classList.contains("popup")){
-      closeDOMElement(popupWindow);
+      closePopup(popupWindow);
     }
   })
 }
-export {openDOMElement, closeDOMElement, openPopupWindow, closePopupWindow}
+export {openPopup, closePopup, openPopupWindow, closePopupWindow}

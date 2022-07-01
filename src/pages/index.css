@@ -34,7 +34,7 @@
 @import "../blocks/popup/__header/popup__header.css";
 @import "../blocks/popup/__input-text/popup__input-text.css";
 @import "../blocks/popup/__submit/popup__submit.css";
-@import "../blocks/popup/__close/popup__close.css";
+@import "../blocks/popup/__opened/popup_opened.css";
 @import "../blocks/popup/__submit/__disabled/popup__submit_disabled.css";
 @import "../blocks/popup/__error-text/popup__error-text.css";
 @import "../blocks/popup/__error-text/__disabled/popup__error-text__disabled.css";

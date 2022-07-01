@@ -1,5 +1,5 @@
 import "../pages/index.css"
-import {closeDOMElement, openPopupWindow, closePopupWindow} from "./modal";
+import {closePopup, openPopupWindow, closePopupWindow} from "./modal";
 import createPlaceCard from "./card";
 import {enableValidation} from "./validate";
 
@@ -36,7 +36,7 @@ submitEditPersonPopup.addEventListener("click", evt => {
   namePerson.textContent = nameInput.value;
   professionPerson.textContent = professionInput.value;
 
-  closeDOMElement(popupWindowEditPerson);
+  closePopup(popupWindowEditPerson);
 });
 
 /* --------------------------
@@ -97,12 +97,12 @@ submitAddPlacePopup.addEventListener("click", evt => {
 
   gallery.prepend(createPlaceCard(templateOfGalleryCard, temp, watchImagesPopup))
 
-  closeDOMElement(popupAddPlace);
+  closePopup(popupAddPlace);
 });
 
 //Вешаем на кнопку закрытия попапа событие
 closeWatchImagesPopup.addEventListener("click", () => {
-  closeDOMElement(watchImagesPopup);
+  closePopup(watchImagesPopup);
 });
 
 /* --------------------------

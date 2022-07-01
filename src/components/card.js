@@ -1,4 +1,4 @@
-import {openDOMElement} from "./modal";
+import {openPopup} from "./modal";
 
 /**
  * Функция для рендера карточки из галереи и создания событий для нее по объекту.
@@ -27,7 +27,7 @@ function createPlaceCard(template, initObj, popup) {
     popup.querySelector(".popup__image").setAttribute("src", elem.querySelector(".gallery__image").src);
     popup.querySelector(".popup__image").setAttribute("alt", elem.querySelector(".gallery__image").alt);
     popup.querySelector(".popup__image-description").innerText = elem.querySelector(".gallery__image").alt;
-    openDOMElement(popup);
+    openPopup(popup);
   })
 
   //Возвращаем готовую карточку со всеми слушателями
