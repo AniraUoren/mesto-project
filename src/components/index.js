@@ -1,5 +1,5 @@
 import "../pages/index.css"
-import {closePopup, openPopupWindow, closePopupWindow} from "./modal";
+import {closePopup, openPopupWindow, closePopupWindow, openPersonPopupHelper} from "./modal";
 import createPlaceCard from "./card";
 import {enableValidation} from "./validate";
 import {initialCards, config} from "./config";
@@ -16,22 +16,21 @@ const popupAddPlace = document.querySelector("#addPlace"); //модальное 
 const btnAddPlace = document.querySelector("#addPlaceBtn"); //кнопка добавления нового места
 const btnCloseAddPlace = document.querySelector("#closeAddPlacePopup"); // кнопка закрытия модального окна на добавление места
 
-openPopupWindow(btnOpenEditPerson, popupWindowEditPerson);
-closePopupWindow(btnCloseEditPerson, popupWindowEditPerson);
+// openPopupWindow(btnOpenEditPerson, popupWindowEditPerson);
+// closePopupWindow(btnCloseEditPerson, popupWindowEditPerson);
 
 openPopupWindow(btnAddPlace, popupAddPlace);
 closePopupWindow(btnCloseAddPlace, popupAddPlace);
 /* --------------------------
 * Связываем поля формы и элементы на странице
 * --------------------------*/
-
-const nameInput = document.querySelector("#nameInput");
-const professionInput = document.querySelector("#professionInput");
 const namePerson = document.querySelector(".about-person__name");
 const professionPerson = document.querySelector(".about-person__profession");
+const nameInput = document.querySelector("#nameInput");
+const professionInput = document.querySelector("#professionInput");
 
-nameInput.value = namePerson.textContent;
-professionInput.value = professionPerson.textContent;
+openPersonPopupHelper(btnOpenEditPerson, popupWindowEditPerson, namePerson, professionPerson, nameInput, professionInput);
+closePopupWindow(btnCloseEditPerson, popupWindowEditPerson);
 
 popupWindowEditPerson.addEventListener("submit", () => {
   namePerson.textContent = nameInput.value;
@@ -69,15 +68,25 @@ popupAddPlace.addEventListener("submit", () => {
   temp.name = namePlaceInput.value;
   temp.link = linkPlaceInput.value;
 
-  gallery.prepend(createPlaceCard(templateOfGalleryCard, temp, popupForWatchImages))
+  gallery.prepend(createPlaceCard(templateOfGalleryCard, temp, popupForWatchImages));
+
+  namePlaceInput.value = "";
+  linkPlaceInput.value = "";
+
+  popupAddPlace.querySelector("button[type=submit]").classList.add("popup__submit_disabled");
+  popupAddPlace.querySelector("button[type=submit]").setAttribute("disabled", "disabled");
 
   closePopup(popupAddPlace);
 });
 
+console.log(popupAddPlace)
+
 //Вешаем на кнопку закрытия попапа событие
-buttonToCloseWatchImagesPopup.addEventListener("click", () => {
-  closePopup(popupForWatchImages);
-});
+// buttonToCloseWatchImagesPopup.addEventListener("click", () => {
+//   closePopup(popupForWatchImages);
+// });
+
+closePopupWindow(buttonToCloseWatchImagesPopup, popupForWatchImages);
 
 /* --------------------------
 * Валидация полей форм

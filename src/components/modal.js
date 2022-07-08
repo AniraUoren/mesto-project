@@ -59,4 +59,26 @@ function closePopupWindow(closeBtn, popupWindow) {
     }
   })
 }
-export {openPopup, closePopup, openPopupWindow, closePopupWindow}
+
+/**
+ * Вспомогательная функция, которая помогает пробрасывать имя и профессию при открытии попапа и
+ * следит за тем, чтобы в полях ввода отображались актуальные данные.
+ * @param button - Кнопка открытия попапа.
+ * @param popup - Модальное окно с которым работаем.
+ * @param namePerson - Поле с именем, которое нужно взять.
+ * @param professionPerson - Поле с профессией, которую нужно взять.
+ * @param nameInput - Поле, куда пробрасывается информация из namePerson.
+ * @param professionInput - Поле, куда пробрасывается информация из professionPerson.
+ */
+function openPersonPopupHelper (button, popup, namePerson, professionPerson, nameInput, professionInput) {
+  //переменные убраны из глобального скоупа, т.к. имеют отношение только к одному конкретному
+  //попапу для которого функция и написана
+
+
+  nameInput.value = namePerson.textContent;
+  professionInput.value = professionPerson.textContent;
+
+  openPopupWindow(button, popup);
+}
+
+export {openPopup, closePopup, openPopupWindow, closePopupWindow, openPersonPopupHelper}
