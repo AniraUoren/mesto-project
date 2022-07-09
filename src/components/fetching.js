@@ -4,6 +4,7 @@ import {cohort, token} from "./config";
  * Запрашивает информацию о персоне и пробрасывает ее в поля на странице.
  * @param namePerson - имя персоны.
  * @param professionPerson - профессия персоны.
+ * @param photo - фото персоны.
  */
 function associatePersonInformation (namePerson, professionPerson, photo) {
 
