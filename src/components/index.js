@@ -3,7 +3,7 @@ import {closePopup, openPopupWindow, closePopupWindow, openPersonPopupHelper} fr
 import {createGalleryFromCards, createPlaceCard} from "./card";
 import {enableValidation} from "./validate";
 import {config} from "./config";
-import {associatePersonInformation} from "./fetching"
+import {associatePersonInformation, editPersonInfo} from "./fetching"
 
 /* --------------------------
 * Открытие и закрытие модальных окон
@@ -27,10 +27,11 @@ closePopupWindow(btnCloseAddPlace, popupAddPlace);
 * --------------------------*/
 const namePerson = document.querySelector(".about-person__name");
 const professionPerson = document.querySelector(".about-person__profession");
+const personPhoto = document.querySelector(".about-person__image");
 const nameInput = document.querySelector("#nameInput");
 const professionInput = document.querySelector("#professionInput");
 
-associatePersonInformation(namePerson, professionPerson);
+associatePersonInformation(namePerson, professionPerson, personPhoto);
 
 btnOpenEditPerson.addEventListener("click", () => {
   openPersonPopupHelper(btnOpenEditPerson, popupWindowEditPerson, nameInput, professionInput)
@@ -38,9 +39,15 @@ btnOpenEditPerson.addEventListener("click", () => {
 closePopupWindow(btnCloseEditPerson, popupWindowEditPerson);
 
 popupWindowEditPerson.addEventListener("submit", () => {
-  namePerson.textContent = nameInput.value;
-  professionPerson.textContent = professionInput.value;
+  // namePerson.textContent = nameInput.value;
+  // professionPerson.textContent = professionInput.value;
 
+  let data = {
+    name: nameInput.value,
+    about: professionInput.value
+  }
+
+  editPersonInfo(data, namePerson, professionPerson);
   closePopup(popupWindowEditPerson);
 });
 
