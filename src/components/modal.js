@@ -70,13 +70,12 @@ function closePopupWindow(closeBtn, popupWindow) {
  * @param nameInput - Поле, куда пробрасывается информация из namePerson.
  * @param professionInput - Поле, куда пробрасывается информация из professionPerson.
  */
-function openPersonPopupHelper (button, popup, namePerson, professionPerson, nameInput, professionInput) {
+function openPersonPopupHelper (button, popup, nameInput, professionInput) {
   //переменные убраны из глобального скоупа, т.к. имеют отношение только к одному конкретному
   //попапу для которого функция и написана
 
-
-  nameInput.value = namePerson.textContent;
-  professionInput.value = professionPerson.textContent;
+  nameInput.value = document.querySelector(".about-person__name").textContent;
+  professionInput.value = document.querySelector(".about-person__profession").textContent;
 
   openPopupWindow(button, popup);
 }

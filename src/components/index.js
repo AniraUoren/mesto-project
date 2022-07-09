@@ -3,6 +3,7 @@ import {closePopup, openPopupWindow, closePopupWindow, openPersonPopupHelper} fr
 import createPlaceCard from "./card";
 import {enableValidation} from "./validate";
 import {initialCards, config} from "./config";
+import {associatePersonInformation} from "./utils"
 
 /* --------------------------
 * Открытие и закрытие модальных окон
@@ -29,7 +30,11 @@ const professionPerson = document.querySelector(".about-person__profession");
 const nameInput = document.querySelector("#nameInput");
 const professionInput = document.querySelector("#professionInput");
 
-openPersonPopupHelper(btnOpenEditPerson, popupWindowEditPerson, namePerson, professionPerson, nameInput, professionInput);
+associatePersonInformation(namePerson, professionPerson);
+
+btnOpenEditPerson.addEventListener("click", () => {
+  openPersonPopupHelper(btnOpenEditPerson, popupWindowEditPerson, nameInput, professionInput)
+})
 closePopupWindow(btnCloseEditPerson, popupWindowEditPerson);
 
 popupWindowEditPerson.addEventListener("submit", () => {
@@ -78,9 +83,6 @@ popupAddPlace.addEventListener("submit", () => {
 
   closePopup(popupAddPlace);
 });
-
-console.log(popupAddPlace)
-
 //Вешаем на кнопку закрытия попапа событие
 // buttonToCloseWatchImagesPopup.addEventListener("click", () => {
 //   closePopup(popupForWatchImages);
