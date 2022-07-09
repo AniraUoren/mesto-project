@@ -26,6 +26,12 @@ function associatePersonInformation (namePerson, professionPerson, photo) {
 
 }
 
+/**
+ * Отправляет на сервер данные о персоне.
+ * @param data - имя и профессия.
+ * @param namePerson - поле, куда пробросить новое имя.
+ * @param professionPerson - поле, куда пробросить новую профессию.
+ */
 function editPersonInfo (data, namePerson, professionPerson) {
   fetch(`https://nomoreparties.co/v1/${cohort}/users/me`, {
     method: 'PATCH',

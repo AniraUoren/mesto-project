@@ -35,6 +35,12 @@ function createPlaceCard(template, initObj, popup) {
   return elem;
 }
 
+/**
+ * Получение списка карточек с сервера и их рендеринг в галерее.
+ * @param template - шаблон для карточки.
+ * @param gallery -  элемент страницы, куда вставляем карточки.
+ * @param popup - попап просмотра большой картинки.
+ */
 function createGalleryFromCards (template, gallery, popup) {
   fetch(`https://nomoreparties.co/v1/${cohort}/cards`, {
     method: "GET",
@@ -54,6 +60,31 @@ function createGalleryFromCards (template, gallery, popup) {
     })
 }
 
+/**
+ * Позволяет добавить новую карточку с местом и передать ее на сервер.
+ * @param data - информация о карточке.
+ * @param template - шаблон для отрисовки.
+ * @param gallery - элемент верстки, куда вставляем карточки.
+ * @param popup - попап для просмотрна большого изображения.
+ */
+function addingNewCard (data, template, gallery, popup) {
+  fetch (`https://nomoreparties.co/v1/${cohort}/cards`, {
+    method: "POST",
+    headers: {
+      authorization: token,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+  })
+    .then(res => {
+      return res.json()
+    })
+    .catch(err => console.error(err))
+    .then(data => {
+      let temp = createPlaceCard(template, data, popup);
+      gallery.prepend(temp);
+    })
+}
 
 
-export {createGalleryFromCards, createPlaceCard};
+export {createGalleryFromCards, addingNewCard};

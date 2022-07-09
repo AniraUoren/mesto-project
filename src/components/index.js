@@ -1,6 +1,6 @@
 import "../pages/index.css"
 import {closePopup, openPopupWindow, closePopupWindow, openPersonPopupHelper} from "./modal";
-import {createGalleryFromCards, createPlaceCard} from "./card";
+import {createGalleryFromCards, addingNewCard} from "./card";
 import {enableValidation} from "./validate";
 import {config} from "./config";
 import {associatePersonInformation, editPersonInfo} from "./fetching"
@@ -67,28 +67,21 @@ createGalleryFromCards (templateOfGalleryCard, gallery, popupForWatchImages);
 
 popupAddPlace.addEventListener("submit", () => {
 
-  const temp = {
+  const data = {
     name: "",
     link: ""
   }
 
-  temp.name = namePlaceInput.value;
-  temp.link = linkPlaceInput.value;
+  data.name = namePlaceInput.value;
+  data.link = linkPlaceInput.value;
 
-  gallery.prepend(createPlaceCard(templateOfGalleryCard, temp, popupForWatchImages));
-
-  namePlaceInput.value = "";
-  linkPlaceInput.value = "";
+  addingNewCard(data, templateOfGalleryCard, gallery, popupForWatchImages)
 
   popupAddPlace.querySelector("button[type=submit]").classList.add("popup__submit_disabled");
   popupAddPlace.querySelector("button[type=submit]").setAttribute("disabled", "disabled");
 
   closePopup(popupAddPlace);
 });
-//Вешаем на кнопку закрытия попапа событие
-// buttonToCloseWatchImagesPopup.addEventListener("click", () => {
-//   closePopup(popupForWatchImages);
-// });
 
 closePopupWindow(buttonToCloseWatchImagesPopup, popupForWatchImages);
 
