@@ -1,9 +1,9 @@
 import "../pages/index.css"
 import {closePopup, openPopupWindow, closePopupWindow, openPersonPopupHelper} from "./modal";
-import createPlaceCard from "./card";
+import {createGalleryFromCards, createPlaceCard} from "./card";
 import {enableValidation} from "./validate";
-import {initialCards, config} from "./config";
-import {associatePersonInformation} from "./utils"
+import {config} from "./config";
+import {associatePersonInformation} from "./fetching"
 
 /* --------------------------
 * Открытие и закрытие модальных окон
@@ -56,12 +56,7 @@ const popupForWatchImages = document.querySelector("#watchImage"); //Ищем п
 const buttonToCloseWatchImagesPopup = document.querySelector("#closeWatchImagesPopup"); // Ищем кнопку закрытия попапа для просмотра изображения
 
 
-//Циклом проходим массив для инициализации карточек и вставляем их в галлерею.
-for (let i = 0; i < initialCards.length; i++) {
-  const temp = createPlaceCard(templateOfGalleryCard, initialCards[i], popupForWatchImages);
-  gallery.append(temp);
-}
-
+createGalleryFromCards (templateOfGalleryCard, gallery, popupForWatchImages);
 
 popupAddPlace.addEventListener("submit", () => {
 

@@ -1,4 +1,5 @@
 import {openPopupWindow} from "./modal";
+import {token , cohort} from "./config";
 
 /**
  * Функция для рендера карточки из галереи и создания событий для нее по объекту.
@@ -34,4 +35,25 @@ function createPlaceCard(template, initObj, popup) {
   return elem;
 }
 
-export default createPlaceCard;
+function createGalleryFromCards (template, gallery, popup) {
+  fetch(`https://nomoreparties.co/v1/${cohort}/cards`, {
+    method: "GET",
+    headers: {
+      authorization: token
+    }
+  })
+    .then(res => {
+      return res.json()
+    })
+    .catch(err => console.error(err))
+    .then(data => {
+      data.forEach(el => {
+        let temp = createPlaceCard(template, el, popup);
+        gallery.append(temp);
+      })
+    })
+}
+
+
+
+export {createGalleryFromCards, createPlaceCard};
