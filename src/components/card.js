@@ -1,5 +1,54 @@
 import {openPopupWindow} from "./modal";
-import {token , cohort} from "./config";
+import {token, cohort} from "./config";
+
+/**
+ * Функция, для отрисовки актуального состояния лайков
+ * @param count - количество лайков.
+ * @param el - карточка, в которой работаем.
+ */
+function toggleLike(count, el) {
+  el.querySelector(".gallery__like").classList.toggle("gallery__like_active");
+  el.querySelector(".gallery__like-number").textContent = count;
+
+}
+
+/**
+ * Функция, которая добавляет или убирает один лайк с карточки. Ориентируется на состояние кнопки в карточке, но не нашла в апи как
+ * запросить информацию по отдельной карте, например, по ID. Выглядит так, потому что я не оч поняла асинхронность, а так работает.
+ * @param el - карточка галереи.
+ */
+function clickOnLike(el) {
+  if (!el.querySelector(".gallery__like").classList.contains("gallery__like_active")){
+    fetch(`https://nomoreparties.co/v1/${cohort}/cards/likes/${el.getAttribute("id")}`,{
+      method: "PUT",
+      headers: {
+        authorization: token
+      }
+    })
+      .then(res => {
+        return res.json()
+      })
+      .catch(err => console.error(err))
+      .then(data => {
+        toggleLike(data.likes.length, el)
+      })
+  } else {
+    fetch(`https://nomoreparties.co/v1/${cohort}/cards/likes/${el.getAttribute("id")}`,{
+      method: "DELETE",
+      headers: {
+        authorization: token
+      }
+    })
+      .then(res => {
+        return res.json()
+      })
+      .catch(err => console.error(err))
+      .then(data => {
+        toggleLike(data.likes.length, el)
+      })
+  }
+
+}
 
 /**
  * Функция для рендера карточки из галереи и создания событий для нее по объекту.
@@ -17,8 +66,8 @@ function createPlaceCard(template, initObj, popup) {
   elem.setAttribute("id", initObj._id);
 
   //Вешаем на карточку событие клика на кнопку лайка
-  elem.querySelector(".gallery__like").addEventListener("click", () => {
-    elem.querySelector(".gallery__like").classList.toggle("gallery__like_active")
+  elem.addEventListener("click", (evt) => {
+    clickOnLike(evt.currentTarget);
   })
 
   //Вешаем на карточку событие клика на кнопку удаления карточки
@@ -43,7 +92,7 @@ function createPlaceCard(template, initObj, popup) {
  * @param gallery -  элемент страницы, куда вставляем карточки.
  * @param popup - попап просмотра большой картинки.
  */
-function createGalleryFromCards (template, gallery, popup) {
+function createGalleryFromCards(template, gallery, popup) {
   fetch(`https://nomoreparties.co/v1/${cohort}/cards`, {
     method: "GET",
     headers: {
@@ -70,8 +119,8 @@ function createGalleryFromCards (template, gallery, popup) {
  * @param gallery - элемент верстки, куда вставляем карточки.
  * @param popup - попап для просмотрна большого изображения.
  */
-function addingNewCard (data, template, gallery, popup) {
-  fetch (`https://nomoreparties.co/v1/${cohort}/cards`, {
+function addingNewCard(data, template, gallery, popup) {
+  fetch(`https://nomoreparties.co/v1/${cohort}/cards`, {
     method: "POST",
     headers: {
       authorization: token,
