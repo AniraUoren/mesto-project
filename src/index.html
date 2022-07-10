@@ -32,7 +32,6 @@
             <button class="gallery__like" type="button">Лайк</button>
             <span class="gallery__like-number">1</span>
           </div>
-          <button class="gallery__delete" type="button">Удалить</button>
         </div>
       </template>
     </section>
@@ -94,7 +93,7 @@
                required
         >
         <span class="popup__error-text popup__input-text_disabled linkPlaceInput-error">Вы пропустили это поле.</span>
-        <button type="submit" class="popup__submit" id="submitAddPlacePopup" >Сохранить
+        <button type="submit" class="popup__submit" id="submitAddPlacePopup">Сохранить
         </button>
       </form>
       <button class="popup__close" id="closeAddPlacePopup">Закрыть</button>
@@ -108,7 +107,16 @@
       <p class="popup__image-description">Архыз</p>
       <button class="popup__close" id="closeWatchImagesPopup">Закрыть</button>
     </div>
+  </div>
 
+  <div class="popup" id="areUSurePopup">
+    <div class="popup__container popup__sure">
+      <h2 class="popup__header">Вы уверены?</h2>
+      <form action="#" id="areUSureForm">
+        <button type="submit" class="popup__submit">Да</button>
+      </form>
+      <button class="popup__close" id="closeSurePopup">Закрыть</button>
+    </div>
   </div>
 </div>
 </body>

@@ -1,4 +1,4 @@
-import {openPopupWindow} from "./modal";
+import {closePopup, closePopupWindow, openPopupWindow} from "./modal";
 import {token, cohort} from "./config";
 
 /**
@@ -18,8 +18,8 @@ function toggleLike(count, el) {
  * @param el - карточка галереи.
  */
 function clickOnLike(el) {
-  if (!el.querySelector(".gallery__like").classList.contains("gallery__like_active")){
-    fetch(`https://nomoreparties.co/v1/${cohort}/cards/likes/${el.getAttribute("id")}`,{
+  if (!el.querySelector(".gallery__like").classList.contains("gallery__like_active")) {
+    fetch(`https://nomoreparties.co/v1/${cohort}/cards/likes/${el.getAttribute("id")}`, {
       method: "PUT",
       headers: {
         authorization: token
@@ -33,7 +33,7 @@ function clickOnLike(el) {
         toggleLike(data.likes.length, el)
       })
   } else {
-    fetch(`https://nomoreparties.co/v1/${cohort}/cards/likes/${el.getAttribute("id")}`,{
+    fetch(`https://nomoreparties.co/v1/${cohort}/cards/likes/${el.getAttribute("id")}`, {
       method: "DELETE",
       headers: {
         authorization: token
@@ -58,6 +58,17 @@ function clickOnLike(el) {
  */
 function createPlaceCard(template, initObj, popup) {
   const elem = template.content.firstElementChild.cloneNode(true); //Получаем элемент из шаблона.
+  const deleteCardBtn = document.createElement(`button`); //Кнопка удаления карточки
+  const myId = document.querySelector(".about-person").getAttribute("id");
+  const surePopup = document.querySelector("#areUSurePopup");
+  const surePopupCloseBtn = document.querySelector("#closeSurePopup");
+  const sureForm = document.querySelector("#areUSureForm");
+
+  //дорабатываем кнопку
+  deleteCardBtn.classList.add("gallery__delete");
+  deleteCardBtn.setAttribute("type", "button");
+  deleteCardBtn.textContent = "Удалить";
+
 
   elem.querySelector(".gallery__image").src = initObj.link; // Добавляем карточке ссылку на изображение
   elem.querySelector(".gallery__image").alt = initObj.name; // Добавляем карточке описание изображения
@@ -70,10 +81,33 @@ function createPlaceCard(template, initObj, popup) {
     clickOnLike(evt.currentTarget);
   })
 
+  if (initObj.owner._id === myId) {
+    elem.append(deleteCardBtn);
+  }
+
   //Вешаем на карточку событие клика на кнопку удаления карточки
-  elem.querySelector(".gallery__delete").addEventListener("click", () => {
-    elem.remove();
+  openPopupWindow(deleteCardBtn, surePopup);
+
+  function submitDeleteCard(card) {
+    sureForm.addEventListener("submit", evt => {
+      evt.preventDefault();
+      console.log(card)
+      fetch(`https://nomoreparties.co/v1/${cohort}/cards/${card.getAttribute("id")}`, {
+        method: "DELETE",
+        headers: {
+          authorization: token
+        }
+      })
+      elem.remove();
+      closePopup(surePopup)
+    })
+  }
+
+  elem.addEventListener("click", evt => {
+    submitDeleteCard (evt.currentTarget);
   })
+
+
   //Вешаем на карточку событие клика на изображение для просмотра картинки в попапе
   elem.querySelector(".gallery__image").addEventListener("click", () => {
     popup.querySelector(".popup__image").setAttribute("src", elem.querySelector(".gallery__image").src);

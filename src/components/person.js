@@ -2,11 +2,9 @@ import {cohort, token} from "./config";
 
 /**
  * Запрашивает информацию о персоне и пробрасывает ее в поля на странице.
- * @param namePerson - имя персоны.
- * @param professionPerson - профессия персоны.
- * @param photo - фото персоны.
+ * @param section - секция с персональной информацией.
  */
-function associatePersonInformation (namePerson, professionPerson, photo) {
+function associatePersonInformation (section) {
 
   fetch(`https://nomoreparties.co/v1/${cohort}/users/me`, {
     method: "GET",
@@ -19,9 +17,10 @@ function associatePersonInformation (namePerson, professionPerson, photo) {
     })
     .catch(err => console.error(err))
     .then(data => {
-      namePerson.textContent = data.name;
-      professionPerson.textContent = data.about;
-      photo.setAttribute("src", data.avatar)
+      section.setAttribute("id", data._id)
+      section.querySelector(".about-person__name").textContent = data.name;
+      section.querySelector(".about-person__profession").textContent = data.about;
+      section.querySelector(".about-person__image").setAttribute("src", data.avatar)
     })
 
 }
@@ -29,10 +28,9 @@ function associatePersonInformation (namePerson, professionPerson, photo) {
 /**
  * Отправляет на сервер данные о персоне.
  * @param data - имя и профессия.
- * @param namePerson - поле, куда пробросить новое имя.
- * @param professionPerson - поле, куда пробросить новую профессию.
+ * @param section - секция с персональной информацией.
  */
-function editPersonInfo (data, namePerson, professionPerson) {
+function editPersonInfo (data, section) {
   fetch(`https://nomoreparties.co/v1/${cohort}/users/me`, {
     method: 'PATCH',
     headers: {
@@ -46,8 +44,8 @@ function editPersonInfo (data, namePerson, professionPerson) {
     })
     .catch(err => console.error(err))
     .then(data => {
-      namePerson.textContent = data.name;
-      professionPerson.textContent = data.about;
+      section.querySelector(".about-person__name").textContent = data.name;
+      section.querySelector(".about-person__profession").textContent = data.about;
     })
 }
 

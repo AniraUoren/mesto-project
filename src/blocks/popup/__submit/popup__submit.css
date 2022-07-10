@@ -19,6 +19,10 @@
   cursor: pointer;
 }
 
+.popup__sure .popup__submit {
+  margin: 0;
+}
+
 @media screen and (max-width: 560px){
   .popup__submit{
     width: 238px;

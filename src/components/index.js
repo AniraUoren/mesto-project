@@ -3,7 +3,7 @@ import {closePopup, openPopupWindow, closePopupWindow, openPersonPopupHelper} fr
 import {createGalleryFromCards, addingNewCard} from "./card";
 import {enableValidation} from "./validate";
 import {config} from "./config";
-import {associatePersonInformation, editPersonInfo} from "./fetching"
+import {associatePersonInformation, editPersonInfo} from "./person"
 
 /* --------------------------
 * Открытие и закрытие модальных окон
@@ -25,13 +25,11 @@ closePopupWindow(btnCloseAddPlace, popupAddPlace);
 /* --------------------------
 * Связываем поля формы и элементы на странице
 * --------------------------*/
-const namePerson = document.querySelector(".about-person__name");
-const professionPerson = document.querySelector(".about-person__profession");
-const personPhoto = document.querySelector(".about-person__image");
+const person = document.querySelector(".about-person");
 const nameInput = document.querySelector("#nameInput");
 const professionInput = document.querySelector("#professionInput");
 
-associatePersonInformation(namePerson, professionPerson, personPhoto);
+associatePersonInformation(person);
 
 btnOpenEditPerson.addEventListener("click", () => {
   openPersonPopupHelper(btnOpenEditPerson, popupWindowEditPerson, nameInput, professionInput)
@@ -47,7 +45,7 @@ popupWindowEditPerson.addEventListener("submit", () => {
     about: professionInput.value
   }
 
-  editPersonInfo(data, namePerson, professionPerson);
+  editPersonInfo(data, person);
   closePopup(popupWindowEditPerson);
 });
 
