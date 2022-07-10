@@ -1,0 +1,19 @@
+.about-person__update-avatar{
+  display: none;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: none;
+  background: var(--background-color-popup_black) url("../../../images/pen.svg") no-repeat;
+  background-size: 26px 26px;
+  background-position: center center;
+  font-size: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.about-person__avatar-container:hover .about-person__update-avatar{
+  display: block;
+  cursor: pointer;
+}

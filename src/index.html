@@ -14,7 +14,10 @@
   </header>
   <main class="main">
     <section class="about-person">
-      <img src="<%=require('./images/Jacques-Yves_Cousteau.jpg')%>" alt="Жак-Ив Кусто" class="about-person__image">
+      <div class="about-person__avatar-container">
+        <img src="<%=require('./images/Jacques-Yves_Cousteau.jpg')%>" alt="Жак-Ив Кусто" class="about-person__image">
+        <button class="about-person__update-avatar" id="updateAvatarButton">Обновить</button>
+      </div>
       <div class="about-person__data">
         <h1 class="about-person__name"></h1>
         <p class="about-person__profession"></p>
@@ -116,6 +119,25 @@
         <button type="submit" class="popup__submit">Да</button>
       </form>
       <button class="popup__close" id="closeSurePopup">Закрыть</button>
+    </div>
+  </div>
+
+  <div class="popup" id="updateAvatar">
+    <div class="popup__container popup__update-avatar">
+      <h2 class="popup__header">Обновить аватар</h2>
+      <form action="#" id="updateAvatarForm" class="popup__form" name="update-avatar" novalidate>
+        <input type="url"
+               placeholder="Ссылка на картинку"
+               class="popup__input-text"
+               name="avatarImage"
+               id="linkAvatarInput"
+               minlength="4"
+               required>
+        <span class="popup__error-text popup__input-text_disabled linkAvatarInput-error">Вы пропустили это поле.</span>
+        <button type="submit" class="popup__submit" id="">Сохранить
+        </button>
+      </form>
+      <button class="popup__close" id="closeUpdateAvatarPopup">Закрыть</button>
     </div>
   </div>
 </div>

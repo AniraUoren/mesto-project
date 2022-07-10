@@ -13,6 +13,8 @@
 @import "../blocks/about-person/__profession/about-person__profession.css";
 @import "../blocks/about-person/__edit-person/about-person__edit-person.css";
 @import "../blocks/about-person/__add-place/about-person__add-place.css";
+@import "../blocks/about-person/__avatar-container/about-person__avatar-container.css";
+@import "../blocks/about-person/__update-avatar/about-person__update-avatar.css";
 @import "../blocks/gallery/gallery.css";
 @import "../blocks/gallery/__link/gallery__link.css";
 @import "../blocks/gallery/__el/gallery__el.css";

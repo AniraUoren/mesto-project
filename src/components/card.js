@@ -87,6 +87,7 @@ function createPlaceCard(template, initObj, popup) {
 
   //Вешаем на карточку событие клика на кнопку удаления карточки
   openPopupWindow(deleteCardBtn, surePopup);
+  closePopupWindow(deleteCardBtn, surePopup);
 
   function submitDeleteCard(card) {
     sureForm.addEventListener("submit", evt => {

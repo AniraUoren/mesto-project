@@ -4,7 +4,7 @@ import {cohort, token} from "./config";
  * Запрашивает информацию о персоне и пробрасывает ее в поля на странице.
  * @param section - секция с персональной информацией.
  */
-function associatePersonInformation (section) {
+function associatePersonInformation(section) {
 
   fetch(`https://nomoreparties.co/v1/${cohort}/users/me`, {
     method: "GET",
@@ -30,7 +30,7 @@ function associatePersonInformation (section) {
  * @param data - имя и профессия.
  * @param section - секция с персональной информацией.
  */
-function editPersonInfo (data, section) {
+function editPersonInfo(data, section) {
   fetch(`https://nomoreparties.co/v1/${cohort}/users/me`, {
     method: 'PATCH',
     headers: {
@@ -49,4 +49,28 @@ function editPersonInfo (data, section) {
     })
 }
 
-export {associatePersonInformation, editPersonInfo}
+function updatePersonAvatar(url) {
+  const image = document.querySelector(".about-person__image");
+
+  fetch(`https://nomoreparties.co/v1/${cohort}/users/me/avatar`, {
+    method: 'PATCH',
+    headers: {
+      authorization: token,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      avatar: url
+    })
+  })
+    .then(
+      res => {
+        return res;
+      }
+    )
+    .catch(err => console.error(err))
+    .then(data => console.log(data))
+
+  image.setAttribute("src", url);
+}
+
+export {associatePersonInformation, editPersonInfo, updatePersonAvatar}

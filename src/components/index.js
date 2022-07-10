@@ -3,7 +3,7 @@ import {closePopup, openPopupWindow, closePopupWindow, openPersonPopupHelper} fr
 import {createGalleryFromCards, addingNewCard} from "./card";
 import {enableValidation} from "./validate";
 import {config} from "./config";
-import {associatePersonInformation, editPersonInfo} from "./person"
+import {associatePersonInformation, editPersonInfo, updatePersonAvatar} from "./person"
 
 /* --------------------------
 * Открытие и закрытие модальных окон
@@ -28,6 +28,11 @@ closePopupWindow(btnCloseAddPlace, popupAddPlace);
 const person = document.querySelector(".about-person");
 const nameInput = document.querySelector("#nameInput");
 const professionInput = document.querySelector("#professionInput");
+const updatePersonAvatarButton = document.querySelector("#updateAvatarButton");
+const CloseUpdatePersonAvatarButton = document.querySelector("#closeUpdateAvatarPopup");
+const updatePersonAvatarPopup = document.querySelector("#updateAvatar");
+const updatePersonAvatarForm = document.querySelector("#updateAvatarForm");
+
 
 associatePersonInformation(person);
 
@@ -37,8 +42,7 @@ btnOpenEditPerson.addEventListener("click", () => {
 closePopupWindow(btnCloseEditPerson, popupWindowEditPerson);
 
 popupWindowEditPerson.addEventListener("submit", () => {
-  // namePerson.textContent = nameInput.value;
-  // professionPerson.textContent = professionInput.value;
+
 
   let data = {
     name: nameInput.value,
@@ -48,6 +52,18 @@ popupWindowEditPerson.addEventListener("submit", () => {
   editPersonInfo(data, person);
   closePopup(popupWindowEditPerson);
 });
+
+updatePersonAvatarButton.addEventListener("click", evt => {
+  openPopupWindow(updatePersonAvatarButton, updatePersonAvatarPopup);
+  closePopupWindow(CloseUpdatePersonAvatarButton, updatePersonAvatarPopup);
+
+  updatePersonAvatarForm.addEventListener("submit", evt => {
+    evt.preventDefault();
+
+    updatePersonAvatar(updatePersonAvatarForm.querySelector("#linkAvatarInput").value);
+    closePopup(updatePersonAvatarPopup);
+  })
+})
 
 /* --------------------------
 * Работа с карточками галереи
