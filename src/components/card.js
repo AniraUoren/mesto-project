@@ -12,7 +12,9 @@ function createPlaceCard(template, initObj, popup) {
 
   elem.querySelector(".gallery__image").src = initObj.link; // Добавляем карточке ссылку на изображение
   elem.querySelector(".gallery__image").alt = initObj.name; // Добавляем карточке описание изображения
-  elem.querySelector(".gallery__el-header").innerText = initObj.name; //Добавляем описание места
+  elem.querySelector(".gallery__el-header").textContent = initObj.name; //Добавляем описание места
+  elem.querySelector(".gallery__like-number").textContent = initObj.likes.length;
+  elem.setAttribute("id", initObj._id);
 
   //Вешаем на карточку событие клика на кнопку лайка
   elem.querySelector(".gallery__like").addEventListener("click", () => {
@@ -53,6 +55,7 @@ function createGalleryFromCards (template, gallery, popup) {
     })
     .catch(err => console.error(err))
     .then(data => {
+      console.log(data)
       data.forEach(el => {
         let temp = createPlaceCard(template, el, popup);
         gallery.append(temp);

@@ -18,8 +18,10 @@
 @import "../blocks/gallery/__el/gallery__el.css";
 @import "../blocks/gallery/__image/gallery__image.css";
 @import "../blocks/gallery/__el-header/gallery__el-header.css";
+@import "../blocks/gallery/__like-block/gallery__like-block.css";
 @import "../blocks/gallery/__like/gallery__like.css";
 @import "../blocks/gallery/__like/_active/gallery__like_active.css";
+@import "../blocks/gallery/__like-number/gallery__like-number.css";
 @import "../blocks/gallery/__delete/gallery__delete.css";
 @import "../blocks/footer/footer.css";
 @import "../blocks/footer/__copyright/footer__copyright.css";

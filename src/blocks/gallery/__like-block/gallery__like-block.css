@@ -1,0 +1,9 @@
+.gallery__like-block{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: 16px;
+  right: 20px;
+}
