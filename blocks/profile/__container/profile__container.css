@@ -1,0 +1,17 @@
+.profile__container {
+  grid-column: 2 / 3;
+  grid-row: 1 / 2;
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+  gap: 18px;
+}
+
+@media screen and (max-width: 528px){
+  .profile__container {
+    margin-left: 65px;
+    margin-bottom: 33px;
+    gap: 11px;
+  }
+}

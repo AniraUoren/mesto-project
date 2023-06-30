@@ -1,0 +1,15 @@
+.header {
+  max-height: 74px;
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-content: start;
+  border-bottom: 1px solid var(--border-grey);
+  box-sizing: border-box;
+}
+
+@media screen and (max-width: 320px){
+  .header {
+    max-height: 84px;
+  }
+}
