@@ -7,9 +7,10 @@
   background-color: var(--background-color-light);
   border-radius: 10px;
   box-sizing: border-box;
+  position: relative;
 }
 
-@media screen and (max-width: 320px){
+@media screen and (max-width: 557px){
   .popup {
     padding: 25px 22px;
   }

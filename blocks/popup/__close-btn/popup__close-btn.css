@@ -4,43 +4,21 @@
   width: 32px;
   height: 32px;
   position: absolute;
-  top: -61px;
-  right: -72px;
+  top: -36px;
+  right: -40px;
   font-size: 0;
   border: none;
-  background-color: transparent;
+  background: transparent url("../../../images/close_icon.svg") center no-repeat;
+  background-size: 32px 32px;
 }
 
-.popup__close-btn:before,
-.popup__close-btn:after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 26px;
-  height: 3px;
-  background-color: white;
-}
-
-.popup__close-btn:before {
-  transform: rotate(45deg);
-}
-
-.popup__close-btn:after {
-  transform: rotate(-45deg);
-}
-
-.popup__close-btn:hover:before,
-.popup__close-btn:hover:after {
-  opacity: 0.6;
-  cursor: pointer;
-}
-
-@media screen and (max-width: 320px){
+@media screen and (max-width: 557px){
   .popup__close-btn {
     width: 20px;
     height: 20px;
-    top: -53px;
-    right: -19px;
+    top: -33px;
+    right: 0px;
+    background-size: 20px 20px;
   }
+
 }

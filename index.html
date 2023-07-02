@@ -18,45 +18,45 @@
     <div class="profile__container">
       <div>
         <h1 class="profile__name">Жак-Ив Кусто</h1>
-        <h2 class="profile__about">Исследователь океана</h2>
+        <p class="profile__about">Исследователь океана</p>
       </div>
       <button class="profile__edit-btn" type="button">Изменить</button>
     </div>
     <button class="profile__add-btn" type="button">Добавить</button>
   </section>
 
-  <ul class="gallery main__gallery">
-    <li class="card">
+  <section class="gallery main__gallery">
+    <div class="card">
       <img src="images/item_1.jpg" alt="Карачаевск" class="card__image">
-      <p class="card__description">Карачаевск</p>
+      <h2 class="card__description">Карачаевск</h2>
       <button class="card__like-btn card__like-btn_active" type="button">Лайк</button>
-    </li>
-    <li class="card">
+    </div>
+    <div class="card">
       <img src="images/item_2.jpg" alt="Гора Эльбрус" class="card__image">
-      <p class="card__description">Гора Эльбрус</p>
+      <h2 class="card__description">Гора Эльбрус</h2>
       <button class="card__like-btn" type="button">Лайк</button>
-    </li>
-    <li class="card">
+    </div>
+    <div class="card">
       <img src="images/item_3.jpg" alt="Домбай" class="card__image">
-      <p class="card__description">Домбай</p>
+      <h2 class="card__description">Домбай</h2>
       <button class="card__like-btn" type="button">Лайк</button>
-    </li>
-    <li class="card">
+    </div>
+    <div class="card">
       <img src="images/item_4.jpg" alt="Гора Эльбрус" class="card__image">
-      <p class="card__description">Гора Эльбрус</p>
+      <h2 class="card__description">Гора Эльбрус</h2>
       <button class="card__like-btn" type="button">Лайк</button>
-    </li>
-    <li class="card">
+    </div>
+    <div class="card">
       <img src="images/item_5.jpg" alt="Домбай" class="card__image">
-      <p class="card__description">Домбай</p>
+      <h2 class="card__description">Домбай</h2>
       <button class="card__like-btn" type="button">Лайк</button>
-    </li>
-    <li class="card">
+    </div>
+    <div class="card">
       <img src="images/item_6.jpg" alt="Карачаево-Черкесия" class="card__image">
-      <p class="card__description">Карачаево-Черкесия</p>
+      <h2 class="card__description">Карачаево-Черкесия</h2>
       <button class="card__like-btn" type="button">Лайк</button>
-    </li>
-  </ul>
+    </div>
+  </section>
 </main>
 <footer class="footer page__footer">
   <a href="#" class="footer__copyright">&copy; 2020 Mesto Russia</a>
@@ -64,13 +64,13 @@
 
 <div class="overlay">
   <div class="popup">
-    <form action="#" class="popup__form">
+    <form action="#" class="popup__form" name="edit_profile">
       <h2 class="popup__header">Редактировать профиль</h2>
-      <input type="text" class="popup__input" placeholder="Введите имя" id="name">
-      <input type="text" class="popup__input" placeholder="Введите род деятельности" id="about">
+      <input type="text" class="popup__input" placeholder="Введите имя" id="name" name="name">
+      <input type="text" class="popup__input" placeholder="Введите род деятельности" id="about" name="about">
       <button type="submit" class="popup__submit-btn" id="submit_popup">Сохранить</button>
-      <button type="button" class="popup__close-btn" id="close_popup">Закрыть</button>
     </form>
+    <button type="button" class="popup__close-btn" id="close_popup">Закрыть</button>
   </div>
 </div>
 </body>
