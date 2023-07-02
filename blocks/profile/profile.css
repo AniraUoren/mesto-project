@@ -5,10 +5,16 @@
   column-gap: 30px;
 }
 
-@media screen and (max-width: 528px){
+@media screen and (max-width: 690px){
   .profile {
     display: flex;
     flex-direction: column;
+    align-items: center;
+  }
+}
+
+@media screen and (max-width: 320px){
+  .profile {
     align-items: start;
   }
 }
