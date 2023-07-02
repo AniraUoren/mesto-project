@@ -7,28 +7,14 @@
   font-size: 0;
   grid-column: 2 / 3;
   grid-row: 2 / 3;
-  background-color: transparent;
+  background: transparent url("../../../images/like-unactive_icon.svg") center no-repeat;
   border: none;
   position: relative;
   opacity: 1;
   transition: opacity .3s linear;
 }
 
-.card__like-btn:after {
-  content: "";
-  width: 22px;
-  height: 19px;
-  position: absolute;
-  top: 0;
-  left: 0;
-  background-image: url("../../../images/like-unactive_icon.svg");
-}
-
 .card__like-btn:hover {
   opacity: .5;
   cursor: pointer;
-}
-
-.card__like-btn:hover:after {
-  opacity: .5;
 }

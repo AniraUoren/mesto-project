@@ -5,7 +5,7 @@
   grid-row: 1 / 2;
   align-self: center;
   font-size: 0;
-  background-color: transparent;
+  background: transparent url("../../../images/add_icon.svg") center no-repeat;
   border: 2px solid var(--border-white);
   box-sizing: border-box;
   position: relative;
@@ -13,27 +13,27 @@
   transition: opacity .3s linear;
 }
 
-.profile__add-btn:after {
-  content: "";
-  position: absolute;
-  top: 12px;
-  left: calc(50% - 11px);
-  width: 22px;
-  height: 22px;
-  background-image: url("../../../images/add_icon.svg");
-  background-position: center;
-  opacity: 1;
-  transition: opacity .3s linear;
-}
+/*.profile__add-btn:after {*/
+/*  content: "";*/
+/*  position: absolute;*/
+/*  top: 12px;*/
+/*  left: calc(50% - 11px);*/
+/*  width: 22px;*/
+/*  height: 22px;*/
+/*  background-image: url("../../../images/add_icon.svg");*/
+/*  background-position: center;*/
+/*  opacity: 1;*/
+/*  transition: opacity .3s linear;*/
+/*}*/
 
 .profile__add-btn:hover {
   opacity: .6;
   cursor: pointer;
 }
 
-.profile__add-btn:hover:after {
-  opacity: .6;
-}
+/*.profile__add-btn:hover:after {*/
+/*  opacity: .6;*/
+/*}*/
 
 @media screen and (max-width: 528px) {
   .profile__add-btn {
