@@ -1,9 +1,11 @@
 .profile__edit-btn {
   padding: 0;
   margin: 0;
-  margin-bottom: 22px;
   width: 24px;
   height: 24px;
+  grid-column: 2 / 3;
+  grid-row: 1 / 2;
+  align-self: center;
   border: 1px solid var(--text-color-light);
   background: transparent url("../../../images/edit_icon.svg") center no-repeat;
   font-size: 0;
