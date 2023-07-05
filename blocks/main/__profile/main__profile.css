@@ -1,5 +1,5 @@
 .main__profile {
-  margin-bottom: 51px;
+  margin-bottom: 27px;
 }
 
 @media screen and (max-width: 950px){
@@ -8,7 +8,7 @@
   }
 }
 
-@media screen and (max-width: 320px){
+@media screen and (max-width: 528px){
   .main__profile {
     margin-bottom: 36px;
   }
