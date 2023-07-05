@@ -2,6 +2,12 @@
   margin-bottom: 51px;
 }
 
+@media screen and (max-width: 950px){
+  .main__profile {
+    margin: 0 15px;
+  }
+}
+
 @media screen and (max-width: 320px){
   .main__profile {
     margin-bottom: 36px;

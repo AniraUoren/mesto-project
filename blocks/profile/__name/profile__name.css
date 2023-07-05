@@ -1,7 +1,8 @@
 .profile__name {
   padding: 0;
   margin: 0;
-  width: fit-content;
+  width: 100%;
+  max-width: 500px;
   grid-column: 1 / 2;
   grid-row: 1 / 2;
   font-size: 42px;

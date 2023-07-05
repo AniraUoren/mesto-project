@@ -1,7 +1,8 @@
 .profile__about {
   padding: 0;
   margin: 0;
-  width: fit-content;
+  max-width: 500px;
+  width: 100%;
   grid-column: 1 / 2;
   grid-row: 2 / 3;
   font-size: 18px;
