@@ -18,5 +18,13 @@
   .profile__name {
     margin: 0;
     font-size: 27px;
+    text-align: end;
+  }
+}
+
+@media screen and (max-width: 320px){
+  .profile__name {
+    max-width: 235px;
+    justify-self: center;
   }
 }
