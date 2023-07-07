@@ -1,8 +1,14 @@
 .page__footer {
   max-width: 880px;
-  width: 100%;
   margin: 0 auto;
   margin-bottom: 60px;
+}
+
+@media screen and (max-width: 950px){
+  .page__footer {
+    margin: 0 15px;
+    margin-top: 45px;
+  }
 }
 
 @media screen and (max-width: 320px){
