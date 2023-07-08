@@ -13,6 +13,8 @@
 
 @media screen and (max-width: 320px){
   .page__footer {
+    margin-left: 0;
+    margin-right: 0;
     margin-bottom: 36px;
   }
 }
