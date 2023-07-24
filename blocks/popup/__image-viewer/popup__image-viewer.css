@@ -1,0 +1,6 @@
+.popup__image-viewer {
+  display: none;
+  /*display: flex;*/
+  padding: 0;
+  background-color: transparent;
+}
