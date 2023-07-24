@@ -1,4 +1,7 @@
 .popup__add-place {
-  /*display: flex;*/
-  display: none;
+  position: absolute;
+  top: calc(50% - 328px / 2);
+  right: calc(50% - 432px / 2);
+  visibility: hidden;
+  opacity: 0;
 }
