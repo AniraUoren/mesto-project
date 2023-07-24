@@ -16,8 +16,8 @@
   <section class="profile main__profile">
     <img src="images/avatar.jpg" alt="Жак-Ив Кусто" class="profile__avatar">
     <div class="profile__container">
-      <h1 class="profile__name">Жак-Ив КустоЖак-Ив КустоЖак-Ив КустоЖак-Ив Кусто</h1>
-      <p class="profile__about">Исследователь океанаИсследователь океанаИсследователь океанаИсследователь океана</p>
+      <h1 class="profile__name">Жак-Ив Кусто</h1>
+      <p class="profile__about">Исследователь океана</p>
       <button class="profile__edit-btn" type="button">Изменить</button>
     </div>
     <button class="profile__add-btn" type="button">Добавить</button>
@@ -61,14 +61,31 @@
 </footer>
 
 <div class="overlay">
-  <div class="popup">
+  <div class="popup popup__edit-profile">
     <form action="#" class="popup__form" name="edit_profile">
       <h2 class="popup__header">Редактировать профиль</h2>
-      <input type="text" class="popup__input" placeholder="Введите имя" id="name" name="name">
-      <input type="text" class="popup__input" placeholder="Введите род деятельности" id="about" name="about">
-      <button type="submit" class="popup__submit-btn" id="submit_popup">Сохранить</button>
+      <input type="text" class="popup__input" placeholder="Введите имя" id="personName" name="personName">
+      <input type="text" class="popup__input" placeholder="Введите род деятельности" id="personAbout" name="personAbout">
+      <button type="submit" class="popup__submit-btn" id="personSubmitPopup">Сохранить</button>
     </form>
     <button type="button" class="popup__close-btn" id="close_popup">Закрыть</button>
+  </div>
+
+  <div class="popup popup__add-place">
+    <form action="#" class="popup__form" name="add_place">
+      <h2 class="popup__header">Новое место</h2>
+      <input type="text" class="popup__input" placeholder="Название" id="placeName" name="placeName">
+      <input type="text" class="popup__input" placeholder="Ссылка на картинку" id="palaceURL" name="palaceURL">
+      <button type="submit" class="popup__submit-btn" id="placeSubmitPopup">Сохранить</button>
+    </form>
+  </div>
+
+  <div class="popup popup__image">
+    <figure>
+      <img src="/images/item_1.jpg" alt="Карачаевск">
+      <figcaption>Карачаевск</figcaption>
+    </figure>
+    <button type="button" class="popup__close-btn"></button>
   </div>
 </div>
 </body>
