@@ -24,37 +24,14 @@
   </section>
 
   <section class="gallery main__gallery">
-    <div class="card">
-      <img src="images/item_1.jpg" alt="Карачаевск" class="card__image">
-      <h2 class="card__description">Карачаевск</h2>
-      <button class="card__like-btn card__like-btn_active" type="button">Лайк</button>
-      <button class="card__delete-btn card__like-delete_active" type="button">Удалить</button>
-    </div>
-    <div class="card">
-      <img src="images/item_2.jpg" alt="Гора Эльбрус" class="card__image">
-      <h2 class="card__description">Гора Эльбрус</h2>
-      <button class="card__like-btn" type="button">Лайк</button>
-    </div>
-    <div class="card">
-      <img src="images/item_3.jpg" alt="Домбай" class="card__image">
-      <h2 class="card__description">Домбай</h2>
-      <button class="card__like-btn" type="button">Лайк</button>
-    </div>
-    <div class="card">
-      <img src="images/item_4.jpg" alt="Гора Эльбрус" class="card__image">
-      <h2 class="card__description">Гора Эльбрус</h2>
-      <button class="card__like-btn" type="button">Лайк</button>
-    </div>
-    <div class="card">
-      <img src="images/item_5.jpg" alt="Домбай" class="card__image">
-      <h2 class="card__description">Домбай</h2>
-      <button class="card__like-btn" type="button">Лайк</button>
-    </div>
-    <div class="card">
-      <img src="images/item_6.jpg" alt="Карачаево-Черкесия" class="card__image">
-      <h2 class="card__description">Карачаево-Черкесия</h2>
-      <button class="card__like-btn" type="button">Лайк</button>
-    </div>
+    <template id="card">
+      <div class="card">
+        <img src="images/item_1.jpg" alt="Карачаевск" class="card__image">
+        <h2 class="card__description">Карачаевск</h2>
+        <button class="card__like-btn card__like-btn_active" type="button">Лайк</button>
+        <button class="card__delete-btn card__like-delete_active" type="button">Удалить</button>
+      </div>
+    </template>
   </section>
 </main>
 <footer class="footer page__footer">
@@ -66,7 +43,8 @@
     <form action="#" class="popup__form" name="edit_profile">
       <h2 class="popup__header">Редактировать профиль</h2>
       <input type="text" class="popup__input" placeholder="Введите имя" id="personName" name="personName">
-      <input type="text" class="popup__input" placeholder="Введите род деятельности" id="personAbout" name="personAbout">
+      <input type="text" class="popup__input" placeholder="Введите род деятельности" id="personAbout"
+             name="personAbout">
       <button type="submit" class="popup__submit-btn" id="personSubmitPopup">Сохранить</button>
     </form>
     <button type="button" class="popup__close-btn">Закрыть</button>
