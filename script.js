@@ -68,8 +68,6 @@ function handleAddListenerOnBtnsForPopup(button, popup) {
   })
 }
 
-/*TODO Добавить функцию которая будет зачищать поля если был ввод, но не было сабмита и вызывать ее в handleAddListenerOnBtnsForPopup*/
-
 /**
  * Функция связывает поля профиля с полями формы редактирования профиля.
  */
@@ -96,11 +94,27 @@ function addingPersonInfo() {
   })
 }
 
+/**
+ * Функция очищает значения всех input в попапе
+ * @param popup {Element} - элемент попапа.
+ */
 function clearInputs(popup) {
   const inputsElements = popup.querySelectorAll("input");
 
   inputsElements.forEach(input => {
     input.value = "";
+  })
+}
+
+/**
+ * Функция для возможности ставить лайк карточке.
+ * @param card {Element} - элемент карточки, на которую надо добавить событие.
+ */
+function likeCard(card) {
+  const likeBtn = card.querySelector(".card__like-btn");
+
+  likeBtn.addEventListener("click", () => {
+    likeBtn.classList.toggle("card__like-btn_active");
   })
 }
 
@@ -120,6 +134,8 @@ function createCardElement(card) {
   imageCardElement.alt = card.name;
   descriptionCardElement.textContent = card.name;
 
+  likeCard(cardElement);
+
   return cardElement;
 }
 
@@ -128,9 +144,9 @@ function createCardElement(card) {
  * @param addingCart {Array} - массив объектов карточек которые нужно добавить к объекту инициализации.
  */
 function renderGallery(addingCart = []) {
-  let cardArray = [];
+  let cardArray;
   if (Object.keys(addingCart).length > 0) {
-    cardArray = [...initialCards, ...addingCart];
+    cardArray = [...addingCart, ...initialCards];
     console.log(cardArray)
   } else {
     cardArray = [...initialCards];
@@ -190,6 +206,7 @@ function handlerEditingPersonPopup() {
   })
   addingPersonInfo();
 }
+
 
 renderGallery();
 handlerAddingCardPopup();

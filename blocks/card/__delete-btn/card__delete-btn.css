@@ -11,8 +11,11 @@
   position: absolute;
   top: 20px;
   right: 20px;
+  opacity: 1;
+  transition: opacity .3s linear;
 }
 
 .card__delete-btn:hover {
+  opacity: .5;
   cursor: pointer;
 }
