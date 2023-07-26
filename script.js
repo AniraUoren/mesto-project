@@ -130,6 +130,10 @@ function deleteCard(card) {
   })
 }
 
+/**
+ * Функция позволяет повесить событие открытия попапа с картинкой на карточку.
+ * @param card {Element} - элемент карточки, на которую надо добавить событие.
+ */
 function openImagePopup(card) {
   const imageCardElement = card.querySelector(".card__image");
   const descriptionCardElement = card.querySelector(".card__description");
@@ -172,20 +176,9 @@ function createCardElement(card) {
  * Функция, выполняющая рендер галереи.
  * @param addingCart {Array} - массив объектов карточек которые нужно добавить к объекту инициализации.
  */
-function renderGallery(addingCart = []) {
-  let cardArray;
-  if (Object.keys(addingCart).length > 0) {
-    cardArray = [...addingCart, ...initialCards];
-    console.log(cardArray)
-  } else {
-    cardArray = [...initialCards];
-  }
-
-  console.log(cardArray)
-
-  if (cardArray.length > 0) {
-    galleryElement.replaceChildren(...[]);
-    cardArray.forEach(card => {
+function renderGallery() {
+  if (initialCards.length > 0) {
+    initialCards.forEach(card => {
       galleryElement.append(createCardElement(card));
     });
   }
@@ -197,8 +190,9 @@ function renderGallery(addingCart = []) {
 function addNewCard() {
   const placeName = addPlacePopupElement.querySelector("#placeName").value;
   const placeURL = addPlacePopupElement.querySelector("#placeURL").value;
+  const newCardElement = createCardElement({link: placeURL, name: placeName});
 
-  renderGallery([{link: placeURL, name: placeName}]);
+  galleryElement.prepend(newCardElement);
 }
 
 /**
@@ -222,6 +216,8 @@ function handlerAddingCardPopup() {
 
     addPlacePopupElement.classList.remove("popup_opened");
     overlayElement.classList.remove("overlay_opened");
+
+    clearInputs(addPlacePopupElement);
   })
 }
 
