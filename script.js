@@ -119,6 +119,18 @@ function likeCard(card) {
 }
 
 /**
+ * Функция позволяет удалить карточку из галереи
+ * @param card {Element} - элемент карточки, на которую надо добавить событие.
+ */
+function deleteCard(card) {
+  const deleteBtn = card.querySelector(".card__delete-btn");
+
+  deleteBtn.addEventListener("click", () => {
+    deleteBtn.parentNode.remove();
+  })
+}
+
+/**
  * Функция для отрисовки карточки в галерее.
  * @param card {Object} - Объект с данными о карточке.
  * @param card.link {String} - Поле с ссылкой на изображение.
@@ -135,6 +147,7 @@ function createCardElement(card) {
   descriptionCardElement.textContent = card.name;
 
   likeCard(cardElement);
+  deleteCard(cardElement);
 
   return cardElement;
 }
