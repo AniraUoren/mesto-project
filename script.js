@@ -11,8 +11,6 @@ const addPlaceBtn = document.querySelector(".profile__add-btn");
 /*Поля профиля пользователя*/
 const profileNameElement = document.querySelector(".profile__name");
 const profileAboutElement = document.querySelector(".profile__about");
-const nameAboutValue = profileNameElement.textContent;
-const aboutProfileValue = profileAboutElement.textContent;
 
 /*Элементы попапа редактирования профиля*/
 const nameProfileInput = editProfilePopupElement.querySelector("#personName");
@@ -73,13 +71,11 @@ function handleAddListenerOnBtnsForPopup(button, popup) {
 /*TODO Добавить функцию которая будет зачищать поля если был ввод, но не было сабмита и вызывать ее в handleAddListenerOnBtnsForPopup*/
 
 /**
- * Функция связывает поля профиля с полями фармф редактирования профиля.
+ * Функция связывает поля профиля с полями формы редактирования профиля.
  */
 function bindProfileFields() {
-  if (nameAboutValue && aboutProfileValue) {
-    nameProfileInput.value = nameAboutValue;
-    aboutProfileInput.value = aboutProfileValue;
-  }
+    nameProfileInput.value = profileNameElement.textContent;
+    aboutProfileInput.value = profileAboutElement.textContent;
 }
 
 /**
@@ -100,10 +96,13 @@ function addingPersonInfo() {
   })
 }
 
-/*TODO НАдо собрать по попапам в отдельную функцию навешивание логики, слушателей и т.п.*/
-handleAddListenerOnBtnsForPopup(editProfileBtn, editProfilePopupElement);
-bindProfileFields();
-addingPersonInfo();
+function clearInputs(popup) {
+  const inputsElements = popup.querySelectorAll("input");
+
+  inputsElements.forEach(input => {
+    input.value = "";
+  })
+}
 
 /**
  * Функция для отрисовки карточки в галерее.
@@ -167,6 +166,10 @@ function handlerAddingCardPopup() {
 
   console.log(addingCardForm)
 
+  addPlacePopupElement.querySelector(".popup__close-btn").addEventListener("click", () => {
+    clearInputs(addPlacePopupElement);
+  })
+
   addingCardForm.addEventListener("submit", evt => {
     evt.preventDefault();
 
@@ -177,5 +180,17 @@ function handlerAddingCardPopup() {
   })
 }
 
+/**
+ * Функция для управления поведением попапа редактирования информации пользователя.
+ */
+function handlerEditingPersonPopup() {
+  handleAddListenerOnBtnsForPopup(editProfileBtn, editProfilePopupElement);
+  editProfileBtn.addEventListener("click", () => {
+    bindProfileFields();
+  })
+  addingPersonInfo();
+}
+
 renderGallery();
 handlerAddingCardPopup();
+handlerEditingPersonPopup();
