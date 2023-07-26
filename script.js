@@ -48,12 +48,15 @@ const initialCards = [
   }
 ];
 
+/*Галерея*/
+const galleryElement = document.querySelector(".gallery");
+
 /**
  * Функция для простого навешивания слушателей на попап для его открытия и закрытия.
  * @param button {Element} - кнопка открытия попапа.
  * @param popup {Element} - попап, который следует открыть при нажатии на button.
  */
-function addListenerOnBtn(button, popup) {
+function handleAddListenerOnBtnsForPopup(button, popup) {
   const closeBtn = popup.querySelector(".popup__close-btn");
 
   button.addEventListener("click", () => {
@@ -66,6 +69,8 @@ function addListenerOnBtn(button, popup) {
     popup.classList.remove("popup_opened");
   })
 }
+
+/*TODO Добавить функцию которая будет зачищать поля если был ввод, но не было сабмита и вызывать ее в handleAddListenerOnBtnsForPopup*/
 
 /**
  * Функция связывает поля профиля с полями фармф редактирования профиля.
@@ -96,8 +101,7 @@ function addingPersonInfo() {
 }
 
 /*TODO НАдо собрать по попапам в отдельную функцию навешивание логики, слушателей и т.п.*/
-addListenerOnBtn(editProfileBtn, editProfilePopupElement);
-addListenerOnBtn(addPlaceBtn, addPlacePopupElement);
+handleAddListenerOnBtnsForPopup(editProfileBtn, editProfilePopupElement);
 bindProfileFields();
 addingPersonInfo();
 
@@ -107,7 +111,7 @@ addingPersonInfo();
  * @param card.link {String} - Поле с ссылкой на изображение.
  * @param card.name {String} - Поле с описание места.
  */
-function renderCard(card) {
+function createCardElement(card) {
   const cardTemplate = document.querySelector("#card").content;
   const cardElement = cardTemplate.querySelector(".card").cloneNode(true);
   const imageCardElement = cardElement.querySelector(".card__image");
@@ -122,15 +126,56 @@ function renderCard(card) {
 
 /**
  * Функция, выполняющая рендер галереи.
+ * @param addingCart {Array} - массив объектов карточек которые нужно добавить к объекту инициализации.
  */
-function renderGallery() {
-  const galleryElement = document.querySelector(".gallery");
+function renderGallery(addingCart = []) {
+  let cardArray = [];
+  if (Object.keys(addingCart).length > 0) {
+    cardArray = [...initialCards, ...addingCart];
+    console.log(cardArray)
+  } else {
+    cardArray = [...initialCards];
+  }
 
-  if (initialCards.length > 0) {
-    initialCards.forEach(card => {
-      galleryElement.append(renderCard(card));
-    })
+  console.log(cardArray)
+
+  if (cardArray.length > 0) {
+    galleryElement.replaceChildren(...[]);
+    cardArray.forEach(card => {
+      galleryElement.append(createCardElement(card));
+    });
   }
 }
 
+/**
+ * Функция для срабатывания создания карточки по нажатию на кнопку добавления новой карточки.
+ */
+function addNewCard() {
+  const placeName = addPlacePopupElement.querySelector("#placeName").value;
+  const placeURL = addPlacePopupElement.querySelector("#placeURL").value;
+
+  renderGallery([{link: placeURL, name: placeName}]);
+}
+
+/**
+ * Вспомогательная управляющая функция, которая помогает управлять попапом добавления новой карточки.
+ */
+function handlerAddingCardPopup() {
+  const addingCardForm = addPlacePopupElement.querySelector(".popup__form");
+
+  handleAddListenerOnBtnsForPopup(addPlaceBtn, addPlacePopupElement);
+
+  console.log(addingCardForm)
+
+  addingCardForm.addEventListener("submit", evt => {
+    evt.preventDefault();
+
+    addNewCard();
+
+    addPlacePopupElement.classList.remove("popup_opened");
+    overlayElement.classList.remove("overlay_opened");
+  })
+}
+
 renderGallery();
+handlerAddingCardPopup();

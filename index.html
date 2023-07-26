@@ -24,14 +24,6 @@
   </section>
 
   <section class="gallery main__gallery">
-    <template id="card">
-      <div class="card">
-        <img src="images/item_1.jpg" alt="Карачаевск" class="card__image">
-        <h2 class="card__description">Карачаевск</h2>
-        <button class="card__like-btn card__like-btn_active" type="button">Лайк</button>
-        <button class="card__delete-btn card__like-delete_active" type="button">Удалить</button>
-      </div>
-    </template>
   </section>
 </main>
 <footer class="footer page__footer">
@@ -54,7 +46,7 @@
     <form action="#" class="popup__form" name="add_place">
       <h2 class="popup__header">Новое место</h2>
       <input type="text" class="popup__input" placeholder="Название" id="placeName" name="placeName">
-      <input type="text" class="popup__input" placeholder="Ссылка на картинку" id="palaceURL" name="palaceURL">
+      <input type="text" class="popup__input" placeholder="Ссылка на картинку" id="placeURL" name="palaceURL">
       <button type="submit" class="popup__submit-btn" id="placeSubmitPopup">Сохранить</button>
     </form>
     <button type="button" class="popup__close-btn">Закрыть</button>
@@ -68,6 +60,14 @@
     <button type="button" class="popup__close-btn"></button>
   </div>
 </div>
+<template id="card">
+  <div class="card">
+    <img src="images/item_1.jpg" alt="Карачаевск" class="card__image">
+    <h2 class="card__description">Карачаевск</h2>
+    <button class="card__like-btn card__like-btn_active" type="button">Лайк</button>
+    <button class="card__delete-btn card__like-delete_active" type="button">Удалить</button>
+  </div>
+</template>
 <script src="script.js"></script>
 </body>
 </html>
