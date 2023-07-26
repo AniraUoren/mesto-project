@@ -126,8 +126,23 @@ function deleteCard(card) {
   const deleteBtn = card.querySelector(".card__delete-btn");
 
   deleteBtn.addEventListener("click", () => {
-    deleteBtn.parentNode.remove();
+    card.remove();
   })
+}
+
+function openImagePopup(card) {
+  const imageCardElement = card.querySelector(".card__image");
+  const descriptionCardElement = card.querySelector(".card__description");
+  const imagePopupElement = viewImagePopupElement.querySelector(".popup__image");
+  const descriptionPopupElement = viewImagePopupElement.querySelector(".popup__image-description");
+
+  imageCardElement.addEventListener("click", () => {
+    imagePopupElement.src = imageCardElement.src;
+    imagePopupElement.alt = imageCardElement.alt;
+    descriptionPopupElement.textContent = descriptionCardElement.textContent;
+
+  })
+  handleAddListenerOnBtnsForPopup(imageCardElement, viewImagePopupElement);
 }
 
 /**
@@ -148,6 +163,7 @@ function createCardElement(card) {
 
   likeCard(cardElement);
   deleteCard(cardElement);
+  openImagePopup(cardElement);
 
   return cardElement;
 }
