@@ -1,5 +1,4 @@
 /*Попапы*/
-const overlayElement = document.querySelector(".overlay");
 const editProfilePopupElement = document.querySelector(".popup__edit-profile");
 const addPlacePopupElement = document.querySelector(".popup__add-place");
 const viewImagePopupElement = document.querySelector(".popup__image-viewer");
@@ -12,97 +11,61 @@ const addPlaceBtn = document.querySelector(".profile__add-btn");
 const profileNameElement = document.querySelector(".profile__name");
 const profileAboutElement = document.querySelector(".profile__about");
 
-/*Элементы попапа редактирования профиля*/
+/*Элементы попапов*/
 const nameProfileInput = editProfilePopupElement.querySelector("#personName");
 const aboutProfileInput = editProfilePopupElement.querySelector("#personAbout");
 // const submitEditingProfileBtn = document.querySelector("#personSubmitPopup");
-const editPersonForm = editProfilePopupElement.querySelector(".popup__form");
+const editProfileForm = editProfilePopupElement.querySelector(".popup__form");
+const closeProfilePopupBtn = editProfilePopupElement.querySelector(".popup__close-btn");
+const imagePopupElement = viewImagePopupElement.querySelector(".popup__image");
+const descriptionPopupElement = viewImagePopupElement.querySelector(".popup__image-description");
+const placeNameInput = addPlacePopupElement.querySelector("#placeName");
+const placeURLInput = addPlacePopupElement.querySelector("#placeURL");
+const closeViewImagePopupBtn = viewImagePopupElement.querySelector(".popup__close-btn");
+const addPlaceForm = addPlacePopupElement.querySelector(".popup__form");
+const closeAddPlacePopupBtn = addPlacePopupElement.querySelector(".popup__close-btn");
 
-/*Данные для инициализации карточек*/
-const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
-
-/*Галерея*/
+  /*Галерея*/
 const galleryElement = document.querySelector(".gallery");
 
+
 /**
- * Функция для простого навешивания слушателей на попап для его открытия и закрытия.
- * @param button {Element} - кнопка открытия попапа.
- * @param popup {Element} - попап, который следует открыть при нажатии на button.
+ * Открытие нужного попапа через добавление класса.
+ * @param popup {Element} - попап который следует открыть.
  */
-function handleAddListenerOnBtnsForPopup(button, popup) {
-  const closeBtn = popup.querySelector(".popup__close-btn");
+function openPopup(popup) {
+  popup.classList.add("popup_opened");
+}
 
-  button.addEventListener("click", () => {
-    overlayElement.classList.add("overlay_opened");
-    popup.classList.add("popup_opened");
-  })
-
-  closeBtn.addEventListener("click", () => {
-    overlayElement.classList.remove("overlay_opened");
-    popup.classList.remove("popup_opened");
-  })
+/**
+ * Закрытие нужного попапа через удаление класса.
+ * @param popup {Element} - попап который следует закрыть.
+ */
+function closePopup(popup) {
+  popup.classList.remove("popup_opened");
 }
 
 /**
  * Функция связывает поля профиля с полями формы редактирования профиля.
  */
 function bindProfileFields() {
-    nameProfileInput.value = profileNameElement.textContent;
-    aboutProfileInput.value = profileAboutElement.textContent;
+  nameProfileInput.value = profileNameElement.textContent;
+  aboutProfileInput.value = profileAboutElement.textContent;
 }
 
 /**
  * Обрабатывает сабмит формы редактирования перс, данных. Прокидывает значения из полей формы и сбрасывает их значение.
  */
-function addingPersonInfo() {
-  editPersonForm.addEventListener("submit", evt => {
+function submitAddingPersonInfo() {
+  editProfileForm.addEventListener("submit", evt => {
     evt.preventDefault();
 
     profileNameElement.textContent = nameProfileInput.value;
     profileAboutElement.textContent = aboutProfileInput.value;
 
-    nameProfileInput.value = "";
-    aboutProfileInput.value = "";
+    editProfileForm.reset();
 
-    overlayElement.classList.remove("overlay_opened");
-    editProfilePopupElement.classList.remove("popup_opened");
-  })
-}
-
-/**
- * Функция очищает значения всех input в попапе
- * @param popup {Element} - элемент попапа.
- */
-function clearInputs(popup) {
-  const inputsElements = popup.querySelectorAll("input");
-
-  inputsElements.forEach(input => {
-    input.value = "";
+    closePopup(editProfilePopupElement);
   })
 }
 
@@ -110,7 +73,7 @@ function clearInputs(popup) {
  * Функция для возможности ставить лайк карточке.
  * @param card {Element} - элемент карточки, на которую надо добавить событие.
  */
-function likeCard(card) {
+function addEventToLikeCard(card) {
   const likeBtn = card.querySelector(".card__like-btn");
 
   likeBtn.addEventListener("click", () => {
@@ -122,7 +85,7 @@ function likeCard(card) {
  * Функция позволяет удалить карточку из галереи
  * @param card {Element} - элемент карточки, на которую надо добавить событие.
  */
-function deleteCard(card) {
+function addEventToDeleteCard(card) {
   const deleteBtn = card.querySelector(".card__delete-btn");
 
   deleteBtn.addEventListener("click", () => {
@@ -134,11 +97,9 @@ function deleteCard(card) {
  * Функция позволяет повесить событие открытия попапа с картинкой на карточку.
  * @param card {Element} - элемент карточки, на которую надо добавить событие.
  */
-function openImagePopup(card) {
+function addEventToOpenImagePopup(card) {
   const imageCardElement = card.querySelector(".card__image");
   const descriptionCardElement = card.querySelector(".card__description");
-  const imagePopupElement = viewImagePopupElement.querySelector(".popup__image");
-  const descriptionPopupElement = viewImagePopupElement.querySelector(".popup__image-description");
 
   imageCardElement.addEventListener("click", () => {
     imagePopupElement.src = imageCardElement.src;
@@ -146,7 +107,14 @@ function openImagePopup(card) {
     descriptionPopupElement.textContent = descriptionCardElement.textContent;
 
   })
-  handleAddListenerOnBtnsForPopup(imageCardElement, viewImagePopupElement);
+
+  imageCardElement.addEventListener("click", () => {
+    openPopup(viewImagePopupElement);
+  })
+
+  closeViewImagePopupBtn.addEventListener("click", () => {
+    closePopup(viewImagePopupElement);
+  })
 }
 
 /**
@@ -165,16 +133,15 @@ function createCardElement(card) {
   imageCardElement.alt = card.name;
   descriptionCardElement.textContent = card.name;
 
-  likeCard(cardElement);
-  deleteCard(cardElement);
-  openImagePopup(cardElement);
+  addEventToLikeCard(cardElement);
+  addEventToDeleteCard(cardElement);
+  addEventToOpenImagePopup(cardElement);
 
   return cardElement;
 }
 
 /**
  * Функция, выполняющая рендер галереи.
- * @param addingCart {Array} - массив объектов карточек которые нужно добавить к объекту инициализации.
  */
 function renderGallery() {
   if (initialCards.length > 0) {
@@ -188,9 +155,8 @@ function renderGallery() {
  * Функция для срабатывания создания карточки по нажатию на кнопку добавления новой карточки.
  */
 function addNewCard() {
-  const placeName = addPlacePopupElement.querySelector("#placeName").value;
-  const placeURL = addPlacePopupElement.querySelector("#placeURL").value;
-  const newCardElement = createCardElement({link: placeURL, name: placeName});
+  console.log({link: placeURLInput.value, name: placeNameInput.value})
+  const newCardElement = createCardElement({link: placeURLInput.value, name: placeNameInput.value});
 
   galleryElement.prepend(newCardElement);
 }
@@ -199,25 +165,21 @@ function addNewCard() {
  * Вспомогательная управляющая функция, которая помогает управлять попапом добавления новой карточки.
  */
 function handlerAddingCardPopup() {
-  const addingCardForm = addPlacePopupElement.querySelector(".popup__form");
-
-  handleAddListenerOnBtnsForPopup(addPlaceBtn, addPlacePopupElement);
-
-  console.log(addingCardForm)
-
-  addPlacePopupElement.querySelector(".popup__close-btn").addEventListener("click", () => {
-    clearInputs(addPlacePopupElement);
+  addPlaceBtn.addEventListener("click", () => {
+    openPopup(addPlacePopupElement);
   })
 
-  addingCardForm.addEventListener("submit", evt => {
+  closeAddPlacePopupBtn.addEventListener("click", () => {
+    closePopup(addPlacePopupElement);
+    addPlaceForm.reset();
+  })
+
+  addPlaceForm.addEventListener("submit", evt => {
     evt.preventDefault();
 
     addNewCard();
-
-    addPlacePopupElement.classList.remove("popup_opened");
-    overlayElement.classList.remove("overlay_opened");
-
-    clearInputs(addPlacePopupElement);
+    closePopup(addPlacePopupElement);
+    addPlaceForm.reset();
   })
 }
 
@@ -225,11 +187,16 @@ function handlerAddingCardPopup() {
  * Функция для управления поведением попапа редактирования информации пользователя.
  */
 function handlerEditingPersonPopup() {
-  handleAddListenerOnBtnsForPopup(editProfileBtn, editProfilePopupElement);
   editProfileBtn.addEventListener("click", () => {
     bindProfileFields();
+    openPopup(editProfilePopupElement);
   })
-  addingPersonInfo();
+
+  submitAddingPersonInfo();
+
+  closeProfilePopupBtn.addEventListener("click", () => {
+    closePopup(editProfilePopupElement);
+  })
 }
 
 
