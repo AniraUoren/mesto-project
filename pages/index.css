@@ -36,10 +36,8 @@
 @import "../blocks/footer/footer.css";
 @import "../blocks/footer/__copyright/footer__copyright.css";
 
-@import "../blocks/overlay/overlay.css";
-@import "../blocks/overlay/_opened/overlay_opened.css";
-
 @import "../blocks/popup/popup.css";
+@import "../blocks/popup/__container/popup__container.css";
 @import "../blocks/popup/__edit-profile/popup__edit-profile.css";
 @import "../blocks/popup/__add-place/popup__add-place.css";
 @import "../blocks/popup/__image-viewer/popup__image-viewer.css";

@@ -30,8 +30,8 @@
   <a href="#" class="footer__copyright">&copy; 2020 Mesto Russia</a>
 </footer>
 
-<div class="overlay">
-  <div class="popup popup__edit-profile">
+<div class="popup popup__edit-profile">
+  <div class="popup__container">
     <form action="#" class="popup__form" name="edit_profile">
       <h2 class="popup__header">Редактировать профиль</h2>
       <input type="text" class="popup__input" placeholder="Введите имя" id="personName" name="personName">
@@ -41,8 +41,10 @@
     </form>
     <button type="button" class="popup__close-btn">Закрыть</button>
   </div>
+</div>
 
-  <div class="popup popup__add-place">
+<div class="popup popup__add-place">
+  <div class="popup__container">
     <form action="#" class="popup__form" name="add_place">
       <h2 class="popup__header">Новое место</h2>
       <input type="text" class="popup__input" placeholder="Название" id="placeName" name="placeName" required>
@@ -51,15 +53,19 @@
     </form>
     <button type="button" class="popup__close-btn">Закрыть</button>
   </div>
+</div>
 
-  <div class="popup popup__image-viewer">
+<div class="popup popup__image-viewer">
+  <div class="popup__container">
     <figure class="popup__image-block">
       <img src="/images/item_1.jpg" alt="Карачаевск" class="popup__image">
       <figcaption class="popup__image-description">Карачаевск</figcaption>
     </figure>
     <button type="button" class="popup__close-btn">Удалить</button>
   </div>
+
 </div>
+
 <template id="card">
   <div class="card">
     <img src="images/item_1.jpg" alt="Карачаевск" class="card__image">

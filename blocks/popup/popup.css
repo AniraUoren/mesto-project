@@ -1,16 +1,20 @@
 .popup {
-  padding: 34px 37px;
-  margin: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: var(--background-color-light);
-  border-radius: 10px;
+  background-color: var(--background-color-overlay);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 5;
+  visibility: hidden;
   box-sizing: border-box;
-  position: relative;
 }
 
-@media screen and (max-width: 557px){
+@media screen and (max-width: 557px) {
   .popup {
     padding: 25px 22px;
   }

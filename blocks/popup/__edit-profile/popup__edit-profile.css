@@ -1,7 +1,5 @@
 .popup__edit-profile {
-  position: absolute;
-  top: calc(50% - 328px / 2);
-  right: calc(50% - 432px / 2);
   visibility: hidden;
   opacity: 0;
+  transition: visibility 0.6s, opacity 0.6s;
 }

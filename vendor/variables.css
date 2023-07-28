@@ -3,6 +3,7 @@
   --background-color-main: rgba(0, 0, 0, 1);
   --background-color-light: rgba(255, 255, 255, 1);
   --background-color-overlay: rgba(0, 0, 0, .5);
+  --background-color-galery-overlay: rgba(0, 0, 0, .89);
   --text-color-light: rgba(255, 255, 255, 1);
   --text-color-dark: rgba(0, 0, 0, 1);
   --text-color-medium: rgba(84, 84, 84, 1);

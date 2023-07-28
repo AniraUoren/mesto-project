@@ -3,6 +3,7 @@
   margin: 0;
   background-color: var(--background-color-main);
   font-family: Inter, sans-serif;
+  position: relative;
 }
 
 @media screen and (max-width: 320px){
