@@ -41,6 +41,7 @@
 @import "../blocks/popup/__edit-profile/popup__edit-profile.css";
 @import "../blocks/popup/__add-place/popup__add-place.css";
 @import "../blocks/popup/__image-viewer/popup__image-viewer.css";
+@import "../blocks/popup/_opened/popup_opened.css";
 @import "../blocks/popup/__header/popup__header.css";
 @import "../blocks/popup/__form/popup__form.css";
 @import "../blocks/popup/__input/popup__input.css";
@@ -49,4 +50,3 @@
 @import "../blocks/popup/__image-block/popup__image-block.css";
 @import "../blocks/popup/__image/popup__image.css";
 @import "../blocks/popup/__image-description/popup__image-description.css";
-@import "../blocks/popup/_opened/popup_opened.css";

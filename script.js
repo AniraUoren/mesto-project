@@ -1,7 +1,7 @@
 /*Попапы*/
-const editProfilePopupElement = document.querySelector(".popup__edit-profile");
-const addPlacePopupElement = document.querySelector(".popup__add-place");
-const viewImagePopupElement = document.querySelector(".popup__image-viewer");
+const editProfilePopupElement = document.querySelector("#editProfilePopup");
+const addPlacePopupElement = document.querySelector("#addCardPopup");
+const viewImagePopupElement = document.querySelector("#imageViewerPopup");
 
 /*Кнопки для попапов*/
 const editProfileBtn = document.querySelector(".profile__edit-btn");
