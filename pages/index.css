@@ -38,8 +38,6 @@
 
 @import "../blocks/popup/popup.css";
 @import "../blocks/popup/__container/popup__container.css";
-@import "../blocks/popup/__edit-profile/popup__edit-profile.css";
-@import "../blocks/popup/__add-place/popup__add-place.css";
 @import "../blocks/popup/__image-viewer/popup__image-viewer.css";
 @import "../blocks/popup/_opened/popup_opened.css";
 @import "../blocks/popup/__header/popup__header.css";
