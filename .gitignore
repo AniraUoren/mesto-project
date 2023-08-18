@@ -2,3 +2,4 @@
 /*.zip
 /*.fig
 ./*.jpg
+./node_modules

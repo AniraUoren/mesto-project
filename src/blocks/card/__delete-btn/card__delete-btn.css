@@ -4,7 +4,7 @@
   width: 18px;
   height: 19px;
   font-size: 0;
-  background: transparent url("/images/trash_icon.svg") center no-repeat;
+  background: transparent url("../../../images/trash_icon.svg") center no-repeat;
   background-size: 18px 19px;
   border: none;
   outline: none;

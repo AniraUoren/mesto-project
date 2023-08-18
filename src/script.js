@@ -1,3 +1,5 @@
+import "./pages/index.css";
+
 /*Попапы*/
 const editProfilePopupElement = document.querySelector("#editProfilePopup");
 const addPlacePopupElement = document.querySelector("#addCardPopup");
@@ -66,7 +68,7 @@ function submitAddingPersonInfo() {
     editProfileForm.reset();
 
     closePopup(editProfilePopupElement);
-  })
+  });
 }
 
 /**
@@ -78,7 +80,7 @@ function addEventToLikeCard(card) {
 
   likeBtn.addEventListener("click", () => {
     likeBtn.classList.toggle("card__like-btn_active");
-  })
+  });
 }
 
 /**
@@ -90,7 +92,7 @@ function addEventToDeleteCard(card) {
 
   deleteBtn.addEventListener("click", () => {
     card.remove();
-  })
+  });
 }
 
 /**
@@ -106,15 +108,15 @@ function addEventToOpenImagePopup(card) {
     imagePopupElement.alt = imageCardElement.alt;
     descriptionPopupElement.textContent = descriptionCardElement.textContent;
 
-  })
+  });
 
   imageCardElement.addEventListener("click", () => {
     openPopup(viewImagePopupElement);
-  })
+  });
 
   closeViewImagePopupBtn.addEventListener("click", () => {
     closePopup(viewImagePopupElement);
-  })
+  });
 }
 
 /**
@@ -155,7 +157,6 @@ function renderGallery() {
  * Функция для срабатывания создания карточки по нажатию на кнопку добавления новой карточки.
  */
 function addNewCard() {
-  console.log({link: placeURLInput.value, name: placeNameInput.value})
   const newCardElement = createCardElement({link: placeURLInput.value, name: placeNameInput.value});
 
   galleryElement.prepend(newCardElement);
@@ -167,12 +168,12 @@ function addNewCard() {
 function handlerAddingCardPopup() {
   addPlaceBtn.addEventListener("click", () => {
     openPopup(addPlacePopupElement);
-  })
+  });
 
   closeAddPlacePopupBtn.addEventListener("click", () => {
     closePopup(addPlacePopupElement);
     addPlaceForm.reset();
-  })
+  });
 
   addPlaceForm.addEventListener("submit", evt => {
     evt.preventDefault();
@@ -180,7 +181,7 @@ function handlerAddingCardPopup() {
     addNewCard();
     closePopup(addPlacePopupElement);
     addPlaceForm.reset();
-  })
+  });
 }
 
 /**
@@ -190,13 +191,13 @@ function handlerEditingPersonPopup() {
   editProfileBtn.addEventListener("click", () => {
     bindProfileFields();
     openPopup(editProfilePopupElement);
-  })
+  });
 
   submitAddingPersonInfo();
 
   closeProfilePopupBtn.addEventListener("click", () => {
     closePopup(editProfilePopupElement);
-  })
+  });
 }
 
 

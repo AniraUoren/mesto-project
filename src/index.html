@@ -3,18 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="pages/index.css">
   <title>Mesto</title>
 </head>
 <body class="page">
 <header class="header page__header">
   <a href="#" class="logo">
-    <img src="images/logo.svg" class="logo__image" alt="Mesto">
+    <img src="<%=require('./images/logo.svg')%>" class="logo__image" alt="Mesto">
   </a>
 </header>
 <main class="main page__main">
   <section class="profile main__profile">
-    <img src="images/avatar.jpg" alt="Жак-Ив Кусто" class="profile__avatar">
+    <img src="<%=require('./images/avatar.jpg')%>" alt="Жак-Ив Кусто" class="profile__avatar">
     <div class="profile__container">
       <h1 class="profile__name">Жак-Ив Кусто</h1>
       <p class="profile__about">Исследователь океана</p>
@@ -74,7 +73,5 @@
     <button class="card__delete-btn" type="button">Удалить</button>
   </div>
 </template>
-<script src="initialData.js"></script>
-<script src="script.js"></script>
 </body>
 </html>

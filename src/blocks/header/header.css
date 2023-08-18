@@ -1,8 +1,6 @@
 .header {
   display: flex;
   flex-direction: row;
-  justify-content: start;
-  align-content: start;
   border-bottom: 1px solid var(--border-grey);
   box-sizing: border-box;
 }
