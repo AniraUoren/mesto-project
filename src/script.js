@@ -1,4 +1,5 @@
 import "./pages/index.css";
+import {initialCards} from "./initialData";
 
 /*Попапы*/
 const editProfilePopupElement = document.querySelector("#editProfilePopup");
