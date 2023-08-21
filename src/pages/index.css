@@ -43,6 +43,7 @@
 @import "../blocks/popup/__header/popup__header.css";
 @import "../blocks/popup/__form/popup__form.css";
 @import "../blocks/popup/__input/popup__input.css";
+@import "../blocks/popup/__input-error/popup__input-error.css";
 @import "../blocks/popup/__submit-btn/popup__submit-btn.css";
 @import "../blocks/popup/__close-btn/popup__close-btn.css";
 @import "../blocks/popup/__image-block/popup__image-block.css";

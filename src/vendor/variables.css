@@ -7,6 +7,7 @@
   --text-color-light: rgba(255, 255, 255, 1);
   --text-color-dark: rgba(0, 0, 0, 1);
   --text-color-medium: rgba(84, 84, 84, 1);
+  --text-color-error: rgba(255, 0, 0, 1);
   --border-grey: rgba(84, 84, 84, 0.7);
   --border-white: rgba(255, 255, 255, 1);
   --border-black-opacity: rgba(0, 0, 0, .2);

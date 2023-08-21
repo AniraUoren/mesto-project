@@ -1,0 +1,5 @@
+.popup__input-error {
+  color: var(--text-color-error);
+  font-size: 12px;
+  font-weight: 400;
+}
