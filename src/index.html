@@ -13,7 +13,10 @@
 </header>
 <main class="main page__main">
   <section class="profile main__profile">
-    <img src="<%=require('./images/avatar.jpg')%>" alt="Жак-Ив Кусто" class="profile__avatar">
+    <div class="profile__avatar-block">
+      <img src="<%=require('./images/avatar.jpg')%>" alt="Жак-Ив Кусто" class="profile__avatar">
+      <button class="profile__edit-avatar">Редактировать</button>
+    </div>
     <div class="profile__container">
       <h1 class="profile__name">Жак-Ив Кусто</h1>
       <p class="profile__about">Исследователь океана</p>
@@ -37,8 +40,11 @@
       <span class="popup__input-error personName-error">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</span>
       <input type="text" class="popup__input" placeholder="Введите род деятельности" id="personAbout"
              name="personAbout">
-      <span class="popup__input-error personAbout-error">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</span>
-      <button type="submit" class="popup__submit-btn popup__submit-btn_disabled" id="personSubmitPopup" disabled>Сохранить</button>
+      <span
+        class="popup__input-error personAbout-error">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</span>
+      <button type="submit" class="popup__submit-btn popup__submit-btn_disabled" id="personSubmitPopup" disabled>
+        Сохранить
+      </button>
     </form>
     <button type="button" class="popup__close-btn">Закрыть</button>
   </div>
@@ -52,7 +58,9 @@
       <span class="popup__input-error placeName-error">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</span>
       <input type="text" class="popup__input" placeholder="Ссылка на картинку" id="placeURL" name="palaceURL" required>
       <span class="popup__input-error placeURL-error">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</span>
-      <button type="submit" class="popup__submit-btn popup__submit-btn_disabled" id="placeSubmitPopup" disabled>Сохранить</button>
+      <button type="submit" class="popup__submit-btn popup__submit-btn_disabled" id="placeSubmitPopup" disabled>
+        Сохранить
+      </button>
     </form>
     <button type="button" class="popup__close-btn">Закрыть</button>
   </div>

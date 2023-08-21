@@ -17,7 +17,9 @@
 @import "../blocks/main/__gallery/main__gallery.css";
 
 @import "../blocks/profile/profile.css";
+@import "../blocks/profile/__avatar-block/profile__avatar-block.css";
 @import "../blocks/profile/__avatar/profile__avatar.css";
+@import "../blocks/profile/__edit-avatar/profile__edit-avatar.css";
 @import "../blocks/profile/__container/profile__container.css";
 @import "../blocks/profile/__name/profile__name.css";
 @import "../blocks/profile/__about/profile__about.css";
