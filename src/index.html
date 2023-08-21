@@ -76,13 +76,25 @@
   </div>
 </div>
 
-<div class="popup" id="EditAvatar">
+<div class="popup" id="editAvatar">
   <div class="popup__container">
     <form action="#" class="popup__form" name="edit_avatar">
       <h2 class="popup__header">Обновить аватар</h2>
       <input type="text" class="popup__input" placeholder="Название" id="avatarURL" name="placeName" required>
       <span class="popup__input-error avatarURL-error">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</span>
       <button type="submit" class="popup__submit-btn popup__submit-btn_disabled" id="editAvatarSubmitPopup" disabled>
+        Сохранить
+      </button>
+    </form>
+    <button type="button" class="popup__close-btn">Закрыть</button>
+  </div>
+</div>
+
+<div class="popup" id="confirmDeleteCard">
+  <div class="popup__container">
+    <form action="#" class="popup__form" name="edit_avatar">
+      <h2 class="popup__header">Вы уверены?</h2>
+      <button type="submit" class="popup__submit-btn" id="deleteCardSubmitPopup">
         Сохранить
       </button>
     </form>
