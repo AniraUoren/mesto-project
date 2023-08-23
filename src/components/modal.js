@@ -41,6 +41,6 @@ export function handlerClosePopupByOverlay(evt){
  *
  * @param element
  */
-export function addEveListenerOnEsc(element) {
+export function addEveListenerOnEsc() {
   document.addEventListener("keydown", handlerClosePopupOnEsc);
 }

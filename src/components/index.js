@@ -2,7 +2,6 @@ import "../pages/index.css";
 import {initialCards} from "./initialData";
 import {addNewCard, renderGallery} from "./card";
 import {
-  addEveListenerOnEnter,
   addEveListenerOnEsc,
   removeClassToClosePopup,
   addingClassToOpenPopup,
