@@ -28,19 +28,26 @@ function handlerClosePopupOnEsc(evt){
 }
 
 /**
- *
- * @param evt
+ * Функция, которая проверяет, был ли нажат оверлей и при нажатии закрывающая попап.
+ * @param evt {Object} - объект события клика.
  */
-export function handlerClosePopupByOverlay(evt){
+function handlerClosePopupOnOverlay(evt) {
   if (evt.target.classList.contains("popup_opened")) {
     removeClassToClosePopup(document.querySelector(".popup_opened"));
   }
 }
 
 /**
- *
- * @param element
+ * Функция, которая добавляет слушателя на закрытие попапа по клику на оверлей.
+ * @param element {Element} - попап, которому добавляем функционал.
  */
-export function addEveListenerOnEsc() {
+export function addEvtListenerOnCloseByOverlay(element){
+  element.addEventListener("click", handlerClosePopupOnOverlay);
+}
+
+/**
+ * Функция, которая устанавливает слушателя на закрытие попапа по нажатию Esc.
+ */
+export function addEvtListenerOnCloseByEsc() {
   document.addEventListener("keydown", handlerClosePopupOnEsc);
 }

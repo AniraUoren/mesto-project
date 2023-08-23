@@ -2,4 +2,5 @@
   color: var(--text-color-error);
   font-size: 12px;
   font-weight: 400;
+  visibility: hidden;
 }

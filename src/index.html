@@ -34,14 +34,29 @@
 
 <div class="popup" id="editProfilePopup">
   <div class="popup__container">
-    <form action="#" class="popup__form" name="edit_profile">
+    <form action="#" class="popup__form" name="edit_profile" novalidate>
       <h2 class="popup__header">Редактировать профиль</h2>
-      <input type="text" class="popup__input" placeholder="Введите имя" id="personName" name="personName">
-      <span class="popup__input-error personName-error">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</span>
-      <input type="text" class="popup__input" placeholder="Введите род деятельности" id="personAbout"
-             name="personAbout">
+      <input type="text"
+             class="popup__input"
+             placeholder="Введите имя"
+             id="personName"
+             name="personName"
+             minlength="2"
+             maxlength="40"
+             pattern="^[а-яА-ЯёЁЁa-zA-Z ]+$"
+             required>
+      <span class="popup__input-error personName-error"></span>
+      <input type="text"
+             class="popup__input"
+             placeholder="Введите род деятельности"
+             id="personAbout"
+             name="personAbout"
+             minlength="2"
+             maxlength="200"
+             pattern="^[а-яА-ЯёЁЁa-zA-Z -]+$"
+             required>
       <span
-        class="popup__input-error personAbout-error">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</span>
+        class="popup__input-error personAbout-error"></span>
       <button type="submit" class="popup__submit-btn popup__submit-btn_disabled" id="personSubmitPopup" disabled>
         Сохранить
       </button>
@@ -52,12 +67,12 @@
 
 <div class="popup" id="addCardPopup">
   <div class="popup__container">
-    <form action="#" class="popup__form" name="add_place">
+    <form action="#" class="popup__form" name="add_place" novalidate>
       <h2 class="popup__header">Новое место</h2>
       <input type="text" class="popup__input" placeholder="Название" id="placeName" name="placeName" required>
-      <span class="popup__input-error placeName-error">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</span>
+      <span class="popup__input-error placeName-error"></span>
       <input type="text" class="popup__input" placeholder="Ссылка на картинку" id="placeURL" name="palaceURL" required>
-      <span class="popup__input-error placeURL-error">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</span>
+      <span class="popup__input-error placeURL-error"></span>
       <button type="submit" class="popup__submit-btn popup__submit-btn_disabled" id="placeSubmitPopup" disabled>
         Сохранить
       </button>
@@ -78,10 +93,10 @@
 
 <div class="popup" id="editAvatar">
   <div class="popup__container">
-    <form action="#" class="popup__form" name="edit_avatar">
+    <form action="#" class="popup__form" name="edit_avatar" novalidate>
       <h2 class="popup__header">Обновить аватар</h2>
       <input type="text" class="popup__input" placeholder="Название" id="avatarURL" name="placeName" required>
-      <span class="popup__input-error avatarURL-error">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</span>
+      <span class="popup__input-error avatarURL-error"></span>
       <button type="submit" class="popup__submit-btn popup__submit-btn_disabled" id="editAvatarSubmitPopup" disabled>
         Сохранить
       </button>

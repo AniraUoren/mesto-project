@@ -9,7 +9,7 @@ export function bindProfileFields(nameProfileInput, aboutProfileInput, profileNa
 }
 
 /**
- * Обрабатывает сабмит формы редактирования перс, данных.
+ * Обрабатывает сабмит формы редактирования персональных данных.
  * Прокидывает значения из полей формы и сбрасывает их значение.
  */
 export function submitAddingPersonInfo(editProfileForm,nameProfileInput, aboutProfileInput, profileNameElement, profileAboutElement, editProfilePopupElement) {

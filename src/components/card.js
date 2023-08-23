@@ -1,4 +1,9 @@
-import {removeClassToClosePopup, addingClassToOpenPopup} from "./modal";
+import {
+  removeClassToClosePopup,
+  addingClassToOpenPopup,
+  addEvtListenerOnCloseByEsc,
+  addEvtListenerOnCloseByOverlay
+} from "./modal";
 
 /*Попап для просмотра изображения и его элементы*/
 const viewImagePopupElement = document.querySelector("#imageViewerPopup");
@@ -42,7 +47,8 @@ function addEventToOpenImagePopup(card) {
     imagePopupElement.src = imageCardElement.src;
     imagePopupElement.alt = imageCardElement.alt;
     descriptionPopupElement.textContent = descriptionCardElement.textContent;
-
+    addEvtListenerOnCloseByEsc(document.querySelector(".popup"));
+    addEvtListenerOnCloseByOverlay(viewImagePopupElement);
   });
 
   imageCardElement.addEventListener("click", () => {

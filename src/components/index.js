@@ -2,12 +2,13 @@ import "../pages/index.css";
 import {initialCards} from "./initialData";
 import {addNewCard, renderGallery} from "./card";
 import {
-  addEveListenerOnEsc,
+  addEvtListenerOnCloseByEsc,
   removeClassToClosePopup,
   addingClassToOpenPopup,
-  handlerClosePopupByOverlay
+  addEvtListenerOnCloseByOverlay
 } from "./modal";
 import {bindProfileFields, submitAddingPersonInfo} from "./utils";
+import {enableValidations} from "./validate";
 
 /*Попапы*/
 const editProfilePopupElement = document.querySelector("#editProfilePopup");
@@ -43,6 +44,8 @@ const galleryElement = document.querySelector(".gallery");
 function handlerAddingCardPopup() {
   addPlaceBtn.addEventListener("click", () => {
     addingClassToOpenPopup(addPlacePopupElement);
+    addEvtListenerOnCloseByEsc(document.querySelector(".popup"));
+    addEvtListenerOnCloseByOverlay(addPlacePopupElement);
   });
 
   closeAddPlacePopupBtn.addEventListener("click", () => {
@@ -66,8 +69,8 @@ function handlerEditingPersonPopup() {
   editProfileBtn.addEventListener("click", () => {
     bindProfileFields(nameProfileInput, aboutProfileInput, profileNameElement, profileAboutElement);
     addingClassToOpenPopup(editProfilePopupElement);
-    addEveListenerOnEsc(document.querySelector(".popup"));
-    editProfilePopupElement.addEventListener("click", handlerClosePopupByOverlay);
+    addEvtListenerOnCloseByEsc(document.querySelector(".popup"));
+    addEvtListenerOnCloseByOverlay(editProfilePopupElement);
   });
   submitAddingPersonInfo(editProfileForm, nameProfileInput, aboutProfileInput, profileNameElement, profileAboutElement, editProfilePopupElement);
 
@@ -78,5 +81,6 @@ function handlerEditingPersonPopup() {
 
 
 renderGallery(initialCards, galleryElement);
+enableValidations();
 handlerAddingCardPopup();
 handlerEditingPersonPopup();
