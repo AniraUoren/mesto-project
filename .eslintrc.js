@@ -3,7 +3,7 @@ module.exports = {
     ignorePatterns: ["node_modules/"],
     "rules": {
         "semi": ["error", "always"],
-        "array-bracket-spacing": ["always"],
+        // "array-bracket-spacing": ["always"],
         "quotes": ["error", "double"],
         "require-jsdoc": ["error", {
             "require": {

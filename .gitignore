@@ -3,3 +3,4 @@
 /*.fig
 ./*.jpg
 ./node_modules
+./dist/

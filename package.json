@@ -2,7 +2,7 @@
   "name": "webpack",
   "version": "1.0.0",
   "description": "",
-  "main": "./src/script.js",
+  "main": "./src/components/index.js",
   "scripts": {
     "build": "webpack --mode production",
     "dev": "webpack serve"
