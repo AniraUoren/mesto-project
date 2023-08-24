@@ -7,8 +7,9 @@ import {
   addingClassToOpenPopup,
   addEvtListenerOnCloseByOverlay
 } from "./modal";
-import {bindProfileFields, submitAddingPersonInfo} from "./utils";
+import {bindProfileFields, clearAllErrorFields, submitAddingPersonInfo} from "./utils";
 import {enableValidations} from "./validate";
+import {validationConf} from "./config";
 
 /*Попапы*/
 const editProfilePopupElement = document.querySelector("#editProfilePopup");
@@ -51,6 +52,7 @@ function handlerAddingCardPopup() {
   closeAddPlacePopupBtn.addEventListener("click", () => {
     removeClassToClosePopup(addPlacePopupElement);
     addPlaceForm.reset();
+    clearAllErrorFields(addPlacePopupElement.querySelector("form"), validationConf);
   });
 
   addPlaceForm.addEventListener("submit", evt => {
@@ -81,6 +83,6 @@ function handlerEditingPersonPopup() {
 
 
 renderGallery(initialCards, galleryElement);
-enableValidations();
+enableValidations(validationConf);
 handlerAddingCardPopup();
 handlerEditingPersonPopup();

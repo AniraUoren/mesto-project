@@ -1,4 +1,5 @@
 import {removeClassToClosePopup} from "./modal";
+import {hideInputError} from "./validate";
 
 /**
  * Функция связывает поля профиля с полями формы редактирования профиля.
@@ -22,5 +23,18 @@ export function submitAddingPersonInfo(editProfileForm,nameProfileInput, aboutPr
     editProfileForm.reset();
 
     removeClassToClosePopup(editProfilePopupElement);
+  });
+}
+
+/**
+ * Очищение всех полей с ошибкой в форме.
+ * @param form {Object} - форма в которой зачищаем поля.
+ * @param validationConf {Object} - конфигурация.
+ */
+export function clearAllErrorFields(form, validationConf){
+  const inputsList = Array.from(form.querySelectorAll(validationConf.inputClass));
+
+  inputsList.forEach(input => {
+    hideInputError(form, input, validationConf);
   });
 }

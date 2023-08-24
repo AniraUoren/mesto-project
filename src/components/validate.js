@@ -1,12 +1,11 @@
-import {validationConf} from "./config";
-
 /**
  * Отображает поле с текстом ошибки.
  * @param form {Object} - форма в которой проверяем поле.
  * @param element {Object} - проверяемое поле ввода.
  * @param errorText {String} - строка с текстом ошибки, который должен быть отображен в поле.
+ * @param validationConf {Object} - объект с названиями классов.
  */
-function showInputError(form, element, errorText){
+function showInputError(form, element, errorText, validationConf){
   const errorElement = form.querySelector(`.${element.id}-error`);
 
   errorElement.textContent = errorText;
@@ -17,8 +16,9 @@ function showInputError(form, element, errorText){
  * Скрывает поле с тестом ошибки.
  * @param form {Object} - форма в которой проверяем поле.
  * @param element {Object} - проверяемое поле ввода.
+ * @param validationConf {Object} - объект с названиями классов.
  */
-function hideInputError(form, element){
+export function hideInputError(form, element, validationConf){
   const errorElement = form.querySelector(`.${element.id}-error`);
 
   errorElement.classList.remove(validationConf.visibleErrorClass);
@@ -28,8 +28,9 @@ function hideInputError(form, element){
 /**
  * Деактивирует кнопку подтверждения на форме.
  * @param form {Object} - форма в которой отключаем кнопку.
+ * @param validationConf {Object} - объект с названиями классов.
  */
-function disableSubmitButton(form) {
+function disableSubmitButton(form, validationConf) {
   const button = form.querySelector(validationConf.submitBtnClass);
 
   button.classList.add(validationConf.disabledSubmitBtnClass);
@@ -39,8 +40,9 @@ function disableSubmitButton(form) {
 /**
  * Активирует кнопку подтверждения на форме.
  * @param form {Object} - форма в которой отключаем кнопку.
+ * @param validationConf {Object} - объект с названиями классов.
  */
-function enableSubmitButton(form) {
+function enableSubmitButton(form, validationConf) {
   const button = form.querySelector(validationConf.submitBtnClass);
 
   button.classList.remove(validationConf.disabledSubmitBtnClass);
@@ -51,8 +53,9 @@ function enableSubmitButton(form) {
  * Выполняет проверку валидности в поле и управляет отображением или скрытием поля с текстом ошибки.
  * @param form {Object} - форма в которой выполняем проверку.
  * @param input {Object} - проверяемое поле ввода.
+ * @param validationConf {Object} - объект с названиями классов.
  */
-function isValid(form, input){
+function isValid(form, input, validationConf){
   if (input.validity.patternMismatch) {
     input.setCustomValidity(input.dataset.errorMessage);
   } else {
@@ -60,35 +63,37 @@ function isValid(form, input){
   }
 
   if (!input.validity.valid) {
-    showInputError(form, input, input.validationMessage);
-    disableSubmitButton(form);
+    showInputError(form, input, input.validationMessage, validationConf);
+    disableSubmitButton(form, validationConf);
   } else {
-    hideInputError(form, input);
-    enableSubmitButton(form);
+    hideInputError(form, input, validationConf);
+    enableSubmitButton(form, validationConf);
   }
 }
 
 /**
  * Устанавливает слушатели на все поля в форме.
  * @param form {Object} - форма в которой выполняем проверку.
+ * @param validationConf {Object} - объект с названиями классов.
  */
-function setListenersOnForm(form) {
+function setListenersOnForm(form, validationConf) {
   const arrayInputOfForm = Array.from(form.querySelectorAll(validationConf.inputClass));
 
   arrayInputOfForm.forEach(input =>{
     input.addEventListener("input", () => {
-      isValid(form, input);
+      isValid(form, input, validationConf);
     });
   });
 }
 
 /**
  * Функция, управляющая валидацией и запускающая ее.
+ * @param validationConf {Object} - объект с названиями классов.
  */
-export function enableValidations() {
+export function enableValidations(validationConf) {
   const arrayForms = Array.from(document.querySelectorAll(validationConf.formClass));
 
   arrayForms.forEach(form => {
-    setListenersOnForm(form);
+    setListenersOnForm(form, validationConf);
   });
 }
