@@ -2,7 +2,7 @@ const ESC_KEY = "Escape";
 
 /**
  * Открытие нужного попапа через добавление класса.
- * @param popup {Element} - попап который следует открыть.
+ * @param popup {Object} - попап который следует открыть.
  */
 export function addingClassToOpenPopup(popup) {
   popup.classList.add("popup_opened");
@@ -10,7 +10,7 @@ export function addingClassToOpenPopup(popup) {
 
 /**
  * Закрытие нужного попапа через удаление класса.
- * @param popup {Element} - попап который следует закрыть.
+ * @param popup {Object} - попап который следует закрыть.
  */
 export function removeClassToClosePopup(popup) {
   popup.classList.remove("popup_opened");
@@ -39,7 +39,7 @@ function handlerClosePopupOnOverlay(evt) {
 
 /**
  * Функция, которая добавляет слушателя на закрытие попапа по клику на оверлей.
- * @param element {Element} - попап, которому добавляем функционал.
+ * @param element {Object} - попап, которому добавляем функционал.
  */
 export function addEvtListenerOnCloseByOverlay(element){
   element.addEventListener("click", handlerClosePopupOnOverlay);
