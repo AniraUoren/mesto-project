@@ -8,7 +8,7 @@ import {
   addEvtListenerOnCloseByOverlay, handlerClosePopupOnEsc
 } from "./modal";
 import {bindProfileFields, clearAllErrorFields, submitAddingPersonInfo} from "./utils";
-import {enableValidations} from "./validate";
+import {disableSubmitButton, enableValidations} from "./validate";
 import {validationConf} from "./config";
 
 /*Попапы*/
@@ -53,6 +53,7 @@ function handlerAddingCardPopup() {
     removeClassToClosePopup(addPlacePopupElement);
     addPlaceForm.reset();
     clearAllErrorFields(addPlacePopupElement.querySelector("form"), validationConf);
+    disableSubmitButton(addPlacePopupElement, validationConf);
     document.removeEventListener("keydown", handlerClosePopupOnEsc);
   });
 

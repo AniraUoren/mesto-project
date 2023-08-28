@@ -30,7 +30,7 @@ export function hideInputError(form, element, validationConf){
  * @param form {Object} - форма в которой отключаем кнопку.
  * @param validationConf {Object} - объект с названиями классов.
  */
-function disableSubmitButton(form, validationConf) {
+export function disableSubmitButton(form, validationConf) {
   const button = form.querySelector(validationConf.submitBtnClass);
 
   button.classList.add(validationConf.disabledSubmitBtnClass);

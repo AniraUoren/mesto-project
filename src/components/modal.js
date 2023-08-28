@@ -1,3 +1,6 @@
+import {disableSubmitButton} from "./validate";
+import {validationConf} from "./config";
+
 const ESC_KEY = "Escape";
 
 /**
@@ -20,10 +23,15 @@ export function removeClassToClosePopup(popup) {
  * Функция, которая позволяет закрыть попап нажатием на кнопку Esc.
  * @param evt {Object} - объект события.
  */
-export function handlerClosePopupOnEsc(evt){
+export function handlerClosePopupOnEsc(evt) {
   if (evt.key === ESC_KEY) {
-    removeClassToClosePopup(document.querySelector(".popup_opened"));
+    const popup = document.querySelector(".popup_opened");
+    const form = popup.querySelector("form");
+
+    removeClassToClosePopup(popup);
     document.removeEventListener("keydown", handlerClosePopupOnEsc);
+    form.reset();
+    disableSubmitButton(form, validationConf);
   }
 }
 
@@ -33,8 +41,13 @@ export function handlerClosePopupOnEsc(evt){
  */
 function handlerClosePopupOnOverlay(evt) {
   if (evt.target.classList.contains("popup_opened")) {
-    removeClassToClosePopup(document.querySelector(".popup_opened"));
+    const popup = document.querySelector(".popup_opened");
+    const form = popup.querySelector("form");
+
+    removeClassToClosePopup(popup);
     document.removeEventListener("keydown", handlerClosePopupOnEsc);
+    form.reset();
+    disableSubmitButton(form, validationConf);
   }
 }
 
@@ -42,7 +55,7 @@ function handlerClosePopupOnOverlay(evt) {
  * Функция, которая добавляет слушателя на закрытие попапа по клику на оверлей.
  * @param element {Object} - попап, которому добавляем функционал.
  */
-export function addEvtListenerOnCloseByOverlay(element){
+export function addEvtListenerOnCloseByOverlay(element) {
   element.addEventListener("click", handlerClosePopupOnOverlay);
 }
 
