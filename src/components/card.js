@@ -2,7 +2,7 @@ import {
   removeClassToClosePopup,
   addingClassToOpenPopup,
   addEvtListenerOnCloseByEsc,
-  addEvtListenerOnCloseByOverlay
+  addEvtListenerOnCloseByOverlay, handlerClosePopupOnEsc
 } from "./modal";
 
 /*Попап для просмотра изображения и его элементы*/
@@ -57,6 +57,7 @@ function addEventToOpenImagePopup(card) {
 
   closeViewImagePopupBtn.addEventListener("click", () => {
     removeClassToClosePopup(viewImagePopupElement);
+    document.removeEventListener("keydown", handlerClosePopupOnEsc);
   });
 }
 

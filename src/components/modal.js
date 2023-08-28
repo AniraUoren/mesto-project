@@ -20,7 +20,7 @@ export function removeClassToClosePopup(popup) {
  * Функция, которая позволяет закрыть попап нажатием на кнопку Esc.
  * @param evt {Object} - объект события.
  */
-function handlerClosePopupOnEsc(evt){
+export function handlerClosePopupOnEsc(evt){
   if (evt.key === ESC_KEY) {
     removeClassToClosePopup(document.querySelector(".popup_opened"));
     document.removeEventListener("keydown", handlerClosePopupOnEsc);
@@ -34,6 +34,7 @@ function handlerClosePopupOnEsc(evt){
 function handlerClosePopupOnOverlay(evt) {
   if (evt.target.classList.contains("popup_opened")) {
     removeClassToClosePopup(document.querySelector(".popup_opened"));
+    document.removeEventListener("keydown", handlerClosePopupOnEsc);
   }
 }
 

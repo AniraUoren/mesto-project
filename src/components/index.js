@@ -5,7 +5,7 @@ import {
   addEvtListenerOnCloseByEsc,
   removeClassToClosePopup,
   addingClassToOpenPopup,
-  addEvtListenerOnCloseByOverlay
+  addEvtListenerOnCloseByOverlay, handlerClosePopupOnEsc
 } from "./modal";
 import {bindProfileFields, clearAllErrorFields, submitAddingPersonInfo} from "./utils";
 import {enableValidations} from "./validate";
@@ -53,6 +53,7 @@ function handlerAddingCardPopup() {
     removeClassToClosePopup(addPlacePopupElement);
     addPlaceForm.reset();
     clearAllErrorFields(addPlacePopupElement.querySelector("form"), validationConf);
+    document.removeEventListener("keydown", handlerClosePopupOnEsc);
   });
 
   addPlaceForm.addEventListener("submit", evt => {
@@ -78,6 +79,7 @@ function handlerEditingPersonPopup() {
 
   closeProfilePopupBtn.addEventListener("click", () => {
     removeClassToClosePopup(editProfilePopupElement);
+    document.removeEventListener("keydown", handlerClosePopupOnEsc);
   });
 }
 
