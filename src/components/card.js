@@ -1,7 +1,6 @@
 import {
   removeClassToClosePopup,
   addingClassToOpenPopup,
-  addEvtListenerOnCloseByEsc,
   addEvtListenerOnCloseByOverlay, handlerClosePopupOnEsc
 } from "./modal";
 
@@ -47,7 +46,6 @@ function addEventToOpenImagePopup(card) {
     imagePopupElement.src = imageCardElement.src;
     imagePopupElement.alt = imageCardElement.alt;
     descriptionPopupElement.textContent = descriptionCardElement.textContent;
-    addEvtListenerOnCloseByEsc(document.querySelector(".popup"));
     addEvtListenerOnCloseByOverlay(viewImagePopupElement);
   });
 

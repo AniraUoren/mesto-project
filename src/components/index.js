@@ -2,7 +2,6 @@ import "../pages/index.css";
 import {initialCards} from "./initialData";
 import {addNewCard, renderGallery} from "./card";
 import {
-  addEvtListenerOnCloseByEsc,
   removeClassToClosePopup,
   addingClassToOpenPopup,
   addEvtListenerOnCloseByOverlay, handlerClosePopupOnEsc
@@ -45,7 +44,6 @@ const galleryElement = document.querySelector(".gallery");
 function handlerAddingCardPopup() {
   addPlaceBtn.addEventListener("click", () => {
     addingClassToOpenPopup(addPlacePopupElement);
-    addEvtListenerOnCloseByEsc(document.querySelector(".popup"));
     addEvtListenerOnCloseByOverlay(addPlacePopupElement);
   });
 
@@ -73,7 +71,6 @@ function handlerEditingPersonPopup() {
   editProfileBtn.addEventListener("click", () => {
     bindProfileFields(nameProfileInput, aboutProfileInput, profileNameElement, profileAboutElement);
     addingClassToOpenPopup(editProfilePopupElement);
-    addEvtListenerOnCloseByEsc(document.querySelector(".popup"));
     addEvtListenerOnCloseByOverlay(editProfilePopupElement);
   });
   submitAddingPersonInfo(editProfileForm, nameProfileInput, aboutProfileInput, profileNameElement, profileAboutElement, editProfilePopupElement);

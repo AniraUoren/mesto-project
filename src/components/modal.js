@@ -9,6 +9,7 @@ const ESC_KEY = "Escape";
  */
 export function addingClassToOpenPopup(popup) {
   popup.classList.add("popup_opened");
+  document.addEventListener("keydown", handlerClosePopupOnEsc);
 }
 
 /**
@@ -17,6 +18,7 @@ export function addingClassToOpenPopup(popup) {
  */
 export function removeClassToClosePopup(popup) {
   popup.classList.remove("popup_opened");
+  document.removeEventListener("keydown", handlerClosePopupOnEsc);
 }
 
 /**
@@ -29,7 +31,6 @@ export function handlerClosePopupOnEsc(evt) {
     const form = popup.querySelector("form");
 
     removeClassToClosePopup(popup);
-    document.removeEventListener("keydown", handlerClosePopupOnEsc);
     form.reset();
     disableSubmitButton(form, validationConf);
   }
@@ -45,7 +46,6 @@ function handlerClosePopupOnOverlay(evt) {
     const form = popup.querySelector("form");
 
     removeClassToClosePopup(popup);
-    document.removeEventListener("keydown", handlerClosePopupOnEsc);
     form.reset();
     disableSubmitButton(form, validationConf);
   }
@@ -57,11 +57,4 @@ function handlerClosePopupOnOverlay(evt) {
  */
 export function addEvtListenerOnCloseByOverlay(element) {
   element.addEventListener("click", handlerClosePopupOnOverlay);
-}
-
-/**
- * Функция, которая устанавливает слушателя на закрытие попапа по нажатию Esc.
- */
-export function addEvtListenerOnCloseByEsc() {
-  document.addEventListener("keydown", handlerClosePopupOnEsc);
 }
