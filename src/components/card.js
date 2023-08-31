@@ -1,14 +1,11 @@
 import {
-  removeClassToClosePopup,
-  addingClassToOpenPopup,
-  addEvtListenerOnCloseByOverlay, handlerClosePopupOnEsc
+  addingClassToOpenPopup, handlerClosePopupOnOverlayOrCloseBtn
 } from "./modal";
 
 /*Попап для просмотра изображения и его элементы*/
 const viewImagePopupElement = document.querySelector("#imageViewerPopup");
 const imagePopupElement = viewImagePopupElement.querySelector(".popup__image");
 const descriptionPopupElement = viewImagePopupElement.querySelector(".popup__image-description");
-const closeViewImagePopupBtn = viewImagePopupElement.querySelector(".popup__close-btn");
 
 /**
  * Функция для возможности ставить лайк карточке.
@@ -46,17 +43,13 @@ function addEventToOpenImagePopup(card) {
     imagePopupElement.src = imageCardElement.src;
     imagePopupElement.alt = imageCardElement.alt;
     descriptionPopupElement.textContent = descriptionCardElement.textContent;
-    addEvtListenerOnCloseByOverlay(viewImagePopupElement);
   });
 
   imageCardElement.addEventListener("click", () => {
     addingClassToOpenPopup(viewImagePopupElement);
   });
 
-  closeViewImagePopupBtn.addEventListener("click", () => {
-    removeClassToClosePopup(viewImagePopupElement);
-    document.removeEventListener("keydown", handlerClosePopupOnEsc);
-  });
+  viewImagePopupElement.addEventListener("click", handlerClosePopupOnOverlayOrCloseBtn);
 }
 
 /**

@@ -2,12 +2,10 @@ import "../pages/index.css";
 import {initialCards} from "./initialData";
 import {addNewCard, renderGallery} from "./card";
 import {
-  removeClassToClosePopup,
-  addingClassToOpenPopup,
-  addEvtListenerOnCloseByOverlay, handlerClosePopupOnEsc
+  removeClassToClosePopup, addingClassToOpenPopup, handlerClosePopupOnEsc, handlerClosePopupOnOverlayOrCloseBtn
 } from "./modal";
-import {bindProfileFields, clearAllErrorFields, submitAddingPersonInfo} from "./utils";
-import {disableSubmitButton, enableValidations} from "./validate";
+import {bindProfileFields, clearForm, submitAddingPersonInfo} from "./utils";
+import {enableValidations} from "./validate";
 import {validationConf} from "./config";
 
 /*Попапы*/
@@ -31,7 +29,6 @@ const closeProfilePopupBtn = editProfilePopupElement.querySelector(".popup__clos
 const placeNameInput = addPlacePopupElement.querySelector("#placeName");
 const placeURLInput = addPlacePopupElement.querySelector("#placeURL");
 const addPlaceForm = addPlacePopupElement.querySelector(".popup__form");
-const closeAddPlacePopupBtn = addPlacePopupElement.querySelector(".popup__close-btn");
 
 /*Галерея*/
 const galleryElement = document.querySelector(".gallery");
@@ -44,23 +41,16 @@ const galleryElement = document.querySelector(".gallery");
 function handlerAddingCardPopup() {
   addPlaceBtn.addEventListener("click", () => {
     addingClassToOpenPopup(addPlacePopupElement);
-    addEvtListenerOnCloseByOverlay(addPlacePopupElement);
   });
 
-  closeAddPlacePopupBtn.addEventListener("click", () => {
-    removeClassToClosePopup(addPlacePopupElement);
-    addPlaceForm.reset();
-    clearAllErrorFields(addPlacePopupElement.querySelector("form"), validationConf);
-    disableSubmitButton(addPlacePopupElement, validationConf);
-    document.removeEventListener("keydown", handlerClosePopupOnEsc);
-  });
+  addPlacePopupElement.addEventListener("click", handlerClosePopupOnOverlayOrCloseBtn);
 
   addPlaceForm.addEventListener("submit", evt => {
     evt.preventDefault();
 
     addNewCard(placeURLInput, placeNameInput, galleryElement);
     removeClassToClosePopup(addPlacePopupElement);
-    addPlaceForm.reset();
+    clearForm(addPlaceForm);
   });
 }
 
@@ -71,7 +61,6 @@ function handlerEditingPersonPopup() {
   editProfileBtn.addEventListener("click", () => {
     bindProfileFields(nameProfileInput, aboutProfileInput, profileNameElement, profileAboutElement);
     addingClassToOpenPopup(editProfilePopupElement);
-    addEvtListenerOnCloseByOverlay(editProfilePopupElement);
   });
   submitAddingPersonInfo(editProfileForm, nameProfileInput, aboutProfileInput, profileNameElement, profileAboutElement, editProfilePopupElement);
 
