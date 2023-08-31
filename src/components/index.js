@@ -2,7 +2,7 @@ import "../pages/index.css";
 import {initialCards} from "./initialData";
 import {addNewCard, renderGallery} from "./card";
 import {
-  removeClassToClosePopup, addingClassToOpenPopup, handlerClosePopupOnEsc, handlerClosePopupOnOverlayOrCloseBtn
+  removeClassToClosePopup, addingClassToOpenPopup, handlerClosePopupOnOverlayOrCloseBtn
 } from "./modal";
 import {bindProfileFields, clearForm, submitAddingPersonInfo} from "./utils";
 import {enableValidations} from "./validate";
@@ -25,7 +25,6 @@ const nameProfileInput = editProfilePopupElement.querySelector("#personName");
 const aboutProfileInput = editProfilePopupElement.querySelector("#personAbout");
 // const submitEditingProfileBtn = document.querySelector("#personSubmitPopup");
 const editProfileForm = editProfilePopupElement.querySelector(".popup__form");
-const closeProfilePopupBtn = editProfilePopupElement.querySelector(".popup__close-btn");
 const placeNameInput = addPlacePopupElement.querySelector("#placeName");
 const placeURLInput = addPlacePopupElement.querySelector("#placeURL");
 const addPlaceForm = addPlacePopupElement.querySelector(".popup__form");
@@ -64,10 +63,7 @@ function handlerEditingPersonPopup() {
   });
   submitAddingPersonInfo(editProfileForm, nameProfileInput, aboutProfileInput, profileNameElement, profileAboutElement, editProfilePopupElement);
 
-  closeProfilePopupBtn.addEventListener("click", () => {
-    removeClassToClosePopup(editProfilePopupElement);
-    document.removeEventListener("keydown", handlerClosePopupOnEsc);
-  });
+  editProfilePopupElement.addEventListener("click", handlerClosePopupOnOverlayOrCloseBtn);
 }
 
 

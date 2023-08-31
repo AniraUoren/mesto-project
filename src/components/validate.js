@@ -60,10 +60,6 @@ function isValid(form, input, validationConf){
   const hasInvalidField = arrayInputs.some(input => {
     return input.validity.valid === false;
   });
-  console.log(`Form: ${hasInvalidField}`);
-  arrayInputs.forEach(input => {
-    console.log(input.validity);
-  });
 
   if (input.validity.patternMismatch) {
     input.setCustomValidity(input.dataset.errorMessage);
@@ -75,7 +71,6 @@ function isValid(form, input, validationConf){
     showInputError(form, input, input.validationMessage, validationConf);
     disableSubmitButton(form, validationConf);
   } else {
-    console.log("nen");
     hideInputError(form, input, validationConf);
     enableSubmitButton(form, validationConf);
   }
