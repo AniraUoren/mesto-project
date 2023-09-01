@@ -6,6 +6,7 @@ import {
 const viewImagePopupElement = document.querySelector("#imageViewerPopup");
 const imagePopupElement = viewImagePopupElement.querySelector(".popup__image");
 const descriptionPopupElement = viewImagePopupElement.querySelector(".popup__image-description");
+const galleryElement = document.querySelector(".gallery");
 
 /**
  * Функция для возможности ставить лайк карточке.
@@ -32,24 +33,29 @@ function addEventToDeleteCard(card) {
 }
 
 /**
- * Функция позволяет повесить событие открытия попапа с картинкой на карточку.
- * @param card {Element} - элемент карточки, на которую надо добавить событие.
+ *
+ * @param card
  */
-function addEventToOpenImagePopup(card) {
+function associateCardImageAndViewerPopup(card) {
   const imageCardElement = card.querySelector(".card__image");
   const descriptionCardElement = card.querySelector(".card__description");
 
-  imageCardElement.addEventListener("click", () => {
-    imagePopupElement.src = imageCardElement.src;
-    imagePopupElement.alt = imageCardElement.alt;
-    descriptionPopupElement.textContent = descriptionCardElement.textContent;
-  });
+  imagePopupElement.src = imageCardElement.src;
+  imagePopupElement.alt = imageCardElement.alt;
+  descriptionPopupElement.textContent = descriptionCardElement.textContent;
+}
 
-  imageCardElement.addEventListener("click", () => {
+/**
+ *
+ */
+export function handlerToOpenImageViewerPopup() {
+  galleryElement.addEventListener("click", evt => {
+    const card = evt.target.parentElement;
+
+    associateCardImageAndViewerPopup(card);
     addingClassToOpenPopup(viewImagePopupElement);
+    viewImagePopupElement.addEventListener("click", handlerClosePopupOnOverlayOrCloseBtn);
   });
-
-  viewImagePopupElement.addEventListener("click", handlerClosePopupOnOverlayOrCloseBtn);
 }
 
 /**
@@ -70,7 +76,7 @@ function createCardElement(card) {
 
   addEventToLikeCard(cardElement);
   addEventToDeleteCard(cardElement);
-  addEventToOpenImagePopup(cardElement);
+  // addEventToOpenImagePopup(cardElement);
 
   return cardElement;
 }

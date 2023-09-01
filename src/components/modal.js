@@ -1,4 +1,3 @@
-import {clearForm} from "./utils";
 
 const ESC_KEY = "Escape";
 
@@ -36,13 +35,8 @@ function handlerClosePopupOnEsc(evt) {
  */
 export function handlerClosePopupOnOverlayOrCloseBtn(evt) {
   const popup = document.querySelector(".popup_opened");
-  const form = popup.querySelector("form");
 
   if (evt.target.classList.contains("popup_opened") || evt.target.classList.contains("popup__close-btn")) {
     removeClassToClosePopup(popup);
-
-    if (form) {
-      clearForm(form);
-    }
   }
 }
