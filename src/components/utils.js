@@ -1,6 +1,7 @@
 import {removeClassToClosePopup} from "./modal";
 import {disableSubmitButton, hideInputError} from "./validate";
 import {validationConf} from "./config";
+import {updatePersonalInfo} from "./api";
 
 /**
  * Функция связывает поля профиля с полями формы редактирования профиля.
@@ -13,13 +14,22 @@ export function bindProfileFields(nameProfileInput, aboutProfileInput, profileNa
 /**
  * Обрабатывает сабмит формы редактирования персональных данных.
  * Прокидывает значения из полей формы и сбрасывает их значение.
+ * @param editProfileForm
+ * @param nameProfileInput
+ * @param aboutProfileInput
+ * @param profileNameElement
+ * @param profileAboutElement
+ * @param profileAvatarElement
+ * @param editProfilePopupElement
  */
-export function submitAddingPersonInfo(editProfileForm, nameProfileInput, aboutProfileInput, profileNameElement, profileAboutElement, editProfilePopupElement) {
+export function submitAddingPersonInfo(editProfileForm, nameProfileInput, aboutProfileInput, profileNameElement, profileAboutElement, profileAvatarElement, editProfilePopupElement) {
   editProfileForm.addEventListener("submit", evt => {
     evt.preventDefault();
 
-    profileNameElement.textContent = nameProfileInput.value;
-    profileAboutElement.textContent = aboutProfileInput.value;
+    updatePersonalInfo(nameProfileInput.value, aboutProfileInput.value)
+        .then(data => {
+          associatePersonalInfo(data, profileNameElement, profileAboutElement, profileAvatarElement);
+        });
 
     editProfileForm.reset();
 
@@ -52,11 +62,15 @@ export function clearForm(form) {
 }
 
 /**
- *
- * @param info
- * @param name
- * @param about
- * @param avatar
+ * Позволяет отрисовать персональные данные на странице.
+ * @param info - персональные данные с сервера.
+ * @param info.about {Text} - занятие пользователя.
+ * @param info.avatar {URL} - url на аватар пользователя.
+ * @param info.name {Text} - имя пользователя.
+ * @param info.cohort {Text} - номер когорты.
+ * @param name {Object} - элемент на странице содержащий имя.
+ * @param about {Object} - элемент на странице содержащий род деятельности.
+ * @param avatar {Object} - элемент на странице содержащий аватар.
  */
 export function associatePersonalInfo(info, name, about, avatar) {
   name.textContent = info.name;

@@ -64,7 +64,7 @@ function handlerEditingPersonPopup() {
     bindProfileFields(nameProfileInput, aboutProfileInput, profileNameElement, profileAboutElement);
     addingClassToOpenPopup(editProfilePopupElement);
   });
-  submitAddingPersonInfo(editProfileForm, nameProfileInput, aboutProfileInput, profileNameElement, profileAboutElement, editProfilePopupElement);
+  submitAddingPersonInfo(editProfileForm, nameProfileInput, aboutProfileInput, profileNameElement, profileAboutElement, profileAvatarElement, editProfilePopupElement);
 
   editProfilePopupElement.addEventListener("click", handlerClosePopupOnOverlayOrCloseBtn);
 }

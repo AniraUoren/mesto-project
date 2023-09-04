@@ -79,6 +79,11 @@ function createCardElement(card) {
 /**
  * Функция, выполняющая рендер галереи.
  * @param data {Array} - массив с данными для карточек в галерее.
+ * @param data.createdAt {Data} - дата создания карточки.
+ * @param data.likes {Array} - массив лайков с информацией о том, кому понравилось.
+ * @param data.link {URL} - URL картинки места.
+ * @param data.name {Text} - название места.
+ * @param data.owner {Object} - владелец карточки.
  * @param galleryElement {Object} - элемент галереи, в котором требуется выполнить рендер карточек.
  * */
 export function renderGallery(data, galleryElement) {
