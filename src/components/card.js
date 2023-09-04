@@ -57,20 +57,26 @@ function addEventToOpenImagePopup(card) {
  * @param card.name {String} - Поле с описанием места.
  * @param card.likes {Array} - Поле хранит массив лайков с информацией о том, кому понравилось.
  */
-function createCardElement(card) {
+function createCardElement(card, id) {
   const cardTemplate = document.querySelector("#card").content;
   const cardElement = cardTemplate.querySelector(".card").cloneNode(true);
   const imageCardElement = cardElement.querySelector(".card__image");
   const descriptionCardElement = cardElement.querySelector(".card__description");
   const countOfLikes = cardElement.querySelector(".card__like-counter");
+  const deleteBtn = cardElement.querySelector(".card__delete-btn");
 
   imageCardElement.src = card.link;
   imageCardElement.alt = card.name;
   descriptionCardElement.textContent = card.name;
   countOfLikes.textContent = card.likes.length;
 
+  if (card.owner._id !== id) {
+    deleteBtn.remove();
+  } else {
+    addEventToDeleteCard(cardElement);
+  }
+
   addEventToLikeCard(cardElement);
-  addEventToDeleteCard(cardElement);
   addEventToOpenImagePopup(cardElement);
 
   return cardElement;
@@ -86,10 +92,10 @@ function createCardElement(card) {
  * @param data.owner {Object} - владелец карточки.
  * @param galleryElement {Object} - элемент галереи, в котором требуется выполнить рендер карточек.
  * */
-export function renderGallery(data, galleryElement) {
+export function renderGallery(data, galleryElement, id) {
   if (data.length > 0) {
     data.forEach(card => {
-      galleryElement.append(createCardElement(card));
+      galleryElement.append(createCardElement(card, id));
     });
   }
 }
