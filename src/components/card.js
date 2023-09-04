@@ -3,10 +3,9 @@ import {
 } from "./modal";
 
 /*Попап для просмотра изображения и его элементы*/
-const viewImagePopupElement = document.querySelector("#imageViewerPopup");
+export const viewImagePopupElement = document.querySelector("#imageViewerPopup");
 const imagePopupElement = viewImagePopupElement.querySelector(".popup__image");
 const descriptionPopupElement = viewImagePopupElement.querySelector(".popup__image-description");
-const galleryElement = document.querySelector(".gallery");
 
 /**
  * Функция для возможности ставить лайк карточке.
@@ -33,28 +32,21 @@ function addEventToDeleteCard(card) {
 }
 
 /**
- *
- * @param card
+ * Функция позволяет повесить событие открытия попапа с картинкой на карточку.
+ * @param card {Element} - элемент карточки, на которую надо добавить событие.
  */
-function associateCardImageAndViewerPopup(card) {
+function addEventToOpenImagePopup(card) {
   const imageCardElement = card.querySelector(".card__image");
   const descriptionCardElement = card.querySelector(".card__description");
 
-  imagePopupElement.src = imageCardElement.src;
-  imagePopupElement.alt = imageCardElement.alt;
-  descriptionPopupElement.textContent = descriptionCardElement.textContent;
-}
+  imageCardElement.addEventListener("click", () => {
+    imagePopupElement.src = imageCardElement.src;
+    imagePopupElement.alt = imageCardElement.alt;
+    descriptionPopupElement.textContent = descriptionCardElement.textContent;
+  });
 
-/**
- *
- */
-export function handlerToOpenImageViewerPopup() {
-  galleryElement.addEventListener("click", evt => {
-    const card = evt.target.parentElement;
-
-    associateCardImageAndViewerPopup(card);
+  imageCardElement.addEventListener("click", () => {
     addingClassToOpenPopup(viewImagePopupElement);
-    viewImagePopupElement.addEventListener("click", handlerClosePopupOnOverlayOrCloseBtn);
   });
 }
 
@@ -76,7 +68,7 @@ function createCardElement(card) {
 
   addEventToLikeCard(cardElement);
   addEventToDeleteCard(cardElement);
-  // addEventToOpenImagePopup(cardElement);
+  addEventToOpenImagePopup(cardElement);
 
   return cardElement;
 }

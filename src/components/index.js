@@ -1,13 +1,13 @@
 import "../pages/index.css";
 import {initialCards} from "./initialData";
-import {addNewCard, handlerToOpenImageViewerPopup, renderGallery} from "./card";
+import {addNewCard, renderGallery, viewImagePopupElement} from "./card";
 import {
   removeClassToClosePopup, addingClassToOpenPopup, handlerClosePopupOnOverlayOrCloseBtn
 } from "./modal";
 import {bindProfileFields, clearForm, submitAddingPersonInfo} from "./utils";
 import {enableValidations} from "./validate";
 import {validationConf} from "./config";
-// import {getPersonalInfo} from "./api";
+import {getPersonalInfo} from "./api";
 
 /*Попапы*/
 const editProfilePopupElement = document.querySelector("#editProfilePopup");
@@ -70,35 +70,35 @@ function handlerEditingPersonPopup() {
   editProfilePopupElement.addEventListener("click", handlerClosePopupOnOverlayOrCloseBtn);
 }
 
-// /**
-//  * Помогает получить персональную информацию и прокинуть на страницу.
-//  */
-// function renderPersonalInfo() {
-//   getPersonalInfo()
-//     .then(data => {
-//       profileNameElement.textContent = data.name;
-//       profileAboutElement.textContent = data.about;
-//       profileAvatarElement.url = data.avatar;
-//       profileAvatarElement.alt = data.name;
-//     })
-//     .catch(err => {
-//       profileNameElement.textContent = "Нет данных";
-//       profileAboutElement.textContent = "Нет данных";
-//       profileAvatarElement.url = "";
-//       profileAvatarElement.alt = "Нет данных";
-//       console.error(err);
-//     });
-//
-// }
+/**
+ * Помогает получить персональную информацию и прокинуть на страницу.
+ */
+function renderPersonalInfo() {
+  getPersonalInfo()
+    .then(data => {
+      profileNameElement.textContent = data.name;
+      profileAboutElement.textContent = data.about;
+      profileAvatarElement.url = data.avatar;
+      profileAvatarElement.alt = data.name;
+    })
+    .catch(err => {
+      profileNameElement.textContent = "Нет данных";
+      profileAboutElement.textContent = "Нет данных";
+      profileAvatarElement.url = "";
+      profileAvatarElement.alt = "Нет данных";
+      console.error(err);
+    });
+
+}
 
 
 
-// renderPersonalInfo();
+renderPersonalInfo();
 renderGallery(initialCards, galleryElement);
 enableValidations(validationConf);
 handlerAddingCardPopup();
 handlerEditingPersonPopup();
-handlerToOpenImageViewerPopup();
+viewImagePopupElement.addEventListener("click", handlerClosePopupOnOverlayOrCloseBtn);
 
 // getPersonalInfo()
 //   .then(data => {
