@@ -55,16 +55,19 @@ function addEventToOpenImagePopup(card) {
  * @param card {Object} - Объект с данными о карточке.
  * @param card.link {String} - Поле со ссылкой на изображение.
  * @param card.name {String} - Поле с описанием места.
+ * @param card.likes {Array} - Поле хранит массив лайков с информацией о том, кому понравилось.
  */
 function createCardElement(card) {
   const cardTemplate = document.querySelector("#card").content;
   const cardElement = cardTemplate.querySelector(".card").cloneNode(true);
   const imageCardElement = cardElement.querySelector(".card__image");
   const descriptionCardElement = cardElement.querySelector(".card__description");
+  const countOfLikes = cardElement.querySelector(".card__like-counter");
 
   imageCardElement.src = card.link;
   imageCardElement.alt = card.name;
   descriptionCardElement.textContent = card.name;
+  countOfLikes.textContent = card.likes.length;
 
   addEventToLikeCard(cardElement);
   addEventToDeleteCard(cardElement);
