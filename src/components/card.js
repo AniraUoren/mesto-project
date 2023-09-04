@@ -103,8 +103,8 @@ export function renderGallery(data, galleryElement, id) {
 /**
  * Функция для срабатывания создания карточки по нажатию на кнопку добавления новой карточки.
  */
-export function addNewCard(placeURLInput, placeNameInput, galleryElement) {
-  const newCardElement = createCardElement({link: placeURLInput.value, name: placeNameInput.value});
+export function addNewCard(card, galleryElement, id) {
+    const newCardElement = createCardElement(card, id);
 
   galleryElement.prepend(newCardElement);
 }

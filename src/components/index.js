@@ -6,7 +6,8 @@ import {
 import {associatePersonalInfo, bindProfileFields, clearForm, submitAddingPersonInfo} from "./utils";
 import {enableValidations} from "./validate";
 import {validationConf} from "./config";
-import {getCards, getPersonalInfo} from "./api";
+import {getCards, getPersonalInfo, postNewCard} from "./api";
+import {data} from "autoprefixer";
 
 /*Попапы*/
 const editProfilePopupElement = document.querySelector("#editProfilePopup");
@@ -33,12 +34,17 @@ const addPlaceForm = addPlacePopupElement.querySelector(".popup__form");
 /*Галерея*/
 const galleryElement = document.querySelector(".gallery");
 
+let myId = "";
+
 /************************************/
 
 /**
  * Вспомогательная управляющая функция, которая помогает управлять попапом добавления новой карточки.
  */
 function handlerAddingCardPopup() {
+  const name = addPlaceForm.querySelector("#placeName");
+  const url = addPlaceForm.querySelector("#placeURL");
+
   addPlaceBtn.addEventListener("click", () => {
     clearForm(addPlacePopupElement.querySelector("form"));
     addingClassToOpenPopup(addPlacePopupElement);
@@ -49,7 +55,12 @@ function handlerAddingCardPopup() {
   addPlaceForm.addEventListener("submit", evt => {
     evt.preventDefault();
 
-    addNewCard(placeURLInput, placeNameInput, galleryElement);
+    postNewCard(name.value, url.value)
+        .then(data => {
+          addNewCard(data, galleryElement, myId);
+        });
+
+
     removeClassToClosePopup(addPlacePopupElement);
     clearForm(addPlaceForm);
   });
@@ -74,9 +85,10 @@ Promise.all([getPersonalInfo(), getCards()])
     const [profileInfo, cards] = data;
     console.log(profileInfo);
     associatePersonalInfo(profileInfo, profileNameElement, profileAboutElement, profileAvatarElement);
+    myId = profileInfo._id;
 
     console.log(cards);
-    renderGallery(cards, galleryElement);
+    renderGallery(cards, galleryElement, myId);
 
   })
   .catch(err => {

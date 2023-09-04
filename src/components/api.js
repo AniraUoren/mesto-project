@@ -32,7 +32,7 @@ export const getCards = () => {
             return res.json();
         }
 
-        return Promise.reject(`Ошибка при получении персональной информации: ${res.status}`);
+        return Promise.reject(`Ошибка при получении списка карточек: ${res.status}`);
     });
 };
 
@@ -52,6 +52,26 @@ export const updatePersonalInfo = (name, about) => {
             return res.json();
         }
 
-        return Promise.reject(`Ошибка при получении персональной информации: ${res.status}`);
+        return Promise.reject(`Ошибка при обновлении персональной информации: ${res.status}`);
+    });
+};
+
+export const postNewCard = (name, link) => {
+    return fetch(`${apiConf.url}/${apiConf.groupId}/cards`, {
+        method: "POST",
+        headers: {
+            authorization: apiConf.token,
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            name: name,
+            link: link
+        })
+    }).then(res => {
+        if (res.ok) {
+            return res.json();
+        }
+
+        return Promise.reject(`Ошибка при добавлении карточки: ${res.status}`);
     });
 };
