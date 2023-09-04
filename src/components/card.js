@@ -1,5 +1,5 @@
 import {
-  addingClassToOpenPopup, handlerClosePopupOnOverlayOrCloseBtn
+  addingClassToOpenPopup
 } from "./modal";
 
 /*Попап для просмотра изображения и его элементы*/
