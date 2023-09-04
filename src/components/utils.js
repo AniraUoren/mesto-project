@@ -50,3 +50,17 @@ export function clearForm(form) {
   clearAllErrorFields(form, validationConf);
   disableSubmitButton(form, validationConf);
 }
+
+/**
+ *
+ * @param info
+ * @param name
+ * @param about
+ * @param avatar
+ */
+export function associatePersonalInfo(info, name, about, avatar) {
+  name.textContent = info.name;
+  about.textContent = info.about;
+  avatar.url = info.avatar;
+  avatar.alt = info.name;
+}

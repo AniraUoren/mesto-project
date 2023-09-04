@@ -3,7 +3,7 @@ import {addNewCard, renderGallery, viewImagePopupElement} from "./card";
 import {
   removeClassToClosePopup, addingClassToOpenPopup, handlerClosePopupOnOverlayOrCloseBtn
 } from "./modal";
-import {bindProfileFields, clearForm, submitAddingPersonInfo} from "./utils";
+import {associatePersonalInfo, bindProfileFields, clearForm, submitAddingPersonInfo} from "./utils";
 import {enableValidations} from "./validate";
 import {validationConf} from "./config";
 import {getCards, getPersonalInfo} from "./api";
@@ -69,31 +69,11 @@ function handlerEditingPersonPopup() {
   editProfilePopupElement.addEventListener("click", handlerClosePopupOnOverlayOrCloseBtn);
 }
 
-/**
- * Помогает получить персональную информацию и прокинуть на страницу.
- */
-// function renderPersonalInfo() {
-//   getPersonalInfo()
-//     .then(data => {
-//       profileNameElement.textContent = data.name;
-//       profileAboutElement.textContent = data.about;
-//       profileAvatarElement.url = data.avatar;
-//       profileAvatarElement.alt = data.name;
-//     })
-//     .catch(err => {
-//       profileNameElement.textContent = "Нет данных";
-//       profileAboutElement.textContent = "Нет данных";
-//       profileAvatarElement.url = "";
-//       profileAvatarElement.alt = "Нет данных";
-//       console.error(err);
-//     });
-//
-// }
-
 Promise.all([getPersonalInfo(), getCards()])
   .then(data => {
     const [profileInfo, cards] = data;
     console.log(profileInfo);
+    associatePersonalInfo(profileInfo, profileNameElement, profileAboutElement, profileAvatarElement);
 
     console.log(cards);
     renderGallery(cards, galleryElement);
@@ -103,8 +83,6 @@ Promise.all([getPersonalInfo(), getCards()])
     console.error(err);
   });
 
-// renderPersonalInfo();
-// renderGallery(initialCards, galleryElement);
 enableValidations(validationConf);
 handlerAddingCardPopup();
 handlerEditingPersonPopup();

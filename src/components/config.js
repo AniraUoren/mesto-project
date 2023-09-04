@@ -5,3 +5,9 @@ export const validationConf = {
   submitBtnClass: ".popup__submit-btn",
   disabledSubmitBtnClass: "popup__submit-btn_disabled"
 };
+
+export const apiConf = {
+  token: "6e404797-7bd9-4ec5-9f3f-4a0597ffa86e",
+  groupId: "plus-cohort-28",
+  url: "https://nomoreparties.co/v1",
+};
