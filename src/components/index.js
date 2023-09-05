@@ -26,8 +26,6 @@ const nameProfileInput = editProfilePopupElement.querySelector("#personName");
 const aboutProfileInput = editProfilePopupElement.querySelector("#personAbout");
 // const submitEditingProfileBtn = document.querySelector("#personSubmitPopup");
 const editProfileForm = editProfilePopupElement.querySelector(".popup__form");
-const placeNameInput = addPlacePopupElement.querySelector("#placeName");
-const placeURLInput = addPlacePopupElement.querySelector("#placeURL");
 const addPlaceForm = addPlacePopupElement.querySelector(".popup__form");
 
 /*Галерея*/

@@ -84,8 +84,8 @@ export function associatePersonalInfo(info, name, about, avatar) {
 }
 
 /**
- *
- * @param evt
+ * Выполняет непосредственно запрос на сервер на удаление, удаление карточки и управление слушателем и попапом при удачном ответе.
+ * @param evt {Object} - объект эвента.
  */
 function handlerDeletingCard(evt){
   evt.preventDefault();
@@ -100,8 +100,8 @@ function handlerDeletingCard(evt){
 }
 
 /**
- *
- * @param id
+ * Функция отвечающая за срабатывание удаления конкретной карточки.
+ * @param card {Object} - удаляемая карточка.
  */
 export function handlerSubmitDeleteCard(card){
   const deleteCardForm = deleteCardPopupElement.querySelector(".popup__form");

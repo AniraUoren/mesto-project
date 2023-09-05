@@ -1,9 +1,6 @@
 import {apiConf} from "./config";
 
-/**
- *
- * @returns {Promise<Response>}
- */
+
 export const getPersonalInfo = () => {
     return fetch(`${apiConf.url}/${apiConf.groupId}/users/me`, {
         method: "GET",
@@ -89,5 +86,37 @@ export const deleteCard = (cardId) => {
     }
 
     return Promise.reject(`Ошибка при удалении карточки: ${res.status}`);
+  });
+};
+
+export const putLikeOnCard = (cardId) => {
+  return fetch(`${apiConf.url}/${apiConf.groupId}/cards//likes/${cardId}`, {
+    method: "PUT",
+    headers: {
+      authorization: apiConf.token,
+      "Content-Type": "application/json"
+    }
+  }).then(res => {
+    if (res.ok) {
+      return res.json();
+    }
+
+    return Promise.reject(`Ошибка при установке лайка для карточки: ${res.status}`);
+  });
+};
+
+export const deleteLikeOnCard = (cardId) => {
+  return fetch(`${apiConf.url}/${apiConf.groupId}/cards//likes/${cardId}`, {
+    method: "DELETE",
+    headers: {
+      authorization: apiConf.token,
+      "Content-Type": "application/json"
+    }
+  }).then(res => {
+    if (res.ok) {
+      return res.json();
+    }
+
+    return Promise.reject(`Ошибка при удаления лайка с карточки: ${res.status}`);
   });
 };
