@@ -117,6 +117,25 @@ export const deleteLikeOnCard = (cardId) => {
       return res.json();
     }
 
-    return Promise.reject(`Ошибка при удаления лайка с карточки: ${res.status}`);
+    return Promise.reject(`Ошибка при удалении лайка с карточки: ${res.status}`);
+  });
+};
+
+export const updateAvatar = (url) => {
+  return fetch(`${apiConf.url}/${apiConf.groupId}/users/me/avatar`, {
+    method: "PATCH",
+    headers: {
+      authorization: apiConf.token,
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      avatar: url
+    })
+  }).then(res => {
+    if (res.ok) {
+      return res.json();
+    }
+
+    return Promise.reject(`Ошибка при обновлении ссылки на аватар: ${res.status}`);
   });
 };

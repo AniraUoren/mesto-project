@@ -3,7 +3,13 @@ import {addNewCard, deleteCardPopupElement, renderGallery, viewImagePopupElement
 import {
   removeClassToClosePopup, addingClassToOpenPopup, handlerClosePopupOnOverlayOrCloseBtn
 } from "./modal";
-import {associatePersonalInfo, bindProfileFields, clearForm, submitAddingPersonInfo} from "./utils";
+import {
+  associatePersonalInfo,
+  bindProfileFields,
+  clearForm,
+  handlerEditingAvatar,
+  submitAddingPersonInfo
+} from "./utils";
 import {enableValidations} from "./validate";
 import {validationConf} from "./config";
 import {getCards, getPersonalInfo, postNewCard} from "./api";
@@ -11,6 +17,7 @@ import {getCards, getPersonalInfo, postNewCard} from "./api";
 /*Попапы*/
 const editProfilePopupElement = document.querySelector("#editProfilePopup");
 const addPlacePopupElement = document.querySelector("#addCardPopup");
+const editAvatarPopupElement = document.querySelector("#editAvatar");
 
 /*Кнопки для попапов*/
 const editProfileBtn = document.querySelector(".profile__edit-btn");
@@ -24,12 +31,13 @@ const profileAvatarElement = document.querySelector(".profile__avatar");
 /*Элементы попапов*/
 const nameProfileInput = editProfilePopupElement.querySelector("#personName");
 const aboutProfileInput = editProfilePopupElement.querySelector("#personAbout");
-// const submitEditingProfileBtn = document.querySelector("#personSubmitPopup");
 const editProfileForm = editProfilePopupElement.querySelector(".popup__form");
 const addPlaceForm = addPlacePopupElement.querySelector(".popup__form");
+const editAvatarBtn = document.querySelector(".profile__edit-avatar");
+const editAvatarForm = editAvatarPopupElement.querySelector("form");
 
-/*Галерея*/
 const galleryElement = document.querySelector(".gallery");
+const avatarElement = document.querySelector(".profile__avatar");
 
 let myId = "";
 
@@ -68,13 +76,24 @@ function handlerAddingCardPopup() {
  */
 function handlerEditingPersonPopup() {
   editProfileBtn.addEventListener("click", () => {
-    clearForm(addPlacePopupElement.querySelector("form"));
+    clearForm(addPlaceForm);
     bindProfileFields(nameProfileInput, aboutProfileInput, profileNameElement, profileAboutElement);
     addingClassToOpenPopup(editProfilePopupElement);
   });
   submitAddingPersonInfo(editProfileForm, nameProfileInput, aboutProfileInput, profileNameElement, profileAboutElement, profileAvatarElement, editProfilePopupElement);
 
   editProfilePopupElement.addEventListener("click", handlerClosePopupOnOverlayOrCloseBtn);
+}
+
+/**
+ *
+ */
+function handlerEditingAvatarPopup() {
+  editAvatarBtn.addEventListener("click", () => {
+    clearForm(editAvatarForm);
+    addingClassToOpenPopup(editAvatarPopupElement);
+  });
+  handlerEditingAvatar(editAvatarPopupElement, editAvatarForm, avatarElement);
 }
 
 Promise.all([getPersonalInfo(), getCards()])
@@ -95,6 +114,7 @@ Promise.all([getPersonalInfo(), getCards()])
 enableValidations(validationConf);
 handlerAddingCardPopup();
 handlerEditingPersonPopup();
+handlerEditingAvatarPopup();
 viewImagePopupElement.addEventListener("click", handlerClosePopupOnOverlayOrCloseBtn);
 deleteCardPopupElement.addEventListener("click", handlerClosePopupOnOverlayOrCloseBtn);
 

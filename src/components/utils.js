@@ -1,7 +1,7 @@
 import {removeClassToClosePopup} from "./modal";
 import {disableSubmitButton, hideInputError} from "./validate";
 import {validationConf} from "./config";
-import {deleteCard, updatePersonalInfo} from "./api";
+import {deleteCard, updateAvatar, updatePersonalInfo} from "./api";
 import {deleteCardPopupElement} from "./card";
 
 let cardId = "";
@@ -79,7 +79,7 @@ export function clearForm(form) {
 export function associatePersonalInfo(info, name, about, avatar) {
   name.textContent = info.name;
   about.textContent = info.about;
-  avatar.url = info.avatar;
+  avatar.src = info.avatar;
   avatar.alt = info.name;
 }
 
@@ -108,4 +108,21 @@ export function handlerSubmitDeleteCard(card){
   cardId = card.dataset.id;
   cardElement = card;
   deleteCardForm.addEventListener("submit", handlerDeletingCard);
+}
+
+/**
+ *
+ */
+export function handlerEditingAvatar(popup, form, imageElement) {
+  const input = form.querySelector(".popup__input");
+  form.addEventListener("submit", evt => {
+    evt.preventDefault();
+
+    updateAvatar(input.value)
+      .then(res => {
+        imageElement.src = input.value;
+        removeClassToClosePopup(popup);
+        console.log(res);
+      });
+  });
 }
