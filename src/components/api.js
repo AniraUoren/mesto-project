@@ -75,3 +75,19 @@ export const postNewCard = (name, link) => {
         return Promise.reject(`Ошибка при добавлении карточки: ${res.status}`);
     });
 };
+
+export const deleteCard = (cardId) => {
+  return fetch(`${apiConf.url}/${apiConf.groupId}/cards/${cardId}`, {
+    method: "DELETE",
+    headers: {
+      authorization: apiConf.token,
+      "Content-Type": "application/json"
+    }
+  }).then(res => {
+    if (res.ok) {
+      return res.json();
+    }
+
+    return Promise.reject(`Ошибка при удалении карточки: ${res.status}`);
+  });
+};

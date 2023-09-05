@@ -1,5 +1,5 @@
 import "../pages/index.css";
-import {addNewCard, renderGallery, viewImagePopupElement} from "./card";
+import {addNewCard, deleteCardPopupElement, renderGallery, viewImagePopupElement} from "./card";
 import {
   removeClassToClosePopup, addingClassToOpenPopup, handlerClosePopupOnOverlayOrCloseBtn
 } from "./modal";
@@ -7,7 +7,6 @@ import {associatePersonalInfo, bindProfileFields, clearForm, submitAddingPersonI
 import {enableValidations} from "./validate";
 import {validationConf} from "./config";
 import {getCards, getPersonalInfo, postNewCard} from "./api";
-import {data} from "autoprefixer";
 
 /*Попапы*/
 const editProfilePopupElement = document.querySelector("#editProfilePopup");
@@ -99,6 +98,7 @@ enableValidations(validationConf);
 handlerAddingCardPopup();
 handlerEditingPersonPopup();
 viewImagePopupElement.addEventListener("click", handlerClosePopupOnOverlayOrCloseBtn);
+deleteCardPopupElement.addEventListener("click", handlerClosePopupOnOverlayOrCloseBtn);
 
 
 

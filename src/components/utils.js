@@ -1,7 +1,11 @@
 import {removeClassToClosePopup} from "./modal";
 import {disableSubmitButton, hideInputError} from "./validate";
 import {validationConf} from "./config";
-import {updatePersonalInfo} from "./api";
+import {deleteCard, updatePersonalInfo} from "./api";
+import {deleteCardPopupElement} from "./card";
+
+let cardId = "";
+let cardElement;
 
 /**
  * Функция связывает поля профиля с полями формы редактирования профиля.
@@ -63,7 +67,7 @@ export function clearForm(form) {
 
 /**
  * Позволяет отрисовать персональные данные на странице.
- * @param info - персональные данные с сервера.
+ * @param info {Response} - персональные данные с сервера.
  * @param info.about {Text} - занятие пользователя.
  * @param info.avatar {URL} - url на аватар пользователя.
  * @param info.name {Text} - имя пользователя.
@@ -77,4 +81,31 @@ export function associatePersonalInfo(info, name, about, avatar) {
   about.textContent = info.about;
   avatar.url = info.avatar;
   avatar.alt = info.name;
+}
+
+/**
+ *
+ * @param evt
+ */
+function handlerDeletingCard(evt){
+  evt.preventDefault();
+
+  deleteCard(cardId)
+    .then(res => {
+      console.log(res);
+      cardElement.remove();
+      removeClassToClosePopup(deleteCardPopupElement);
+    });
+  removeEventListener("submit", handlerDeletingCard);
+}
+
+/**
+ *
+ * @param id
+ */
+export function handlerSubmitDeleteCard(card){
+  const deleteCardForm = deleteCardPopupElement.querySelector(".popup__form");
+  cardId = card.dataset.id;
+  cardElement = card;
+  deleteCardForm.addEventListener("submit", handlerDeletingCard);
 }
