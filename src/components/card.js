@@ -1,7 +1,7 @@
 import {
   addingClassToOpenPopup
 } from "./modal";
-import {handlerSubmitDeleteCard} from "./utils";
+import {handlerSubmitDeleteCard, showLoadingOnBtn} from "./utils";
 import {deleteLikeOnCard, putLikeOnCard} from "./api";
 
 /*Попап для просмотра изображения и его элементы*/
@@ -9,6 +9,7 @@ export const viewImagePopupElement = document.querySelector("#imageViewerPopup")
 const imagePopupElement = viewImagePopupElement.querySelector(".popup__image");
 const descriptionPopupElement = viewImagePopupElement.querySelector(".popup__image-description");
 export const deleteCardPopupElement = document.querySelector("#confirmDeleteCard");
+const submitDeletingCardBtn = deleteCardPopupElement.querySelector(".popup__submit-btn");
 
 /**
  * Функция для возможности ставить лайк карточке.
@@ -45,6 +46,7 @@ function addEventToDeleteCard(card) {
   deleteBtn.addEventListener("click", evt => {
     addingClassToOpenPopup(deleteCardPopupElement);
     handlerSubmitDeleteCard(evt.target.offsetParent);
+    showLoadingOnBtn("default", submitDeletingCardBtn);
   });
 }
 

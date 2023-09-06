@@ -7,7 +7,7 @@ import {
   associatePersonalInfo,
   bindProfileFields,
   clearForm,
-  handlerEditingAvatar,
+  handlerEditingAvatar, showLoadingOnBtn,
   submitAddingPersonInfo
 } from "./utils";
 import {enableValidations} from "./validate";
@@ -35,6 +35,11 @@ const editProfileForm = editProfilePopupElement.querySelector(".popup__form");
 const addPlaceForm = addPlacePopupElement.querySelector(".popup__form");
 const editAvatarBtn = document.querySelector(".profile__edit-avatar");
 const editAvatarForm = editAvatarPopupElement.querySelector("form");
+const submitPersonalInfoBtn = editProfileForm.querySelector(".popup__submit-btn");
+const submitAvatarBtn = editAvatarForm.querySelector(".popup__submit-btn");
+const submitAddingCartBtn = addPlaceForm.querySelector(".popup__submit-btn");
+const name = addPlaceForm.querySelector("#placeName");
+const url = addPlaceForm.querySelector("#placeURL");
 
 const galleryElement = document.querySelector(".gallery");
 const avatarElement = document.querySelector(".profile__avatar");
@@ -44,31 +49,40 @@ let myId = "";
 /************************************/
 
 /**
+ * Помощник для добавления карточки.
+ * @param evt {Object} - объект события.
+ */
+function handlerAddingCart(evt) {
+  evt.preventDefault();
+
+  showLoadingOnBtn("loading", submitAddingCartBtn);
+
+  postNewCard(name.value, url.value)
+    .then(data => {
+      addNewCard(data, galleryElement, myId);
+    })
+    .finally(() => {
+      showLoadingOnBtn("done", submitAddingCartBtn);
+    });
+
+  removeClassToClosePopup(addPlacePopupElement);
+  clearForm(addPlaceForm);
+  removeEventListener("submit", handlerAddingCart);
+}
+
+/**
  * Вспомогательная управляющая функция, которая помогает управлять попапом добавления новой карточки.
  */
 function handlerAddingCardPopup() {
-  const name = addPlaceForm.querySelector("#placeName");
-  const url = addPlaceForm.querySelector("#placeURL");
-
   addPlaceBtn.addEventListener("click", () => {
     clearForm(addPlacePopupElement.querySelector("form"));
     addingClassToOpenPopup(addPlacePopupElement);
+    showLoadingOnBtn("disabled", submitAvatarBtn);
   });
 
   addPlacePopupElement.addEventListener("click", handlerClosePopupOnOverlayOrCloseBtn);
 
-  addPlaceForm.addEventListener("submit", evt => {
-    evt.preventDefault();
-
-    postNewCard(name.value, url.value)
-        .then(data => {
-          addNewCard(data, galleryElement, myId);
-        });
-
-
-    removeClassToClosePopup(addPlacePopupElement);
-    clearForm(addPlaceForm);
-  });
+  addPlaceForm.addEventListener("submit", handlerAddingCart);
 }
 
 /**
@@ -76,9 +90,10 @@ function handlerAddingCardPopup() {
  */
 function handlerEditingPersonPopup() {
   editProfileBtn.addEventListener("click", () => {
-    clearForm(addPlaceForm);
+    clearForm(editProfileForm);
     bindProfileFields(nameProfileInput, aboutProfileInput, profileNameElement, profileAboutElement);
     addingClassToOpenPopup(editProfilePopupElement);
+    showLoadingOnBtn("default", submitPersonalInfoBtn);
   });
   submitAddingPersonInfo(editProfileForm, nameProfileInput, aboutProfileInput, profileNameElement, profileAboutElement, profileAvatarElement, editProfilePopupElement);
 
@@ -92,6 +107,7 @@ function handlerEditingAvatarPopup() {
   editAvatarBtn.addEventListener("click", () => {
     clearForm(editAvatarForm);
     addingClassToOpenPopup(editAvatarPopupElement);
+    showLoadingOnBtn("default", submitAvatarBtn);
   });
   handlerEditingAvatar(editAvatarPopupElement, editAvatarForm, avatarElement);
 }
@@ -117,18 +133,3 @@ handlerEditingPersonPopup();
 handlerEditingAvatarPopup();
 viewImagePopupElement.addEventListener("click", handlerClosePopupOnOverlayOrCloseBtn);
 deleteCardPopupElement.addEventListener("click", handlerClosePopupOnOverlayOrCloseBtn);
-
-
-
-
-
-//
-// (async () => {
-//   try {
-//     const data = await getPersonalInfo();
-//     console.log(data);
-//   } catch (err) {
-//     console.error(err);
-//   }
-// })();
-

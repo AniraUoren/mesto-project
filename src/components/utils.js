@@ -27,13 +27,20 @@ export function bindProfileFields(nameProfileInput, aboutProfileInput, profileNa
  * @param editProfilePopupElement
  */
 export function submitAddingPersonInfo(editProfileForm, nameProfileInput, aboutProfileInput, profileNameElement, profileAboutElement, profileAvatarElement, editProfilePopupElement) {
+  const submitFormBtn = editProfileForm.querySelector(".popup__submit-btn");
+
   editProfileForm.addEventListener("submit", evt => {
     evt.preventDefault();
 
+    showLoadingOnBtn("loading", submitFormBtn);
+
     updatePersonalInfo(nameProfileInput.value, aboutProfileInput.value)
-        .then(data => {
-          associatePersonalInfo(data, profileNameElement, profileAboutElement, profileAvatarElement);
-        });
+      .then((data) => {
+        associatePersonalInfo(data, profileNameElement, profileAboutElement, profileAvatarElement);
+      })
+      .finally(() => {
+        showLoadingOnBtn("done", submitFormBtn);
+      });
 
     editProfileForm.reset();
 
@@ -87,14 +94,21 @@ export function associatePersonalInfo(info, name, about, avatar) {
  * Выполняет непосредственно запрос на сервер на удаление, удаление карточки и управление слушателем и попапом при удачном ответе.
  * @param evt {Object} - объект эвента.
  */
-function handlerDeletingCard(evt){
+function handlerDeletingCard(evt) {
+  const deleteBtn = document.querySelector("#deleteCardSubmitPopup");
+
   evt.preventDefault();
+
+  showLoadingOnBtn("loading", deleteBtn);
 
   deleteCard(cardId)
     .then(res => {
       console.log(res);
       cardElement.remove();
       removeClassToClosePopup(deleteCardPopupElement);
+    })
+    .finally(() => {
+      showLoadingOnBtn("done", deleteBtn);
     });
   removeEventListener("submit", handlerDeletingCard);
 }
@@ -103,7 +117,7 @@ function handlerDeletingCard(evt){
  * Функция отвечающая за срабатывание удаления конкретной карточки.
  * @param card {Object} - удаляемая карточка.
  */
-export function handlerSubmitDeleteCard(card){
+export function handlerSubmitDeleteCard(card) {
   const deleteCardForm = deleteCardPopupElement.querySelector(".popup__form");
   cardId = card.dataset.id;
   cardElement = card;
@@ -115,14 +129,39 @@ export function handlerSubmitDeleteCard(card){
  */
 export function handlerEditingAvatar(popup, form, imageElement) {
   const input = form.querySelector(".popup__input");
+  const submitBtn = form.querySelector(".popup__submit-btn");
+
   form.addEventListener("submit", evt => {
     evt.preventDefault();
 
+    showLoadingOnBtn("loading", submitBtn);
     updateAvatar(input.value)
       .then(res => {
         imageElement.src = input.value;
         removeClassToClosePopup(popup);
         console.log(res);
+      })
+      .finally(() => {
+        showLoadingOnBtn("done", submitBtn);
       });
   });
+}
+
+/**
+ * Меняет текст кнопки для отображения загрузки.
+ * @param status {string} - статус загрузки. Так же может быть loading и done.
+ * @param btn {Object} - кнопка, текст которой меняем.
+ */
+export function showLoadingOnBtn(status, btn) {
+  switch (status) {
+    case "default":
+      btn.textContent = "Сохранить";
+      break;
+    case "loading":
+      btn.textContent = "Сохранение";
+      break;
+    case "done":
+      btn.textContent = "Сохранено";
+      break;
+  }
 }
