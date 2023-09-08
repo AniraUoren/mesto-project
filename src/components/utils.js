@@ -140,7 +140,7 @@ export function handlerEditingAvatar(popup, imageElement) {
     showLoadingOnBtn("loading", submitBtn);
     updateAvatar(input.value)
       .then(res => {
-        imageElement.src = input.value;
+        imageElement.src = res.avatar;
         removeClassToClosePopup(popup);
       })
       .catch(alertError)
