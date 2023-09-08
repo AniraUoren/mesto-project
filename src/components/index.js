@@ -4,6 +4,7 @@ import {
   removeClassToClosePopup, addingClassToOpenPopup, handlerClosePopupOnOverlayOrCloseBtn
 } from "./modal";
 import {
+  alertError,
   associatePersonalInfo,
   bindProfileFields,
   clearForm,
@@ -61,6 +62,7 @@ function handlerAddingCart(evt) {
     .then(data => {
       addNewCard(data, galleryElement, myId);
     })
+    .catch(alertError)
     .finally(() => {
       showLoadingOnBtn("done", submitAddingCartBtn);
     });
@@ -123,9 +125,7 @@ Promise.all([getPersonalInfo(), getCards()])
     renderGallery(cards, galleryElement, myId);
 
   })
-  .catch(err => {
-    console.error(err);
-  });
+  .catch(alertError);
 
 enableValidations(validationConf);
 handlerAddingCardPopup();

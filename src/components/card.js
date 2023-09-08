@@ -1,7 +1,7 @@
 import {
   addingClassToOpenPopup
 } from "./modal";
-import {handlerSubmitDeleteCard, showLoadingOnBtn} from "./utils";
+import {alertError, handlerSubmitDeleteCard, showLoadingOnBtn} from "./utils";
 import {deleteLikeOnCard, putLikeOnCard} from "./api";
 
 /*Попап для просмотра изображения и его элементы*/
@@ -25,13 +25,15 @@ function addEventToLikeCard(card) {
         .then(res => {
           likeCounter.textContent = res.likes.length;
           likeBtn.classList.toggle("card__like-btn_active");
-        });
+        })
+        .catch(alertError);
     } else {
       putLikeOnCard(card.dataset.id)
         .then(res => {
           likeCounter.textContent = res.likes.length;
           likeBtn.classList.toggle("card__like-btn_active");
-        });
+        })
+        .catch(alertError);
     }
   });
 }

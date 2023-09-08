@@ -38,6 +38,7 @@ export function submitAddingPersonInfo(editProfileForm, nameProfileInput, aboutP
       .then((data) => {
         associatePersonalInfo(data, profileNameElement, profileAboutElement, profileAvatarElement);
       })
+      .catch(alertError)
       .finally(() => {
         showLoadingOnBtn("done", submitFormBtn);
       });
@@ -107,6 +108,7 @@ function handlerDeletingCard(evt) {
       cardElement.remove();
       removeClassToClosePopup(deleteCardPopupElement);
     })
+    .catch(alertError)
     .finally(() => {
       showLoadingOnBtn("done", deleteBtn);
     });
@@ -143,6 +145,7 @@ export function handlerEditingAvatar(popup, imageElement) {
         imageElement.src = input.value;
         removeClassToClosePopup(popup);
       })
+      .catch(alertError)
       .finally(() => {
         showLoadingOnBtn("done", submitBtn);
       });
@@ -178,5 +181,13 @@ export function checkResponse(res) {
     return res.json();
   }
 
-  return Promise.reject(`Ошибка при удалении лайка с карточки: ${res.status}`);
+  return Promise.reject(`Ошибка при выполнении запроса: ${res.status}`);
+}
+
+/**
+ * Для вывода ошибки в консоль.
+ * @param err {Object} - ошибка.
+ */
+export function alertError(err) {
+  console.error(err);
 }
