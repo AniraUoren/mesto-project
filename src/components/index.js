@@ -65,11 +65,10 @@ function handlerAddingCart(evt) {
     .catch(alertError)
     .finally(() => {
       showLoadingOnBtn("done", submitAddingCartBtn);
+      removeClassToClosePopup(addPlacePopupElement);
+      clearForm(addPlaceForm);
+      removeEventListener("submit", handlerAddingCart);
     });
-
-  removeClassToClosePopup(addPlacePopupElement);
-  clearForm(addPlaceForm);
-  removeEventListener("submit", handlerAddingCart);
 }
 
 /**

@@ -41,11 +41,9 @@ export function submitAddingPersonInfo(editProfileForm, nameProfileInput, aboutP
       .catch(alertError)
       .finally(() => {
         showLoadingOnBtn("done", submitFormBtn);
+        editProfileForm.reset();
+        removeClassToClosePopup(editProfilePopupElement);
       });
-
-    editProfileForm.reset();
-
-    removeClassToClosePopup(editProfilePopupElement);
   });
 }
 
@@ -111,8 +109,8 @@ function handlerDeletingCard(evt) {
     .catch(alertError)
     .finally(() => {
       showLoadingOnBtn("done", deleteBtn);
+      removeEventListener("submit", handlerDeletingCard);
     });
-  removeEventListener("submit", handlerDeletingCard);
 }
 
 /**
