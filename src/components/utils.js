@@ -125,9 +125,12 @@ export function handlerSubmitDeleteCard(card) {
 }
 
 /**
- *
+ * Позволяет отправить запрос при изменении аватара и меняет его на странице при успешном ответе.
+ * @param popup {Object} - попап в котором меняем аватар.
+ * @param imageElement {Object} - элемент содержащий аватар на странице.
  */
-export function handlerEditingAvatar(popup, form, imageElement) {
+export function handlerEditingAvatar(popup, imageElement) {
+  const form = popup.querySelector("form");
   const input = form.querySelector(".popup__input");
   const submitBtn = form.querySelector(".popup__submit-btn");
 
@@ -139,7 +142,6 @@ export function handlerEditingAvatar(popup, form, imageElement) {
       .then(res => {
         imageElement.src = input.value;
         removeClassToClosePopup(popup);
-        console.log(res);
       })
       .finally(() => {
         showLoadingOnBtn("done", submitBtn);
@@ -164,4 +166,17 @@ export function showLoadingOnBtn(status, btn) {
       btn.textContent = "Сохранено";
       break;
   }
+}
+
+/**
+ * Проверяет ответ фетча на успешность.
+ * @param res {Promise} - промис с ответом.
+ * @returns {Promise<never>|*} - промис с ответом.
+ */
+export function checkResponse(res) {
+  if (res.ok) {
+    return res.json();
+  }
+
+  return Promise.reject(`Ошибка при удалении лайка с карточки: ${res.status}`);
 }

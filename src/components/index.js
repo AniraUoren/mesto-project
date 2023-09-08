@@ -109,7 +109,7 @@ function handlerEditingAvatarPopup() {
     addingClassToOpenPopup(editAvatarPopupElement);
     showLoadingOnBtn("default", submitAvatarBtn);
   });
-  handlerEditingAvatar(editAvatarPopupElement, editAvatarForm, avatarElement);
+  handlerEditingAvatar(editAvatarPopupElement, avatarElement);
 }
 
 Promise.all([getPersonalInfo(), getCards()])

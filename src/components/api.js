@@ -1,4 +1,5 @@
 import {apiConf} from "./config";
+import {checkResponse} from "./utils";
 
 
 export const getPersonalInfo = () => {
@@ -8,13 +9,7 @@ export const getPersonalInfo = () => {
             authorization: apiConf.token,
             "Content-Type": "application/json"
         }
-    }).then(res => {
-        if (res.ok) {
-            return res.json();
-        }
-
-        return Promise.reject(`Ошибка при получении персональной информации: ${res.status}`);
-    });
+    }).then(checkResponse);
 };
 
 export const getCards = () => {
@@ -24,13 +19,7 @@ export const getCards = () => {
             authorization: apiConf.token,
             "Content-Type": "application/json"
         }
-    }).then(res => {
-        if (res.ok) {
-            return res.json();
-        }
-
-        return Promise.reject(`Ошибка при получении списка карточек: ${res.status}`);
-    });
+    }).then(checkResponse);
 };
 
 export const updatePersonalInfo = (name, about) => {
@@ -44,13 +33,7 @@ export const updatePersonalInfo = (name, about) => {
             name: name,
             about: about
         })
-    }).then(res => {
-        if (res.ok) {
-            return res.json();
-        }
-
-        return Promise.reject(`Ошибка при обновлении персональной информации: ${res.status}`);
-    });
+    }).then(checkResponse);
 };
 
 export const postNewCard = (name, link) => {
@@ -64,13 +47,7 @@ export const postNewCard = (name, link) => {
             name: name,
             link: link
         })
-    }).then(res => {
-        if (res.ok) {
-            return res.json();
-        }
-
-        return Promise.reject(`Ошибка при добавлении карточки: ${res.status}`);
-    });
+    }).then(checkResponse);
 };
 
 export const deleteCard = (cardId) => {
@@ -80,13 +57,7 @@ export const deleteCard = (cardId) => {
       authorization: apiConf.token,
       "Content-Type": "application/json"
     }
-  }).then(res => {
-    if (res.ok) {
-      return res.json();
-    }
-
-    return Promise.reject(`Ошибка при удалении карточки: ${res.status}`);
-  });
+  }).then(checkResponse);
 };
 
 export const putLikeOnCard = (cardId) => {
@@ -96,13 +67,7 @@ export const putLikeOnCard = (cardId) => {
       authorization: apiConf.token,
       "Content-Type": "application/json"
     }
-  }).then(res => {
-    if (res.ok) {
-      return res.json();
-    }
-
-    return Promise.reject(`Ошибка при установке лайка для карточки: ${res.status}`);
-  });
+  }).then(checkResponse);
 };
 
 export const deleteLikeOnCard = (cardId) => {
@@ -112,13 +77,7 @@ export const deleteLikeOnCard = (cardId) => {
       authorization: apiConf.token,
       "Content-Type": "application/json"
     }
-  }).then(res => {
-    if (res.ok) {
-      return res.json();
-    }
-
-    return Promise.reject(`Ошибка при удалении лайка с карточки: ${res.status}`);
-  });
+  }).then(checkResponse);
 };
 
 export const updateAvatar = (url) => {
@@ -131,11 +90,5 @@ export const updateAvatar = (url) => {
     body: JSON.stringify({
       avatar: url
     })
-  }).then(res => {
-    if (res.ok) {
-      return res.json();
-    }
-
-    return Promise.reject(`Ошибка при обновлении ссылки на аватар: ${res.status}`);
-  });
+  }).then(checkResponse);
 };
