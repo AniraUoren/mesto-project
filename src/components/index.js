@@ -61,13 +61,13 @@ function handlerAddingCart(evt) {
   postNewCard(name.value, url.value)
     .then(data => {
       addNewCard(data, galleryElement, myId);
+      removeClassToClosePopup(addPlacePopupElement);
+      clearForm(addPlaceForm);
+      removeEventListener("submit", handlerAddingCart);
     })
     .catch(alertError)
     .finally(() => {
       showLoadingOnBtn("done", submitAddingCartBtn);
-      removeClassToClosePopup(addPlacePopupElement);
-      clearForm(addPlaceForm);
-      removeEventListener("submit", handlerAddingCart);
     });
 }
 
@@ -132,3 +132,4 @@ handlerEditingPersonPopup();
 handlerEditingAvatarPopup();
 viewImagePopupElement.addEventListener("click", handlerClosePopupOnOverlayOrCloseBtn);
 deleteCardPopupElement.addEventListener("click", handlerClosePopupOnOverlayOrCloseBtn);
+editAvatarPopupElement.addEventListener("click", handlerClosePopupOnOverlayOrCloseBtn);

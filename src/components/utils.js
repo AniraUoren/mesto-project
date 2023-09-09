@@ -37,12 +37,12 @@ export function submitAddingPersonInfo(editProfileForm, nameProfileInput, aboutP
     updatePersonalInfo(nameProfileInput.value, aboutProfileInput.value)
       .then((data) => {
         associatePersonalInfo(data, profileNameElement, profileAboutElement, profileAvatarElement);
+        editProfileForm.reset();
+        removeClassToClosePopup(editProfilePopupElement);
       })
       .catch(alertError)
       .finally(() => {
         showLoadingOnBtn("done", submitFormBtn);
-        editProfileForm.reset();
-        removeClassToClosePopup(editProfilePopupElement);
       });
   });
 }
@@ -102,14 +102,13 @@ function handlerDeletingCard(evt) {
 
   deleteCard(cardId)
     .then(res => {
-      console.log(res);
       cardElement.remove();
       removeClassToClosePopup(deleteCardPopupElement);
+      removeEventListener("submit", handlerDeletingCard);
     })
     .catch(alertError)
     .finally(() => {
       showLoadingOnBtn("done", deleteBtn);
-      removeEventListener("submit", handlerDeletingCard);
     });
 }
 
