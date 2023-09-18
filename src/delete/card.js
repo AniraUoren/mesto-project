@@ -2,7 +2,7 @@ import {
   addingClassToOpenPopup
 } from "./modal";
 import {alertError, handlerSubmitDeleteCard, showLoadingOnBtn} from "./utils";
-import {deleteLikeOnCard, putLikeOnCard} from "./api";
+import {deleteLikeOnCard, putLikeOnCard} from "../components/Api";
 
 /*Попап для просмотра изображения и его элементы*/
 export const viewImagePopupElement = document.querySelector("#imageViewerPopup");

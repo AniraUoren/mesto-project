@@ -1,7 +1,7 @@
 import {removeClassToClosePopup} from "./modal";
 import {disableSubmitButton, hideInputError} from "./validate";
 import {validationConf} from "./config";
-import {deleteCard, updateAvatar, updatePersonalInfo} from "./api";
+import {deleteCard, updateAvatar, updatePersonalInfo} from "../components/Api";
 import {deleteCardPopupElement} from "./card";
 
 let cardId = "";

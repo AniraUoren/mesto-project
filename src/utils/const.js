@@ -9,5 +9,9 @@ export const validationConf = {
 export const apiConf = {
   token: "6e404797-7bd9-4ec5-9f3f-4a0597ffa86e",
   groupId: "plus-cohort-28",
-  url: "https://nomoreparties.co/v1",
+  url: `https://nomoreparties.co/v1/${this.groupId}`,
+  headers: {
+    authorization: this.token,
+    "Content-Type": "application/json"
+  }
 };
