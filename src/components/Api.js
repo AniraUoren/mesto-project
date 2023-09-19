@@ -1,6 +1,4 @@
-import {checkResponse} from "../delete/utils";
-
-class Api {
+export class Api {
   constructor(config) {
     this._config = config;
   }
@@ -73,7 +71,7 @@ class Api {
     }).then(this._checkResponse);
   }
 
-  deleteLikeOnCard() {
+  deleteLikeOnCard(cardId) {
     return fetch(`${this._config.url}/cards/likes/${cardId}`, {
       method: "DELETE",
       headers: this._config.headers
