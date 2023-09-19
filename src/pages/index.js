@@ -1,7 +1,7 @@
 import "../pages/index.css";
 
 import {apiConf} from "../utils/const";
-import {handlerLikeCart} from "../utils/handlers";
+import {handlerLikeCart, handlerUpdateUserAvatar, handlerUpdateUserInfo} from "../utils/handlers";
 
 import {Api} from "../components/Api";
 import {UserInfo} from "../components/UserInfo";
@@ -9,13 +9,15 @@ import {Section} from "../components/Section";
 import {Card} from "../components/Card";
 
 const api = new Api(apiConf);
-const userInfo = new UserInfo(".profile__name", ".profile__about", ".profile__avatar");
+const userInfo = new UserInfo(".profile__name", ".profile__about", ".profile__avatar", handlerUpdateUserAvatar, handlerUpdateUserInfo);
 
 Promise.all([api.getPersonalInfo(), api.getCards()])
   .then(data => {
     const [profileInfo, cartData] = data;
     console.log(profileInfo);
     console.log(cartData);
+
+    userInfo.render(profileInfo);
 
     const cardList = new Section({
       data: cartData,
@@ -31,4 +33,3 @@ Promise.all([api.getPersonalInfo(), api.getCards()])
 
     cardList.renderItems();
   });
-
