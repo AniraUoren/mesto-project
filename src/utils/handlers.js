@@ -2,10 +2,9 @@
  * Убирает или добавляет лайк карточке.
  */
 import {Api} from "../components/Api";
-import {apiConf} from "./const";
-import {Card} from "../components/Card";
-import {data} from "autoprefixer";
+import {apiConf, btnForPopup, popups} from "./const";
 import {PopupWithImage} from "../components/PopupWithImage";
+import {PopupWithForm} from "../components/PopupWithForm";
 
 const api = new Api(apiConf);
 const popupViewer = new PopupWithImage("#imageViewerPopup");
@@ -13,7 +12,7 @@ const popupViewer = new PopupWithImage("#imageViewerPopup");
 /**
  * Убирает или добавляет лайк карточке.
  */
-export function handlerLikeCart () {
+export function handlerLikeCart() {
   if (!this._isLikedByMe) {
     api.putLikeOnCard(this._cardId)
       .then(data => {
@@ -65,4 +64,29 @@ export function handlerUpdateUserAvatar(url) {
  */
 export function handlerOpenImageViewer(src, description) {
   popupViewer.open(src, description);
+}
+
+/**
+ *
+ */
+export function handlerDeletingCart() {
+  //TODO Написать хендлер для удаления карточки
+}
+
+/**
+ *
+ */
+export function handlerStartPopups() {
+  for (let key in btnForPopup) {
+    const popup = new PopupWithForm(popups[key], () => {
+      //TODO Написать хедлер для сабмита формы
+    });
+    const btn = document.querySelector(btnForPopup[key]);
+
+    btn.addEventListener("click", () => {
+      console.log(`click ${btnForPopup[key]}`);
+      popup.open();
+      popup.setEventListeners();
+    });
+  }
 }

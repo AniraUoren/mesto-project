@@ -3,7 +3,7 @@ import "../pages/index.css";
 import {apiConf} from "../utils/const";
 import {
   handlerLikeCart,
-  handlerOpenImageViewer,
+  handlerOpenImageViewer, handlerStartPopups,
   handlerUpdateUserAvatar,
   handlerUpdateUserInfo
 } from "../utils/handlers";
@@ -40,3 +40,5 @@ Promise.all([api.getPersonalInfo(), api.getCards()])
 
     cardList.renderItems();
   });
+
+handlerStartPopups();
