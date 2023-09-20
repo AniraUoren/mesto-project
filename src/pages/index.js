@@ -7,6 +7,7 @@ import {Api} from "../components/Api";
 import {UserInfo} from "../components/UserInfo";
 import {Section} from "../components/Section";
 import {Card} from "../components/Card";
+import {Popup} from "../components/Popup";
 
 const api = new Api(apiConf);
 const userInfo = new UserInfo(".profile__name", ".profile__about", ".profile__avatar", handlerUpdateUserAvatar, handlerUpdateUserInfo);
@@ -33,3 +34,9 @@ Promise.all([api.getPersonalInfo(), api.getCards()])
 
     cardList.renderItems();
   });
+
+const popup = new Popup("#addCardPopup");
+document.querySelector(".profile__add-btn").addEventListener("click", () => {
+  popup.setEventListeners();
+  popup.open();
+});

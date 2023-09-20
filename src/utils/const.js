@@ -19,3 +19,5 @@ export const apiConf = {
     };
   }
 };
+
+export const ESC_KEY = "Escape";
