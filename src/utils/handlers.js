@@ -5,8 +5,10 @@ import {Api} from "../components/Api";
 import {apiConf} from "./const";
 import {Card} from "../components/Card";
 import {data} from "autoprefixer";
+import {PopupWithImage} from "../components/PopupWithImage";
 
 const api = new Api(apiConf);
+const popupViewer = new PopupWithImage("#imageViewerPopup");
 
 /**
  * Убирает или добавляет лайк карточке.
@@ -32,9 +34,9 @@ export function handlerLikeCart () {
 }
 
 /**
- *
- * @param name
- * @param about
+ * Отправляет новые данные пользователя на сервер и обновляет информацию на странице.
+ * @param name {String} - новое имя.
+ * @param about {String} - новый вид деятельности.
  */
 export function handlerUpdateUserInfo({name, about}) {
   api.updatePersonalInfo(name, about)
@@ -47,8 +49,8 @@ export function handlerUpdateUserInfo({name, about}) {
 }
 
 /**
- *
- * @param url
+ * Отправляет новую ссылку на аватар на сервер и обновляет элемент на странице.
+ * @param url {String} - URL аватара.
  */
 export function handlerUpdateUserAvatar(url) {
   console.log(`avatar update ${url}`);
@@ -56,4 +58,11 @@ export function handlerUpdateUserAvatar(url) {
     .then(data => {
       this.updateAvatar(data.avatar);
     });
+}
+
+/**
+ * Позволяет открывать просмотр картинок.
+ */
+export function handlerOpenImageViewer(src, description) {
+  popupViewer.open(src, description);
 }

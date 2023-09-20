@@ -1,7 +1,12 @@
 import "../pages/index.css";
 
 import {apiConf} from "../utils/const";
-import {handlerLikeCart, handlerUpdateUserAvatar, handlerUpdateUserInfo} from "../utils/handlers";
+import {
+  handlerLikeCart,
+  handlerOpenImageViewer,
+  handlerUpdateUserAvatar,
+  handlerUpdateUserInfo
+} from "../utils/handlers";
 
 import {Api} from "../components/Api";
 import {UserInfo} from "../components/UserInfo";
@@ -25,7 +30,8 @@ Promise.all([api.getPersonalInfo(), api.getCards()])
       renderer: (cardData) => {
         const card = new Card({
           data: cardData,
-          handlerLikeCart: handlerLikeCart
+          handlerLikeCart: handlerLikeCart,
+          handlerOpenImageViewer: handlerOpenImageViewer
         }, "#card");
         const cartEl = card.createCard(profileInfo._id);
         cardList.setItem(cartEl);
@@ -34,9 +40,3 @@ Promise.all([api.getPersonalInfo(), api.getCards()])
 
     cardList.renderItems();
   });
-
-const popup = new Popup("#addCardPopup");
-document.querySelector(".profile__add-btn").addEventListener("click", () => {
-  popup.setEventListeners();
-  popup.open();
-});
