@@ -1,6 +1,6 @@
 import "../pages/index.css";
 
-import {apiConf} from "../utils/const";
+import {apiConf, validationConf} from "../utils/const";
 import {
   handlerLikeCart,
   handlerOpenImageViewer, handlerStartPopups,
@@ -13,9 +13,11 @@ import {UserInfo} from "../components/UserInfo";
 import {Section} from "../components/Section";
 import {Card} from "../components/Card";
 import {Popup} from "../components/Popup";
+import {FormValidator} from "../components/FormValidator";
 
 const api = new Api(apiConf);
 const userInfo = new UserInfo(".profile__name", ".profile__about", ".profile__avatar", handlerUpdateUserAvatar, handlerUpdateUserInfo);
+const arrayForms = Array.from(document.querySelectorAll(validationConf.formClass));
 
 Promise.all([api.getPersonalInfo(), api.getCards()])
   .then(data => {
@@ -40,5 +42,13 @@ Promise.all([api.getPersonalInfo(), api.getCards()])
 
     cardList.renderItems();
   });
+
+
+
+arrayForms.forEach(form => {
+  console.log(form);
+  const validation = new FormValidator(validationConf, form);
+  validation.enableValidation(form, validationConf);
+});
 
 handlerStartPopups();
