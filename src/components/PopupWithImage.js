@@ -1,6 +1,8 @@
 import {Popup} from "./Popup";
 
 export class PopupWithImage extends Popup{
+  _imageElement;
+  _descriptionElement;
   constructor(popupSelector) {
     super(popupSelector);
   }

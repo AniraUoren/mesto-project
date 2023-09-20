@@ -1,6 +1,10 @@
 import {Popup} from "./Popup";
 
 export class PopupWithForm extends Popup {
+  _formElement;
+  _handlerSubmitForm;
+  _formValues;
+
   constructor(selectorPopup, handlerSubmitForm) {
     super(selectorPopup);
     this._handlerSubmitForm = handlerSubmitForm;

@@ -1,4 +1,5 @@
 export class Api {
+  _config;
   constructor(config) {
     this._config = config;
   }
