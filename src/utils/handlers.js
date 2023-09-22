@@ -12,7 +12,7 @@ import {UserInfo} from "../components/UserInfo";
 
 const api = new Api(apiConf);
 const userInfo = new UserInfo({
-  nameSelector:".profile__name",
+  nameSelector: ".profile__name",
   aboutSelector: ".profile__about",
   avatarSelector: ".profile__avatar",
   nameInputSelector: "#personName",
@@ -50,6 +50,7 @@ export function handlerRenderPage() {
       cardList.renderItems();
     });
 }
+
 /**
  * Убирает или добавляет лайк карточке.
  */
@@ -95,7 +96,7 @@ export function handlerUpdateUserInfo({name, about}) {
 export function handlerUpdateUserAvatar(url) {
   api.updateAvatar(url)
     .then(data => {
-      this.updateAvatar(data.avatar);
+      userInfo.updateAvatar(data.avatar);
     });
 }
 
@@ -125,6 +126,26 @@ export function handlerStartPersonPopup() {
       console.log(personName);
       console.log(personAbout);
       handlerUpdateUserInfo({name: personName, about: personAbout});
+    }
+  });
+
+  btn.addEventListener("click", () => {
+    popup.open();
+    popup.setEventListeners();
+  });
+}
+
+/**
+ *
+ */
+export function handlerStartAvatarPopup() {
+  const btn = document.querySelector(btnForPopup.editAvatar);
+  const popup = new PopupWithForm({
+    selectorPopup: popups.editAvatar,
+    handlerSubmitForm: () => {
+      const {placeName} = popup._getInputValues();
+
+      handlerUpdateUserAvatar(placeName);
     }
   });
 
