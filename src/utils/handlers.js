@@ -6,10 +6,50 @@ import {apiConf, btnForPopup, popups, validationConf} from "./const";
 import {PopupWithImage} from "../components/PopupWithImage";
 import {PopupWithForm} from "../components/PopupWithForm";
 import {FormValidator} from "../components/FormValidator";
+import {Section} from "../components/Section";
+import {Card} from "../components/Card";
+import {UserInfo} from "../components/UserInfo";
 
 const api = new Api(apiConf);
+const userInfo = new UserInfo({
+  nameSelector:".profile__name",
+  aboutSelector: ".profile__about",
+  avatarSelector: ".profile__avatar",
+  nameInputSelector: "#personName",
+  aboutInputSelector: "#personAbout",
+  handlerUpdateUserAvatar,
+  handlerUpdateUserInfo
+});
 const popupViewer = new PopupWithImage("#imageViewerPopup");
 
+/**
+ *
+ */
+export function handlerRenderPage() {
+  Promise.all([api.getPersonalInfo(), api.getCards()])
+    .then(data => {
+      const [profileInfo, cartData] = data;
+      console.log(profileInfo);
+      console.log(cartData);
+
+      userInfo.render(profileInfo);
+
+      const cardList = new Section({
+        data: cartData,
+        renderer: (cardData) => {
+          const card = new Card({
+            data: cardData,
+            handlerLikeCart: handlerLikeCart,
+            handlerOpenImageViewer: handlerOpenImageViewer
+          }, "#card");
+          const cartEl = card.createCard(profileInfo._id);
+          cardList.setItem(cartEl);
+        }
+      }, ".gallery");
+
+      cardList.renderItems();
+    });
+}
 /**
  * Убирает или добавляет лайк карточке.
  */
@@ -41,7 +81,7 @@ export function handlerLikeCart() {
 export function handlerUpdateUserInfo({name, about}) {
   api.updatePersonalInfo(name, about)
     .then(data => {
-      this.updateUserInfo(data);
+      userInfo.updateUserInfo(data); // тут нужен класс из-под которого работает
     })
     .catch(err => {
       console.error(err);
@@ -53,7 +93,6 @@ export function handlerUpdateUserInfo({name, about}) {
  * @param url {String} - URL аватара.
  */
 export function handlerUpdateUserAvatar(url) {
-  console.log(`avatar update ${url}`);
   api.updateAvatar(url)
     .then(data => {
       this.updateAvatar(data.avatar);
@@ -77,19 +116,20 @@ export function handlerDeletingCart() {
 /**
  *
  */
-export function handlerStartPopups() {
-  for (let key in btnForPopup) {
-    const popup = new PopupWithForm({
-      selectorPopup: popups[key],
-      handlerSubmitForm: () => {
-        //TODO Написать хендлер для сабмита формы
-      }
-    });
-    const btn = document.querySelector(btnForPopup[key]);
+export function handlerStartPersonPopup() {
+  const btn = document.querySelector(btnForPopup.editInfo);
+  const popup = new PopupWithForm({
+    selectorPopup: popups.editInfo,
+    handlerSubmitForm: () => {
+      const {personName, personAbout} = popup._getInputValues();
+      console.log(personName);
+      console.log(personAbout);
+      handlerUpdateUserInfo({name: personName, about: personAbout});
+    }
+  });
 
-    btn.addEventListener("click", () => {
-      popup.open();
-      popup.setEventListeners();
-    });
-  }
+  btn.addEventListener("click", () => {
+    popup.open();
+    popup.setEventListeners();
+  });
 }

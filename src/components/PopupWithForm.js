@@ -6,11 +6,10 @@ export class PopupWithForm extends Popup {
   _handlerSubmitForm;
   _formValues;
 
-  constructor({selectorPopup, handleToHideError, handlerSubmitForm}) {
+  constructor({selectorPopup, handlerSubmitForm}) {
     super(selectorPopup);
     this._handlerSubmitForm = handlerSubmitForm;
     this._formElement = this._popupElement.querySelector("form");
-    this._handleToHideError = handleToHideError;
   }
 
   _clearErrorFields() {
@@ -49,6 +48,13 @@ export class PopupWithForm extends Popup {
 
     window.addEventListener("keydown", evt => {
       this._handleEscClose(evt);
+    });
+
+    this._formElement.addEventListener("submit", evt => {
+      evt.preventDefault();
+
+      this._handlerSubmitForm();
+      this.close();
     });
   }
 
