@@ -88,7 +88,6 @@ export function handlerStartPopups() {
     const btn = document.querySelector(btnForPopup[key]);
 
     btn.addEventListener("click", () => {
-      console.log(`click ${btnForPopup[key]}`);
       popup.open();
       popup.setEventListeners();
     });

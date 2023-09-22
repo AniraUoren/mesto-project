@@ -4,15 +4,19 @@ export class UserInfo {
   _nameElement;
   _aboutElement;
   _avatarElement;
+  _nameInput;
+  _aboutInput;
   _handlerUpdateUserAvatar;
   _handlerUpdateUserInfo;
   _editAvatarBtn;
   _editInfoBtn;
 
-  constructor(nameSelector, aboutSelector, avatarSelector, handlerUpdateUserAvatar, handlerUpdateUserInfo) {
+  constructor({nameSelector, aboutSelector, avatarSelector, nameInputSelector, aboutInputSelector, handlerUpdateUserAvatar, handlerUpdateUserInfo}) {
     this._nameElement = document.querySelector(nameSelector);
     this._aboutElement = document.querySelector(aboutSelector);
     this._avatarElement = document.querySelector(avatarSelector);
+    this._nameInput = document.querySelector(nameInputSelector);
+    this._aboutInput = document.querySelector(aboutInputSelector);
     this._handlerUpdateUserAvatar = handlerUpdateUserAvatar;
     this._handlerUpdateUserInfo = handlerUpdateUserInfo;
   }
@@ -38,6 +42,8 @@ export class UserInfo {
     this._aboutElement.textContent = data.about;
     this._avatarElement.src = data.avatar;
     this._avatarElement.alt = data.name;
+    this._nameInput.value = data.name;
+    this._aboutInput.value = data.about;
 
     this._setEventListeners();
   }

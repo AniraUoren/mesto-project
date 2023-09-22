@@ -12,11 +12,18 @@ import {Api} from "../components/Api";
 import {UserInfo} from "../components/UserInfo";
 import {Section} from "../components/Section";
 import {Card} from "../components/Card";
-import {Popup} from "../components/Popup";
 import {FormValidator} from "../components/FormValidator";
 
 const api = new Api(apiConf);
-const userInfo = new UserInfo(".profile__name", ".profile__about", ".profile__avatar", handlerUpdateUserAvatar, handlerUpdateUserInfo);
+const userInfo = new UserInfo({
+  nameSelector:".profile__name",
+  aboutSelector: ".profile__about",
+  avatarSelector: ".profile__avatar",
+  nameInputSelector: "#personName",
+  aboutInputSelector: "#personAbout",
+  handlerUpdateUserAvatar,
+  handlerUpdateUserInfo
+});
 const arrayForms = Array.from(document.querySelectorAll(validationConf.formClass));
 
 Promise.all([api.getPersonalInfo(), api.getCards()])
@@ -44,11 +51,12 @@ Promise.all([api.getPersonalInfo(), api.getCards()])
   });
 
 
-
+//запуск валидации
 arrayForms.forEach(form => {
   console.log(form);
   const validation = new FormValidator(validationConf, form);
   validation.enableValidation(form, validationConf);
 });
 
+//запуск попапов
 handlerStartPopups();
