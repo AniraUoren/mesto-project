@@ -1,14 +1,25 @@
 import {Popup} from "./Popup";
+import {validationConf} from "../utils/const";
 
 export class PopupWithForm extends Popup {
   _formElement;
   _handlerSubmitForm;
   _formValues;
 
-  constructor(selectorPopup, handlerSubmitForm) {
+  constructor({selectorPopup, handleToHideError, handlerSubmitForm}) {
     super(selectorPopup);
     this._handlerSubmitForm = handlerSubmitForm;
     this._formElement = this._popupElement.querySelector("form");
+    this._handleToHideError = handleToHideError;
+  }
+
+  _clearErrorFields() {
+    const errorElements = Array.from(this._formElement.querySelectorAll(".popup__input-error"));
+
+    errorElements.forEach(errorField => {
+      errorField.classList.remove(validationConf.visibleErrorClass);
+      errorField.textContent = "";
+    });
   }
 
   _getInputValues() {
@@ -25,6 +36,7 @@ export class PopupWithForm extends Popup {
   close() {
     super.close();
     this._formElement.reset();
+    this._clearErrorFields();
   }
 
   setEventListeners() {

@@ -1,8 +1,7 @@
-import {disableSubmitButton, hideInputError} from "../delete/validate";
-
 export class FormValidator {
   _config; //TODO Не уверена что его надо хранить как параметр, а не как static
   _form;
+  _arrayInputs;
 
   constructor(config, formElement) {
     this._config = config;
@@ -16,7 +15,7 @@ export class FormValidator {
     _errorElement.classList.add(this._config.visibleErrorClass);
   }
 
-  _hideError(inputElement, errorText){
+  _hideError(inputElement){
     const _errorElement =  this._form.querySelector(`.${inputElement.id}-error`);
 
     _errorElement.classList.remove(this._config.visibleErrorClass);
@@ -38,8 +37,8 @@ export class FormValidator {
   }
 
   _isValid(input){
-    const arrayInputs = Array.from(this._form.querySelectorAll(".popup__input"));
-    const hasInvalidField = arrayInputs.some(input => {
+    this._arrayInputs = Array.from(this._form.querySelectorAll(".popup__input"));
+    const hasInvalidField = this._arrayInputs.some(input => {
       return input.validity.valid === false;
     });
 

@@ -2,9 +2,10 @@
  * Убирает или добавляет лайк карточке.
  */
 import {Api} from "../components/Api";
-import {apiConf, btnForPopup, popups} from "./const";
+import {apiConf, btnForPopup, popups, validationConf} from "./const";
 import {PopupWithImage} from "../components/PopupWithImage";
 import {PopupWithForm} from "../components/PopupWithForm";
+import {FormValidator} from "../components/FormValidator";
 
 const api = new Api(apiConf);
 const popupViewer = new PopupWithImage("#imageViewerPopup");
@@ -40,7 +41,7 @@ export function handlerLikeCart() {
 export function handlerUpdateUserInfo({name, about}) {
   api.updatePersonalInfo(name, about)
     .then(data => {
-      this.updateUserInfo({name, about});
+      this.updateUserInfo(data);
     })
     .catch(err => {
       console.error(err);
@@ -78,8 +79,11 @@ export function handlerDeletingCart() {
  */
 export function handlerStartPopups() {
   for (let key in btnForPopup) {
-    const popup = new PopupWithForm(popups[key], () => {
-      //TODO Написать хедлер для сабмита формы
+    const popup = new PopupWithForm({
+      selectorPopup: popups[key],
+      handlerSubmitForm: () => {
+        //TODO Написать хендлер для сабмита формы
+      }
     });
     const btn = document.querySelector(btnForPopup[key]);
 
