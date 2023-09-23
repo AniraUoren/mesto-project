@@ -25,11 +25,12 @@ export const ESC_KEY = "Escape";
 export const popups = {
   editInfo: "#editProfilePopup",
   addCard: "#addCardPopup",
-  editAvatar: "#editAvatar"
+  editAvatar: "#editAvatar",
+  deleteCard: "#confirmDeleteCard"
 };
 
 export const btnForPopup = {
   editInfo: ".profile__edit-btn",
   editAvatar: ".profile__edit-avatar",
-  addCard: ".profile__add-btn"
+  addCard: ".profile__add-btn",
 };

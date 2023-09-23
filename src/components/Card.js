@@ -43,7 +43,7 @@ export class Card {
   }
 
   _deleteCard() {
-
+    this._card.remove();
   }
 
   _setEventListeners() {

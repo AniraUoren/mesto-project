@@ -9,6 +9,7 @@ import {FormValidator} from "../components/FormValidator";
 import {Section} from "../components/Section";
 import {Card} from "../components/Card";
 import {UserInfo} from "../components/UserInfo";
+import {data} from "autoprefixer";
 
 const api = new Api(apiConf);
 const userInfo = new UserInfo({
@@ -21,6 +22,7 @@ const userInfo = new UserInfo({
   handlerUpdateUserInfo
 });
 const popupViewer = new PopupWithImage("#imageViewerPopup");
+let userId = "";
 
 /**
  *
@@ -33,6 +35,7 @@ export function handlerRenderPage() {
       console.log(cartData);
 
       userInfo.render(profileInfo);
+      userId = profileInfo._id;
 
       const cardList = new Section({
         data: cartData,
@@ -42,7 +45,7 @@ export function handlerRenderPage() {
             handlerLikeCart: handlerLikeCart,
             handlerOpenImageViewer: handlerOpenImageViewer
           }, "#card");
-          const cartEl = card.createCard(profileInfo._id);
+          const cartEl = card.createCard(userId);
           cardList.setItem(cartEl);
         }
       }, ".gallery");
@@ -111,11 +114,18 @@ export function handlerOpenImageViewer(src, description) {
  *
  */
 export function handlerDeletingCart() {
-  //TODO Написать хендлер для удаления карточки
+  api.deleteCard(this._cardId)
+    .then(data => {
+      console.log(data);
+      this._deleteCard();
+    })
+    .catch(err => {
+      console.error(err);
+    });
 }
 
 /**
- *
+ * Запускает работу попапа обновления персональной информации.
  */
 export function handlerStartPersonPopup() {
   const btn = document.querySelector(btnForPopup.editInfo);
@@ -136,7 +146,7 @@ export function handlerStartPersonPopup() {
 }
 
 /**
- *
+ * Запускает работу попапа обновления аватара.
  */
 export function handlerStartAvatarPopup() {
   const btn = document.querySelector(btnForPopup.editAvatar);
@@ -146,6 +156,62 @@ export function handlerStartAvatarPopup() {
       const {placeName} = popup._getInputValues();
 
       handlerUpdateUserAvatar(placeName);
+    }
+  });
+
+  btn.addEventListener("click", () => {
+    popup.open();
+    popup.setEventListeners();
+  });
+}
+
+/**
+ *
+ */
+export function handlerStartDeleteCardPopup() {
+  const btn = document.querySelector(btnForPopup.editAvatar);
+  const popup = new PopupWithForm({
+    selectorPopup: popups.editAvatar,
+    handlerSubmitForm: () => {
+      const {placeName} = popup._getInputValues();
+
+      handlerUpdateUserAvatar(placeName);
+    }
+  });
+
+  btn.addEventListener("click", () => {
+    popup.open();
+    popup.setEventListeners();
+  });
+}
+
+/**
+ * Запускает попап для добавления новой карточки.
+ */
+export function handlerStartPopupAddCart() {
+  const btn = document.querySelector(btnForPopup.addCard);
+  const popup = new PopupWithForm({
+    selectorPopup: popups.addCard,
+    handlerSubmitForm: () => {
+      const {placeName, palaceURL} = popup._getInputValues();
+
+      api.postNewCard(placeName, palaceURL)
+        .then(data => {
+          console.log(`data ${data}`);
+          const list = new Section({
+            data: [data],
+            renderer: (data) => {
+              const card = new Card({
+                data: data,
+                handlerLikeCart: handlerLikeCart,
+                handlerOpenImageViewer: handlerOpenImageViewer
+              }, "#card");
+              const cartEl = card.createCard(userId);
+              list.addItem(cartEl);
+            }
+          }, ".gallery");
+          list.renderItems();
+        });
     }
   });
 

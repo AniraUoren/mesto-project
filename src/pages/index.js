@@ -2,7 +2,7 @@ import "../pages/index.css";
 
 import {validationConf} from "../utils/const";
 import {
-  handlerRenderPage, handlerStartAvatarPopup, handlerStartPersonPopup
+  handlerRenderPage, handlerStartAvatarPopup, handlerStartPersonPopup, handlerStartPopupAddCart
 } from "../utils/handlers";
 
 import {FormValidator} from "../components/FormValidator";
@@ -21,3 +21,4 @@ arrayForms.forEach(form => {
 //запуск попапов
 handlerStartPersonPopup();
 handlerStartAvatarPopup();
+handlerStartPopupAddCart();

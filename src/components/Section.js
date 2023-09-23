@@ -12,8 +12,13 @@ export class Section {
     this._container.append(item);
   }
 
+  addItem (item) {
+    this._container.prepend(item);
+  }
+
   renderItems() {
     this._initialData.forEach(item => {
+      console.log("render");
       this._renderer(item);
     });
   }
