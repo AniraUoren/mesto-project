@@ -4,6 +4,7 @@ export class Card {
   _data;
   _templateSelector;
   _handlerLikeCart;
+  _handlerDeleteCard;
   _isLikedByMe;
   _countOfLikes;
   _card;
@@ -14,10 +15,11 @@ export class Card {
   _isOwner;
   _cardId;
 
-  constructor({data, handlerLikeCart, handlerOpenImageViewer}, templateSelector) {
+  constructor({data, handlerLikeCart, handlerDeleteCard, handlerOpenImageViewer}, templateSelector) {
     this._data = data;
     this._templateSelector = templateSelector;
     this._handlerLikeCart = handlerLikeCart;
+    this._handlerDeleteCard = handlerDeleteCard;
   }
 
   _getTemplate() {
@@ -53,6 +55,10 @@ export class Card {
 
     this._image.addEventListener("click", evt => {
       handlerOpenImageViewer(this._image.src, this._description.textContent);
+    });
+
+    this._deleteBtn.addEventListener("click", () => {
+      this._handlerDeleteCard(this._cardId, this._card);
     });
   }
 

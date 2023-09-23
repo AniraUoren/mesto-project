@@ -18,7 +18,6 @@ export class Section {
 
   renderItems() {
     this._initialData.forEach(item => {
-      console.log("render");
       this._renderer(item);
     });
   }

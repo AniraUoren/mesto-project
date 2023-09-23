@@ -43,6 +43,7 @@ export function handlerRenderPage() {
           const card = new Card({
             data: cardData,
             handlerLikeCart: handlerLikeCart,
+            handlerDeleteCard: handlerDeletePopup,
             handlerOpenImageViewer: handlerOpenImageViewer
           }, "#card");
           const cartEl = card.createCard(userId);
@@ -113,11 +114,11 @@ export function handlerOpenImageViewer(src, description) {
 /**
  *
  */
-export function handlerDeletingCart() {
-  api.deleteCard(this._cardId)
+export function handlerDeletingCart(cardId, card) {
+  api.deleteCard(cardId)
     .then(data => {
       console.log(data);
-      this._deleteCard();
+      card.remove();
     })
     .catch(err => {
       console.error(err);
@@ -166,26 +167,6 @@ export function handlerStartAvatarPopup() {
 }
 
 /**
- *
- */
-export function handlerStartDeleteCardPopup() {
-  const btn = document.querySelector(btnForPopup.editAvatar);
-  const popup = new PopupWithForm({
-    selectorPopup: popups.editAvatar,
-    handlerSubmitForm: () => {
-      const {placeName} = popup._getInputValues();
-
-      handlerUpdateUserAvatar(placeName);
-    }
-  });
-
-  btn.addEventListener("click", () => {
-    popup.open();
-    popup.setEventListeners();
-  });
-}
-
-/**
  * Запускает попап для добавления новой карточки.
  */
 export function handlerStartPopupAddCart() {
@@ -204,6 +185,7 @@ export function handlerStartPopupAddCart() {
               const card = new Card({
                 data: data,
                 handlerLikeCart: handlerLikeCart,
+                handlerDeleteCard: handlerDeletePopup,
                 handlerOpenImageViewer: handlerOpenImageViewer
               }, "#card");
               const cartEl = card.createCard(userId);
@@ -219,4 +201,20 @@ export function handlerStartPopupAddCart() {
     popup.open();
     popup.setEventListeners();
   });
+}
+
+/**
+ *
+ */
+export function handlerDeletePopup(cartId, card) {
+  const popup = new PopupWithForm({
+    selectorPopup: popups.deleteCard,
+    handlerSubmitForm: () => {
+      console.log(cartId);
+      console.log(this);
+      handlerDeletingCart(cartId, card);
+    }
+  });
+  popup.open();
+  popup.setEventListeners();
 }
