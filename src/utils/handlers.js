@@ -2,14 +2,12 @@
  * Убирает или добавляет лайк карточке.
  */
 import {Api} from "../components/Api";
-import {apiConf, btnForPopup, popups, validationConf} from "./const";
+import {apiConf, btnForPopup, popups} from "./const";
 import {PopupWithImage} from "../components/PopupWithImage";
 import {PopupWithForm} from "../components/PopupWithForm";
-import {FormValidator} from "../components/FormValidator";
 import {Section} from "../components/Section";
 import {Card} from "../components/Card";
 import {UserInfo} from "../components/UserInfo";
-import {data} from "autoprefixer";
 
 const api = new Api(apiConf);
 const userInfo = new UserInfo({
@@ -86,7 +84,7 @@ export function handlerLikeCart() {
 export function handlerUpdateUserInfo({name, about}) {
   api.updatePersonalInfo(name, about)
     .then(data => {
-      userInfo.updateUserInfo(data); // тут нужен класс из-под которого работает
+      userInfo.updateUserInfo({data}); // тут нужен класс из-под которого работает
     })
     .catch(err => {
       console.error(err);

@@ -1,10 +1,9 @@
-import {handlerOpenImageViewer} from "../utils/handlers";
-
 export class Card {
   _data;
   _templateSelector;
   _handlerLikeCart;
   _handlerDeleteCard;
+  _handlerOpenImageViewer
   _isLikedByMe;
   _countOfLikes;
   _card;
@@ -20,6 +19,7 @@ export class Card {
     this._templateSelector = templateSelector;
     this._handlerLikeCart = handlerLikeCart;
     this._handlerDeleteCard = handlerDeleteCard;
+    this._handlerOpenImageViewer = handlerOpenImageViewer;
   }
 
   _getTemplate() {
@@ -54,7 +54,7 @@ export class Card {
     });
 
     this._image.addEventListener("click", evt => {
-      handlerOpenImageViewer(this._image.src, this._description.textContent);
+      _handlerOpenImageViewer(this._image.src, this._description.textContent);
     });
 
     this._deleteBtn.addEventListener("click", () => {
