@@ -24,17 +24,6 @@ export class UserInfo {
   _setEventListeners() {
     this._editAvatarBtn = document.querySelector(btnForPopup.editAvatar);
     this._editInfoBtn = document.querySelector(btnForPopup.editInfo);
-
-    //TODO Сделано для проверки запросы должны срабатывать при сабмите формы, а значит еще хендлер будет
-    // this._editAvatarBtn.addEventListener("click", () => {
-    //   this._handlerUpdateUserAvatar("https://proprikol.ru/wp-content/uploads/2020/11/kartinki-pumy-34.jpg");
-    // });
-
-    //TODO Сделано для проверки запросы должны срабатывать при сабмите формы, а значит еще хендлер будет
-    // this._editInfoBtn.addEventListener("click", () => {
-    //   this._handlerUpdateUserInfo({name: "Огромный Пум", about: "Страшно красив"});
-    // });
-
   }
 
   render(data) {
@@ -53,7 +42,6 @@ export class UserInfo {
   }
 
   updateUserInfo({name, about}) {
-    // console.log(`${name}, ${about}`);
     this._nameElement.textContent = name;
     this._aboutElement.textContent = about;
     this._avatarElement.alt = name;
