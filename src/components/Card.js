@@ -3,7 +3,7 @@ export class Card {
   _templateSelector;
   _handlerLikeCart;
   _handlerDeleteCard;
-  _handlerOpenImageViewer
+  _handlerOpenImageViewer;
   _isLikedByMe;
   _countOfLikes;
   _card;
@@ -23,13 +23,11 @@ export class Card {
   }
 
   _getTemplate() {
-    const element = document
+    return document
       .querySelector(this._templateSelector)
       .content
       .querySelector(".card")
       .cloneNode(true);
-
-    return element;
   }
 
   _toggleLike(cardData) {
@@ -53,8 +51,8 @@ export class Card {
       this._handlerLikeCart();
     });
 
-    this._image.addEventListener("click", evt => {
-      _handlerOpenImageViewer(this._image.src, this._description.textContent);
+    this._image.addEventListener("click", () => {
+      this._handlerOpenImageViewer(this._image.src, this._description.textContent);
     });
 
     this._deleteBtn.addEventListener("click", () => {
